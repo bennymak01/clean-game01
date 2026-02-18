@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>地毯清潔大師</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:system-ui,sans-serif; background:#1a0a2e; color:#fff; overflow:hidden; height:100vh; width:100vw; user-select:none; }
+.screen { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; transition:opacity .3s; }
+.screen.hidden { opacity:0; pointer-events:none; }
+#menuScreen { background:linear-gradient(135deg,#1a0a2e 0%,#0d1b4b 50%,#0a2a1a 100%); }
+.logo-area { text-align:center; margin-bottom:40px; animation:flt 3s ease-in-out infinite; }
+@keyframes flt { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+.logo-icon { font-size:80px; }
+.logo-title { font-size:40px; font-weight:900; background:linear-gradient(135deg,#00e5ff,#76ff03,#ffea00); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; letter-spacing:3px; margin-top:8px; }
+.logo-sub { font-size:13px; color:#777; letter-spacing:5px; margin-top:4px; }
+.menu-btns { display:flex; flex-direction:column; gap:14px; width:280px; }
+.mbtn { padding:15px 28px; font-size:19px; font-weight:700; border:none; border-radius:50px; cursor:pointer; transition:all .2s; letter-spacing:2px; }
+.mbtn:hover { transform:scale(1.05); filter:brightness(1.15); }
+.mbtn:active { transform:scale(.97); }
+.b-play { background:linear-gradient(135deg,#00e5ff,#0060e0); color:#fff; box-shadow:0 8px 28px rgba(0,180,255,.4); }
+.b-how { background:linear-gradient(135deg,#ffea00,#ff8c00); color:#111; box-shadow:0 8px 28px rgba(255,180,0,.3); }
+#levelScreen, #howScreen { background:linear-gradient(135deg,#1a0a2e,#0d1a3e); }
+.sc-title { font-size:30px; font-weight:900; margin-bottom:28px; }
+.lvl-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:28px; }
+.lvl-card { background:rgba(255,255,255,.07); border:2px solid rgba(255,255,255,.12); border-radius:16px; padding:18px 14px; text-align:center; cursor:pointer; transition:all .2s; width:125px; }
+.lvl-card:hover { transform:scale(1.06); background:rgba(255,255,255,.13); }
+.lvl-em { font-size:34px; margin-bottom:7px; }
+.lvl-nm { font-size:15px; font-weight:700; margin-bottom:3px; }
+.lvl-ds { font-size:11px; color:#aaa; }
+.c-easy { border-color:#76ff03 !important; }
+.c-mid { border-color:#ffea00 !important; }
+.c-hard { border-color:#ff4444 !important; }
+.how-cards { display:flex; gap:14px; margin-bottom:22px; flex-wrap:wrap; justify-content:center; max-width:680px; }
+.hcard { background:rgba(255,255,255,.07); border-radius:14px; padding:18px; text-align:center; width:150px; border:1px solid rgba(255,255,255,.1); }
+.hc-icon { font-size:36px; margin-bottom:9px; }
+.hc-title { font-size:14px; font-weight:700; margin-bottom:5px; }
+.hc-desc { font-size:11px; color:#ccc; line-height:1.5; }
+.back-btn { background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.2); color:white; padding:10px 26px; border-radius:50px; font-size:15px; cursor:pointer; transition:all .2s; }
+.back-btn:hover { background:rgba(255,255,255,.2); }
+#gameScreen { background:#162a10; flex-direction:column; padding:0; }
+.hud { position:absolute; top:0; left:0; right:0; background:rgba(0,0,0,.7); backdrop-filter:blur(10px); padding:10px 18px; display:flex; align-items:center; justify-content:space-between; z-index:100; height:62px; border-bottom:1px solid rgba(255,255,255,.1); }
+.hud-item { text-align:center; }
+.hud-lbl { font-size:10px; color:#777; letter-spacing:1px; }
+.hud-val { font-size:21px; font-weight:900; }
+.tbar-wrap { flex:1; margin:0 14px; height:9px; background:rgba(255,255,255,.1); border-radius:9px; overflow:hidden; }
+.tbar { height:100%; background:linear-gradient(90deg,#76ff03,#ffea00); border-radius:9px; transition:width .1s linear,background .5s; }
+.tool-bar { position:absolute; bottom:0; left:0; right:0; background:rgba(0,0,0,.75); backdrop-filter:blur(10px); padding:9px 14px; display:flex; gap:9px; justify-content:center; z-index:100; height:72px; border-top:1px solid rgba(255,255,255,.1); align-items:center; }
+.tbtn { display:flex; flex-direction:column; align-items:center; gap:3px; background:rgba(255,255,255,.07); border:2px solid rgba(255,255,255,.14); border-radius:13px; padding:7px 14px; cursor:pointer; transition:all .15s; color:white; min-width:70px; }
+.tbtn:hover { background:rgba(255,255,255,.14); }
+.tbtn.active { border-color:#00e5ff; background:rgba(0,229,255,.14); box-shadow:0 0 18px rgba(0,229,255,.3); }
+.tbtn .ti { font-size:22px; }
+.tbtn .tn { font-size:11px; font-weight:700; }
+#carpetCanvas { position:absolute; top:62px; bottom:72px; left:0; right:0; cursor:none; }
+#cur { position:fixed; pointer-events:none; z-index:500; transform:translate(-50%,-50%); font-size:30px; filter:drop-shadow(0 2px 6px rgba(0,0,0,.6)); }
+.spop { position:fixed; font-size:16px; font-weight:900; color:#76ff03; pointer-events:none; z-index:600; animation:floatUp .9s ease-out forwards; text-shadow:0 0 10px rgba(100,255,0,.8); }
+@keyframes floatUp { 0%{opacity:1;transform:translateY(0) scale(1)} 100%{opacity:0;transform:translateY(-52px) scale(1.3)} }
+#comboDsp { position:absolute; top:76px; right:14px; text-align:center; z-index:150; animation:cPop .3s ease; }
+@keyframes cPop { 0%{transform:scale(.5)} 70%{transform:scale(1.2)} 100%{transform:scale(1)} }
+.cnum { font-size:32px; font-weight:900; color:#ffea00; text-shadow:0 0 20px rgba(255,220,0,.9); }
+.clbl { font-size:10px; color:#ffea00; letter-spacing:2px; }
+#resultScreen { background:linear-gradient(135deg,#0a1820,#0a2a14); }
+.res-em { font-size:72px; animation:bIn .5s; margin-bottom:7px; }
+@keyframes bIn { 0%{transform:scale(0)} 60%{transform:scale(1.2)} 100%{transform:scale(1)} }
+.res-title { font-size:30px; font-weight:900; margin-bottom:4px; }
+.res-grade { font-size:70px; font-weight:900; background:linear-gradient(135deg,#ffea00,#ff8800); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin-bottom:7px; }
+.res-stats { display:flex; gap:18px; margin:14px 0 24px; }
+.rstat { background:rgba(255,255,255,.07); border-radius:11px; padding:11px 16px; text-align:center; border:1px solid rgba(255,255,255,.1); }
+.rs-val { font-size:24px; font-weight:900; }
+.rs-lbl { font-size:11px; color:#aaa; margin-top:3px; }
+.res-btns { display:flex; gap:11px; }
+.rbtn { padding:12px 24px; border-radius:50px; font-size:15px; font-weight:700; border:none; cursor:pointer; transition:all .2s; letter-spacing:1px; }
+.rbtn:hover { transform:scale(1.05); }
+.r-retry { background:linear-gradient(135deg,#00e5ff,#0060e0); color:white; }
+.r-menu { background:rgba(255,255,255,.1); color:white; border:1px solid rgba(255,255,255,.2); }
+#sndBtn { position:fixed; top:14px; right:14px; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.2); border-radius:50%; width:44px; height:44px; font-size:19px; cursor:pointer; color:white; z-index:9999; transition:all .2s; }
+#sndBtn:hover { background:rgba(255,255,255,.2); }
+.bubbles { position:absolute; inset:0; overflow:hidden; pointer-events:none; z-index:0; }
+.bubble { position:absolute; border-radius:50%; background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.1),transparent); border:1px solid rgba(255,255,255,.07); animation:rise linear infinite; }
+@keyframes rise { 0%{transform:translateY(110vh);opacity:0} 5%{opacity:.8} 95%{opacity:.3} 100%{transform:translateY(-10vh);opacity:0} }
+
+/* Horse mascot */
+.horse-mascot { width:180px; height:180px; margin:0 auto 20px; position:relative; animation:horseFloat 3s ease-in-out infinite; }
+@keyframes horseFloat { 0%,100%{transform:translateY(0) rotate(0deg)} 50%{transform:translateY(-12px) rotate(2deg)} }
+.horse-face { width:100%; height:100%; border-radius:50%; background:linear-gradient(135deg,#8B6F47,#A0826D); position:relative; box-shadow:0 10px 40px rgba(0,0,0,.4); border:4px solid #6B5D52; }
+.horse-ear { position:absolute; width:30px; height:50px; background:linear-gradient(180deg,#8B6F47,#6B5D52); border-radius:50% 50% 20% 20%; border:2px solid #5a4a3a; }
+.horse-ear.left { top:-15px; left:20px; transform:rotate(-25deg); }
+.horse-ear.right { top:-15px; right:20px; transform:rotate(25deg); }
+.horse-ear-inner { position:absolute; width:14px; height:30px; background:#D4A574; border-radius:50%; top:8px; left:8px; }
+.horse-mane { position:absolute; width:40px; height:80px; background:linear-gradient(135deg,#4a3a2a,#6B5D52); border-radius:20px; top:-10px; left:50%; transform:translateX(-50%); z-index:-1; }
+.horse-eyes { position:absolute; width:100%; top:55px; display:flex; justify-content:center; gap:45px; }
+.horse-eye { width:28px; height:32px; background:white; border-radius:50%; position:relative; border:3px solid #2a2a2a; animation:blink 4s infinite; }
+@keyframes blink { 0%,95%,100%{transform:scaleY(1)} 96%,98%{transform:scaleY(.1)} }
+.horse-pupil { width:16px; height:16px; background:#1a1a1a; border-radius:50%; position:absolute; top:8px; left:6px; }
+.horse-shine { width:8px; height:8px; background:white; border-radius:50%; position:absolute; top:2px; left:2px; }
+.horse-snout { position:absolute; bottom:30px; left:50%; transform:translateX(-50%); width:70px; height:60px; background:linear-gradient(135deg,#A89177,#D4A574); border-radius:50%; border:3px solid #6B5D52; }
+.horse-nostril { position:absolute; width:12px; height:16px; background:#3a2a1a; border-radius:50%; top:20px; }
+.horse-nostril.left { left:12px; }
+.horse-nostril.right { right:12px; }
+.horse-mouth { position:absolute; bottom:8px; left:50%; transform:translateX(-50%); width:40px; height:20px; border:3px solid #4a3a2a; border-top:none; border-radius:0 0 50% 50%; }
+.horse-smile { position:absolute; top:65%; left:50%; transform:translateX(-50%); width:60px; height:25px; }
+.horse-smile::before { content:''; position:absolute; width:30px; height:15px; border:3px solid #4a3a2a; border-top:none; border-radius:0 0 50% 50%; left:0; }
+.horse-smile::after { content:''; position:absolute; width:30px; height:15px; border:3px solid #4a3a2a; border-top:none; border-radius:0 0 50% 50%; right:0; }
+.cleaning-spray { position:absolute; right:-30px; top:30px; font-size:40px; transform:rotate(25deg); animation:sprayBounce 1s ease-in-out infinite; }
+@keyframes sprayBounce { 0%,100%{transform:rotate(25deg) translateY(0)} 50%{transform:rotate(25deg) translateY(-8px)} }
+
+/* Footer branding */
+.brand-footer { position:absolute; bottom:16px; left:50%; transform:translateX(-50%); z-index:50; }
+.brand-text { font-size:18px; font-weight:700; color:rgba(255,255,255,.5); letter-spacing:3px; text-shadow:0 2px 8px rgba(0,0,0,.3); transition:color .3s; }
+.brand-text:hover { color:rgba(255,255,255,.8); }
+</style>
+</head>
+<body>
+<script>
+const SE=(()=>{
+  let AC,muted=false;
+  function gc(){if(!AC)AC=new(window.AudioContext||window.webkitAudioContext)();if(AC.state==='suspended')AC.resume();return AC;}
+  function tone(f,t,d,v=.3,delay=0){if(muted)return;const c=gc(),o=c.createOscillator(),g=c.createGain();o.connect(g);g.connect(c.destination);o.type=t;o.frequency.setValueAtTime(f,c.currentTime+delay);g.gain.setValueAtTime(v,c.currentTime+delay);g.gain.exponentialRampToValueAtTime(.001,c.currentTime+delay+d);o.start(c.currentTime+delay);o.stop(c.currentTime+delay+d+.02);}
+  function noise(d,v=.1,cf=1200,delay=0){if(muted)return;const c=gc(),b=c.createBuffer(1,c.sampleRate*d,c.sampleRate),data=b.getChannelData(0);for(let i=0;i<data.length;i++)data[i]=Math.random()*2-1;const s=c.createBufferSource();s.buffer=b;const fi=c.createBiquadFilter();fi.type='bandpass';fi.frequency.value=cf;fi.Q.value=.5;const g=c.createGain();s.connect(fi);fi.connect(g);g.connect(c.destination);g.gain.setValueAtTime(v,c.currentTime+delay);g.gain.exponentialRampToValueAtTime(.001,c.currentTime+delay+d);s.start(c.currentTime+delay);s.stop(c.currentTime+delay+d+.02);}
+  return{
+    mute(){muted=!muted;return muted;},isMuted(){return muted;},
+    spray(){noise(.15,.12,900);tone(680,'sine',.1,.04);},
+    scrub(){noise(.09,.14,600);tone(260+Math.random()*180,'sawtooth',.09,.04);},
+    vacuum(){noise(.13,.18,300);tone(100,'sawtooth',.15,.07);tone(170,'sine',.12,.04,.06);},
+    combo(n){const b=360+n*90;[b,b*1.25,b*1.5].forEach((f,i)=>tone(f,'sine',.15,.22,i*.1));},
+    click(){tone(560,'sine',.1,.18);tone(760,'sine',.07,.12,.05);},
+    lvlUp(){[460,560,700,880].forEach((f,i)=>tone(f,'sine',.18,.28,i*.1));},
+    tick(){tone(980,'square',.05,.15);},
+    win(){[480,600,740,980,1220].forEach((f,i)=>tone(f,'sine',.22,.28,i*.12));},
+    lose(){[360,300,240,160].forEach((f,i)=>tone(f,'sawtooth',.25,.22,i*.15));},
+    menu(){[261,329,392,523,392,329,261].forEach((f,i)=>tone(f,'sine',.42,.05,i*.44));}
+  };
+})();
+</script>
+<div class="bubbles" id="bubs"></div>
+<button id="sndBtn" onclick="toggleSnd()">🔊</button>
+
+<!-- MENU -->
+<div class="screen" id="menuScreen">
+  <div class="horse-mascot">
+    <div class="horse-mane"></div>
+    <div class="horse-face">
+      <div class="horse-ear left"><div class="horse-ear-inner"></div></div>
+      <div class="horse-ear right"><div class="horse-ear-inner"></div></div>
+      <div class="horse-eyes">
+        <div class="horse-eye"><div class="horse-pupil"><div class="horse-shine"></div></div></div>
+        <div class="horse-eye"><div class="horse-pupil"><div class="horse-shine"></div></div></div>
+      </div>
+      <div class="horse-smile"></div>
+      <div class="horse-snout">
+        <div class="horse-nostril left"></div>
+        <div class="horse-nostril right"></div>
+      </div>
+    </div>
+    <div class="cleaning-spray">🧴</div>
+  </div>
+  <div class="logo-area">
+    <div class="logo-icon">🧹</div>
+    <div class="logo-title">地毯清潔大師</div>
+    <div class="logo-sub">CARPET CLEANING SIMULATOR</div>
+  </div>
+  <div class="menu-btns">
+    <button class="mbtn b-play" onclick="SE.click();showS('levelScreen')">▶ 開始遊戲</button>
+    <button class="mbtn b-how" onclick="SE.click();showS('howScreen')">❓ 遊戲說明</button>
+  </div>
+  <div class="brand-footer"><div class="brand-text">麗雅清潔</div></div>
+</div>
+
+<!-- LEVELS -->
+<div class="screen hidden" id="levelScreen">
+  <div class="sc-title">🎮 選擇難度</div>
+  <div class="lvl-grid">
+    <div class="lvl-card c-easy" onclick="startGame('easy')"><div class="lvl-em">😊</div><div class="lvl-nm">簡單</div><div class="lvl-ds">60秒 · 15個污漬</div></div>
+    <div class="lvl-card c-mid" onclick="startGame('medium')"><div class="lvl-em">😤</div><div class="lvl-nm">普通</div><div class="lvl-ds">45秒 · 25個污漬</div></div>
+    <div class="lvl-card c-hard" onclick="startGame('hard')"><div class="lvl-em">🤯</div><div class="lvl-nm">困難</div><div class="lvl-ds">30秒 · 40個污漬</div></div>
+  </div>
+  <button class="back-btn" onclick="SE.click();showS('menuScreen')">← 返回</button>
+  <div class="brand-footer"><div class="brand-text">麗雅清潔</div></div>
+</div>
+
+<!-- HOW TO -->
+<div class="screen hidden" id="howScreen">
+  <div class="sc-title">📖 遊戲說明</div>
+  <div class="how-cards">
+    <div class="hcard"><div class="hc-icon">💧</div><div class="hc-title">1. 噴灑清潔劑</div><div class="hc-desc">選噴劑，點污漬使其變成藍色軟化狀態</div></div>
+    <div class="hcard"><div class="hc-icon">🪥</div><div class="hc-title">2. 刷洗地毯</div><div class="hc-desc">切換刷子，刷洗藍色污漬使其變淡</div></div>
+    <div class="hcard"><div class="hc-icon">🌀</div><div class="hc-title">3. 吸塵清除</div><div class="hc-desc">用吸塵器吸走淡綠色殘留污漬</div></div>
+    <div class="hcard"><div class="hc-icon">⚡</div><div class="hc-title">連擊加分</div><div class="hc-desc">快速連續操作可獲最高3倍分數獎勵！</div></div>
+  </div>
+  <div style="color:#aaa;font-size:13px;margin-bottom:20px;text-align:center;line-height:1.9">清潔率達 <span style="color:#76ff03;font-weight:900">80%</span> 即可過關 🌟<br>噴灑 → 刷洗 → 吸塵，三步驟完成！</div>
+  <button class="back-btn" onclick="SE.click();showS('menuScreen')">← 返回</button>
+  <div class="brand-footer"><div class="brand-text">麗雅清潔</div></div>
+</div>
+
+<!-- GAME -->
+<div class="screen hidden" id="gameScreen">
+  <div class="hud">
+    <div class="hud-item"><div class="hud-lbl">分數</div><div class="hud-val" id="hudScore" style="color:#76ff03">0</div></div>
+    <div class="tbar-wrap"><div class="tbar" id="tbar"></div></div>
+    <div class="hud-item"><div class="hud-lbl">時間</div><div class="hud-val" id="hudTime" style="color:#ffea00">60</div></div>
+    <div class="hud-item" style="margin-left:12px"><div class="hud-lbl">清潔度</div><div class="hud-val" id="hudClean" style="color:#00e5ff">0%</div></div>
+  </div>
+  <canvas id="carpetCanvas"></canvas>
+  <div id="cur">💧</div>
+  <div id="comboDsp" style="display:none"><div class="cnum" id="cnum">x2</div><div class="clbl">連擊！</div></div>
+  <div class="tool-bar">
+    <button class="tbtn active" id="tSpray" onclick="setTool('spray')"><span class="ti">💧</span><span class="tn">噴劑</span></button>
+    <button class="tbtn" id="tScrub" onclick="setTool('scrub')"><span class="ti">🪥</span><span class="tn">刷洗</span></button>
+    <button class="tbtn" id="tVacuum" onclick="setTool('vacuum')"><span class="ti">🌀</span><span class="tn">吸塵</span></button>
+    <button class="back-btn" style="font-size:12px;padding:7px 16px" onclick="quitGame()">✕ 離開</button>
+  </div>
+  <div class="brand-footer"><div class="brand-text">麗雅清潔</div></div>
+</div>
+
+<!-- RESULT -->
+<div class="screen hidden" id="resultScreen">
+  <div class="res-em" id="resEm">🏆</div>
+  <div class="res-title" id="resTitle">清潔完成！</div>
+  <div class="res-grade" id="resGrade">S</div>
+  <div class="res-stats">
+    <div class="rstat"><div class="rs-val" id="rsScore">0</div><div class="rs-lbl">總分</div></div>
+    <div class="rstat"><div class="rs-val" id="rsClean">0%</div><div class="rs-lbl">清潔率</div></div>
+    <div class="rstat"><div class="rs-val" id="rsCombo">0</div><div class="rs-lbl">最高連擊</div></div>
+  </div>
+  <div class="res-btns">
+    <button class="rbtn r-retry" onclick="retryGame()">🔄 再玩一次</button>
+    <button class="rbtn r-menu" onclick="SE.click();showS('menuScreen')">🏠 主選單</button>
+  </div>
+  <div class="brand-footer"><div class="brand-text">麗雅清潔</div></div>
+</div>
+
+<script>
+(()=>{const c=document.getElementById('bubs');for(let i=0;i<12;i++){const b=document.createElement('div');b.className='bubble';const s=18+Math.random()*65;b.style.cssText='width:'+s+'px;height:'+s+'px;left:'+(Math.random()*100)+'%;animation-duration:'+(9+Math.random()*11)+'s;animation-delay:'+(Math.random()*9)+'s';c.appendChild(b);}})();
+function showS(id){document.querySelectorAll('.screen').forEach(s=>s.classList.add('hidden'));document.getElementById(id).classList.remove('hidden');if(id==='menuScreen')setTimeout(()=>SE.menu(),300);}
+function toggleSnd(){const m=SE.mute();document.getElementById('sndBtn').textContent=m?'🔇':'🔊';}
+const LVL={easy:{t:60,n:15,mn:20,mx:40},medium:{t:45,n:25,mn:16,mx:34},hard:{t:30,n:40,mn:13,mx:28}};
+const SC=['#7a3a10','#9b4a1a','#5c2a0a','#4a1f00','#6b3217','#3d1500'];
+let canvas,ctx,stains=[],gs={},ti,curLvl='easy',raf;
+const dist=(x1,y1,x2,y2)=>Math.sqrt((x1-x2)**2+(y1-y2)**2);
+function mkS(x,y,r){return{x,y,r,color:SC[~~(Math.random()*SC.length)],state:'dirty',alpha:1,blobs:Array.from({length:5+~~(Math.random()*5)},()=>({ox:(Math.random()-.5)*r*.7,oy:(Math.random()-.5)*r*.7,r:r*(.4+Math.random()*.55)}))}}
+function initS(){const cfg=LVL[curLvl],w=canvas.width,h=canvas.height;stains=[];for(let i=0;i<cfg.n;i++){const r=cfg.mn+Math.random()*(cfg.mx-cfg.mn);stains.push(mkS(r+Math.random()*(w-r*2),r+Math.random()*(h-r*2),r));}}
+function drawCarpet(){const w=canvas.width,h=canvas.height;const g=ctx.createLinearGradient(0,0,w,h);g.addColorStop(0,'#285216');g.addColorStop(.5,'#1a420e');g.addColorStop(1,'#285216');ctx.fillStyle=g;ctx.fillRect(0,0,w,h);ctx.strokeStyle='rgba(255,255,255,.022)';ctx.lineWidth=1;for(let x=0;x<w;x+=14){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,h);ctx.stroke();}for(let y=0;y<h;y+=14){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(w,y);ctx.stroke();}}
+function drawS(s){if(s.state==='done')return;ctx.save();ctx.globalAlpha=s.state==='scrubbed'?s.alpha*.32:s.state==='sprayed'?s.alpha*.8:s.alpha;ctx.translate(s.x,s.y);let col=s.color;if(s.state==='sprayed')col='#50a8f0';if(s.state==='scrubbed')col='#88cc84';s.blobs.forEach(b=>{ctx.beginPath();ctx.arc(b.ox,b.oy,b.r,0,Math.PI*2);ctx.fillStyle=col;ctx.fill();});if(s.state==='sprayed'){ctx.beginPath();ctx.arc(0,0,s.r+5,0,Math.PI*2);ctx.strokeStyle='rgba(80,168,240,.42)';ctx.lineWidth=3;ctx.stroke();}ctx.restore();}
+function render(){ctx.clearRect(0,0,canvas.width,canvas.height);drawCarpet();stains.forEach(drawS);}
+function loop(){render();raf=requestAnimationFrame(loop);}
+function setTool(t){gs.tool=t;SE.click();document.querySelectorAll('.tbtn').forEach(b=>b.classList.remove('active'));document.getElementById('t'+t[0].toUpperCase()+t.slice(1)).classList.add('active');document.getElementById('cur').textContent={spray:'💧',scrub:'🪥',vacuum:'🌀'}[t];}
+function getP(e){const r=canvas.getBoundingClientRect();const cx=e.touches?e.touches[0].clientX:e.clientX;const cy=e.touches?e.touches[0].clientY:e.clientY;return{x:cx-r.left,y:cy-r.top};}
+function clean(px,py){if(!gs.on)return;const now=Date.now(),t=gs.tool;stains.forEach(s=>{if(s.state==='done')return;if(dist(px,py,s.x,s.y)>s.r*1.35)return;let pts=0,snd=null;if(t==='spray'&&s.state==='dirty'){s.state='sprayed';pts=10;snd='spray';}else if(t==='scrub'&&s.state==='sprayed'){s.state='scrubbed';pts=20;snd='scrub';}else if(t==='vacuum'&&s.state==='scrubbed'){s.state='done';gs.done++;pts=50;snd='vacuum';}if(pts){addPts(pts,px,py);doCombo();if(snd&&now-gs.lastSnd>72){SE[snd]();gs.lastSnd=now;}updateHUD();}});}
+function addPts(pts,x,y){const m=Math.max(1,~~(gs.combo/3));gs.score+=pts*m;const el=document.createElement('div');el.className='spop';el.textContent=m>1?'+'+pts+' x'+m:'+'+pts;el.style.left=(x+canvas.getBoundingClientRect().left)+'px';el.style.top=(y+62)+'px';document.body.appendChild(el);setTimeout(()=>el.remove(),900);}
+function doCombo(){gs.combo++;if(gs.combo>gs.maxC)gs.maxC=gs.combo;if(gs.cT)clearTimeout(gs.cT);gs.cT=setTimeout(()=>{gs.combo=0;document.getElementById('comboDsp').style.display='none';},1500);if(gs.combo>=3){const cd=document.getElementById('comboDsp');cd.style.display='block';cd.style.animation='none';void cd.offsetWidth;cd.style.animation='cPop .3s ease';document.getElementById('cnum').textContent='x'+Math.min(3,~~(gs.combo/3)+1);if(gs.combo%5===0)SE.combo(~~(gs.combo/5));}}
+function updateHUD(){document.getElementById('hudScore').textContent=gs.score;document.getElementById('hudClean').textContent=~~((gs.done/gs.total)*100)+'%';}
+function startTimer(){const max=LVL[curLvl].t;gs.tLeft=max;gs.tMax=max;gs.lastTick=-1;ti=setInterval(()=>{if(!gs.on)return;gs.tLeft=Math.max(0,gs.tLeft-.1);const p=gs.tLeft/gs.tMax;const bar=document.getElementById('tbar');bar.style.width=(p*100)+'%';bar.style.background=p>.5?'linear-gradient(90deg,#76ff03,#ffea00)':p>.25?'linear-gradient(90deg,#ffea00,#ff8c00)':'linear-gradient(90deg,#ff4444,#ff0000)';const s=Math.ceil(gs.tLeft);document.getElementById('hudTime').textContent=s;if(s<=5&&s!==gs.lastTick){SE.tick();gs.lastTick=s;}if(gs.tLeft<=0)endGame();},100);}
+function startGame(lvl){SE.click();curLvl=lvl;gs={on:false,score:0,combo:0,maxC:0,done:0,total:0,tool:'spray',md:false,lastSnd:0,cT:null,lastTick:-1};showS('gameScreen');setTimeout(()=>{canvas=document.getElementById('carpetCanvas');ctx=canvas.getContext('2d');canvas.width=window.innerWidth;canvas.height=window.innerHeight-62-72;initS();gs.total=stains.length;gs.on=true;setTool('spray');startTimer();updateHUD();document.getElementById('comboDsp').style.display='none';if(raf)cancelAnimationFrame(raf);loop();SE.lvlUp();},120);}
+function endGame(){gs.on=false;clearInterval(ti);const pct=~~((gs.done/gs.total)*100);pct>=80?SE.win():SE.lose();setTimeout(()=>{showS('resultScreen');const gr=pct>=95?'S':pct>=80?'A':pct>=60?'B':pct>=40?'C':'D';const em={S:'🏆',A:'⭐',B:'👍',C:'😅',D:'😔'};const ti2={S:'完美清潔！',A:'非常棒！',B:'做得好！',C:'繼續努力！',D:'再試一次！'};document.getElementById('resEm').textContent=em[gr];document.getElementById('resTitle').textContent=ti2[gr];document.getElementById('resGrade').textContent=gr;document.getElementById('rsScore').textContent=gs.score;document.getElementById('rsClean').textContent=pct+'%';document.getElementById('rsCombo').textContent=gs.maxC;},600);}
+function quitGame(){gs.on=false;clearInterval(ti);SE.click();showS('menuScreen');}
+function retryGame(){SE.click();startGame(curLvl);}
+document.addEventListener('mousemove',e=>{const cur=document.getElementById('cur');cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';if(gs.md&&gs.on){const p=getP(e);clean(p.x,p.y);}});
+document.addEventListener('mousedown',e=>{gs.md=true;if(e.target===canvas){const p=getP(e);clean(p.x,p.y);}});
+document.addEventListener('mouseup',()=>gs.md=false);
+document.addEventListener('touchstart',e=>{if(e.target===canvas){e.preventDefault();gs.md=true;const p=getP(e);clean(p.x,p.y);}},{passive:false});
+document.addEventListener('touchmove',e=>{if(e.target===canvas){e.preventDefault();if(gs.on){const p=getP(e);clean(p.x,p.y);}}},{passive:false});
+document.addEventListener('touchend',()=>gs.md=false);
+window.addEventListener('resize',()=>{if(canvas&&gs.on){canvas.width=window.innerWidth;canvas.height=window.innerHeight-62-72;}});
+showS('menuScreen');setTimeout(()=>SE.menu(),400);
+</script>
+</body>
+</html>
