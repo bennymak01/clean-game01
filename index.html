@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="麗雅清潔公司 Like and Share Cleaning Company — 香港九龍觀塘專業清潔服務。提供辦公室、住宅、地氈、裝修後清潔、霧化消毒、滅蟲等一站式服務。即時WhatsApp報價：59186741。" />
+  <meta name="keywords" content="清潔公司,香港清潔,觀塘清潔,地氈清潔,辦公室清潔,裝修後清潔,霧化消毒,滅蟲,麗雅清潔" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="麗雅清潔公司 Like and Share Cleaning Company｜香港專業清潔" />
+  <meta property="og:description" content="專業清潔服務，合理收費，不限時間，不留手尾。WhatsApp即時查詢：59186741" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="zh_TW" />
+
+  <title>麗雅清潔公司 Like and Share Cleaning Company｜香港九龍觀塘專業清潔服務</title>
+
+  <!-- Schema.org LocalBusiness structured data for GEO/EEAT -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "麗雅清潔公司 Like and Share Cleaning Company",
+    "description": "香港九龍觀塘專業清潔公司，提供辦公室、住宅、地氈機洗、裝修後清潔、霧化消毒、滅蟲等服務。",
+    "telephone": "+85259186741",
+    "email": "likeandsharecleaning@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "敬業街敬運工業大廈1樓",
+      "addressLocality": "觀塘",
+      "addressRegion": "九龍",
+      "addressCountry": "HK"
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "香港"
+    },
+    "priceRange": "$$",
+    "openingHours": "Mo-Su 08:00-20:00",
+    "sameAs": []
+  }
+  </script>
+
+  <style>
+    /* ── RESET & BASE ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Noto Sans TC", "Microsoft JhengHei", "PingFang TC", sans-serif;
+      color: #1a2e1a;
+      background: #fff;
+      line-height: 1.7;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── COLOUR TOKENS ── */
+    :root {
+      --green-900: #1b4332;
+      --green-700: #2d6a4f;
+      --green-600: #40916c;
+      --green-500: #52b788;
+      --green-300: #95d5b2;
+      --green-100: #d8f3dc;
+      --green-50:  #f0faf3;
+      --wa-green:  #25d366;
+      --wa-dark:   #128c50;
+      --gold:      #f4a623;
+      --text-dark: #1a2e1a;
+      --text-mid:  #3a5a3a;
+      --text-light: #6a9a6a;
+    }
+
+    /* ── TOP BAR ── */
+    .top-bar {
+      background: var(--green-900);
+      color: #d8f3dc;
+      text-align: center;
+      font-size: .82rem;
+      padding: .45rem 1rem;
+      letter-spacing: .02em;
+    }
+    .top-bar a { color: var(--green-300); font-weight: 600; }
+
+    /* ── HEADER / NAV ── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 900;
+      background: #fff;
+      border-bottom: 2px solid var(--green-100);
+      box-shadow: 0 2px 12px rgba(45,106,79,.10);
+    }
+    .nav-inner {
+      max-width: 1140px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: .85rem 1.5rem;
+      gap: 1rem;
+    }
+    .logo-wrap { display: flex; align-items: center; gap: .75rem; }
+    .logo-icon {
+      width: 48px; height: 48px;
+      background: var(--green-700);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem;
+      flex-shrink: 0;
+    }
+    .logo-text-main {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--green-900);
+      line-height: 1.2;
+    }
+    .logo-text-sub {
+      font-size: .7rem;
+      color: var(--green-600);
+      font-weight: 500;
+      letter-spacing: .05em;
+    }
+    nav { display: flex; gap: 1.6rem; align-items: center; }
+    nav a {
+      font-size: .88rem;
+      font-weight: 600;
+      color: var(--text-mid);
+      transition: color .2s;
+    }
+    nav a:hover { color: var(--green-600); }
+    .nav-wa-btn {
+      display: flex;
+      align-items: center;
+      gap: .45rem;
+      background: var(--wa-green);
+      color: #fff !important;
+      padding: .5rem 1.1rem;
+      border-radius: 30px;
+      font-size: .88rem;
+      font-weight: 700;
+      box-shadow: 0 3px 12px rgba(37,211,102,.35);
+      transition: background .2s, transform .15s;
+    }
+    .nav-wa-btn:hover { background: var(--wa-dark); transform: translateY(-1px); }
+    .nav-wa-btn svg { width: 18px; height: 18px; fill: #fff; }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--green-900) 0%, var(--green-700) 55%, var(--green-500) 100%);
+      color: #fff;
+      padding: 90px 1.5rem 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-inner { position: relative; max-width: 800px; margin: 0 auto; }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.3);
+      border-radius: 30px;
+      padding: .3rem 1.1rem;
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      margin-bottom: 1.4rem;
+      backdrop-filter: blur(4px);
+    }
+    .hero h1 {
+      font-size: clamp(1.9rem, 5vw, 3rem);
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 8px rgba(0,0,0,.25);
+    }
+    .hero h1 span { color: var(--green-300); }
+    .hero-sub {
+      font-size: clamp(.95rem, 2vw, 1.15rem);
+      color: rgba(255,255,255,.88);
+      max-width: 600px;
+      margin: 0 auto 2.2rem;
+    }
+    .hero-ctas { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+
+    /* WhatsApp CTA — hero */
+    .btn-wa-hero {
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      background: var(--wa-green);
+      color: #fff;
+      font-size: 1.05rem;
+      font-weight: 700;
+      padding: .9rem 2rem;
+      border-radius: 50px;
+      box-shadow: 0 6px 24px rgba(37,211,102,.5);
+      transition: transform .2s, box-shadow .2s;
+      animation: pulse-wa 2.5s infinite;
+    }
+    .btn-wa-hero:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(37,211,102,.6); }
+    .btn-wa-hero svg { width: 24px; height: 24px; fill: #fff; }
+    @keyframes pulse-wa {
+      0%, 100% { box-shadow: 0 6px 24px rgba(37,211,102,.5); }
+      50%       { box-shadow: 0 6px 32px rgba(37,211,102,.75); }
+    }
+    .btn-outline-hero {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      border: 2px solid rgba(255,255,255,.7);
+      color: #fff;
+      font-size: .95rem;
+      font-weight: 600;
+      padding: .88rem 1.8rem;
+      border-radius: 50px;
+      transition: background .2s;
+    }
+    .btn-outline-hero:hover { background: rgba(255,255,255,.12); }
+
+    /* ── TRUST STRIP ── */
+    .trust-strip {
+      background: var(--green-900);
+      color: #d8f3dc;
+    }
+    .trust-strip-inner {
+      max-width: 1140px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      padding: .9rem 2rem;
+      border-right: 1px solid rgba(255,255,255,.1);
+      font-size: .85rem;
+      font-weight: 500;
+    }
+    .trust-item:last-child { border-right: none; }
+    .trust-item .ti-icon { font-size: 1.3rem; }
+
+    /* ── SECTION SHARED ── */
+    section { padding: 72px 1.5rem; }
+    .section-inner { max-width: 1140px; margin: 0 auto; }
+    .section-label {
+      display: inline-block;
+      background: var(--green-100);
+      color: var(--green-700);
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: .3rem .9rem;
+      border-radius: 20px;
+      margin-bottom: .8rem;
+    }
+    .section-title {
+      font-size: clamp(1.5rem, 3.5vw, 2.1rem);
+      font-weight: 800;
+      color: var(--green-900);
+      line-height: 1.3;
+      margin-bottom: .7rem;
+    }
+    .section-desc {
+      color: var(--text-mid);
+      font-size: .97rem;
+      max-width: 640px;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ── ABOUT ── */
+    .about { background: var(--green-50); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+    .about-visual {
+      background: linear-gradient(145deg, var(--green-700), var(--green-500));
+      border-radius: 20px;
+      height: 340px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      color: #fff;
+      font-size: 4rem;
+      box-shadow: 0 16px 48px rgba(45,106,79,.3);
+    }
+    .about-visual p {
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: .05em;
+      opacity: .9;
+    }
+    .about-promises { margin-top: 1.8rem; display: flex; flex-direction: column; gap: .85rem; }
+    .promise-item {
+      display: flex;
+      align-items: flex-start;
+      gap: .75rem;
+    }
+    .promise-icon {
+      width: 32px; height: 32px;
+      background: var(--green-100);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+      margin-top: .1rem;
+    }
+    .promise-text strong { color: var(--green-900); display: block; font-size: .95rem; }
+    .promise-text span { font-size: .85rem; color: var(--text-light); }
+
+    /* ── STATS ── */
+    .stats { background: var(--green-700); color: #fff; padding: 52px 1.5rem; }
+    .stats-grid {
+      max-width: 960px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      text-align: center;
+    }
+    .stat-num {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--green-300);
+      line-height: 1;
+    }
+    .stat-label { font-size: .85rem; margin-top: .4rem; opacity: .85; }
+
+    /* ── SERVICES ── */
+    .services { background: #fff; }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.25rem;
+    }
+    .service-card {
+      background: var(--green-50);
+      border: 1.5px solid var(--green-100);
+      border-radius: 16px;
+      padding: 1.5rem 1.2rem;
+      text-align: center;
+      transition: transform .2s, box-shadow .2s, border-color .2s;
+      cursor: default;
+    }
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(45,106,79,.12);
+      border-color: var(--green-300);
+    }
+    .service-emoji { font-size: 2.2rem; margin-bottom: .7rem; }
+    .service-name { font-size: .88rem; font-weight: 700; color: var(--green-900); line-height: 1.4; }
+
+    /* ── WHY US ── */
+    .why { background: var(--green-50); }
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .why-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 1.6rem 1.4rem;
+      box-shadow: 0 4px 20px rgba(45,106,79,.07);
+      border-top: 4px solid var(--green-500);
+    }
+    .why-card .wc-icon { font-size: 2rem; margin-bottom: .8rem; }
+    .why-card h3 { font-size: 1rem; font-weight: 700; color: var(--green-900); margin-bottom: .4rem; }
+    .why-card p { font-size: .87rem; color: var(--text-mid); }
+
+    /* ── PROCESS ── */
+    .process { background: #fff; }
+    .process-steps {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      counter-reset: step;
+    }
+    .step {
+      flex: 1;
+      min-width: 200px;
+      background: var(--green-50);
+      border: 1.5px solid var(--green-100);
+      border-radius: 16px;
+      padding: 1.6rem 1.3rem;
+      position: relative;
+    }
+    .step-num {
+      width: 36px; height: 36px;
+      background: var(--green-700);
+      color: #fff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800;
+      font-size: 1rem;
+      margin-bottom: .8rem;
+    }
+    .step h3 { font-size: .95rem; font-weight: 700; color: var(--green-900); margin-bottom: .35rem; }
+    .step p { font-size: .84rem; color: var(--text-mid); }
+
+    /* ── WA BANNER ── */
+    .wa-banner {
+      background: linear-gradient(135deg, var(--green-900) 0%, var(--green-700) 100%);
+      padding: 60px 1.5rem;
+      text-align: center;
+      color: #fff;
+    }
+    .wa-banner h2 { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 800; margin-bottom: .6rem; }
+    .wa-banner p { font-size: 1rem; opacity: .85; margin-bottom: 2rem; }
+    .wa-number-display {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 900;
+      color: var(--wa-green);
+      letter-spacing: .05em;
+      margin-bottom: 1.6rem;
+      text-shadow: 0 0 40px rgba(37,211,102,.4);
+    }
+    .btn-wa-large {
+      display: inline-flex;
+      align-items: center;
+      gap: .8rem;
+      background: var(--wa-green);
+      color: #fff;
+      font-size: 1.15rem;
+      font-weight: 700;
+      padding: 1rem 2.6rem;
+      border-radius: 50px;
+      box-shadow: 0 8px 32px rgba(37,211,102,.5);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn-wa-large:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(37,211,102,.65); }
+    .btn-wa-large svg { width: 28px; height: 28px; fill: #fff; }
+    .wa-note { font-size: .8rem; opacity: .6; margin-top: .9rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0d1f0d;
+      color: #8aaf8a;
+      padding: 48px 1.5rem 28px;
+      font-size: .84rem;
+    }
+    .footer-inner {
+      max-width: 1140px;
+      margin: 0 auto;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 2.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .footer-brand .fb-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--green-300);
+      margin-bottom: .5rem;
+    }
+    .footer-brand p { line-height: 1.8; }
+    .footer-col h4 { color: var(--green-300); font-size: .88rem; font-weight: 700; margin-bottom: .8rem; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: .4rem; }
+    .footer-col ul li a:hover { color: var(--green-300); }
+    .footer-bottom {
+      border-top: 1px solid #1f3a1f;
+      padding-top: 1.2rem;
+      text-align: center;
+      font-size: .78rem;
+      color: #4a6f4a;
+    }
+
+    /* ── FLOATING WA BUTTON ── */
+    .float-wa {
+      position: fixed;
+      bottom: 28px;
+      right: 24px;
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: .5rem;
+    }
+    .float-wa-label {
+      background: var(--green-900);
+      color: #fff;
+      font-size: .78rem;
+      font-weight: 700;
+      padding: .35rem .8rem;
+      border-radius: 20px;
+      white-space: nowrap;
+      box-shadow: 0 3px 12px rgba(0,0,0,.25);
+      animation: float-label 3s ease-in-out infinite;
+    }
+    @keyframes float-label {
+      0%, 100% { transform: translateX(0); }
+      50%       { transform: translateX(-4px); }
+    }
+    .float-wa-circle {
+      width: 62px; height: 62px;
+      background: var(--wa-green);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 6px 24px rgba(37,211,102,.5);
+      transition: transform .2s;
+      animation: bounce-wa 3s ease-in-out infinite;
+    }
+    .float-wa-circle:hover { transform: scale(1.1); }
+    .float-wa-circle svg { width: 32px; height: 32px; fill: #fff; }
+    @keyframes bounce-wa {
+      0%, 100% { box-shadow: 0 6px 24px rgba(37,211,102,.5); }
+      50%       { box-shadow: 0 10px 36px rgba(37,211,102,.75); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .about-visual { height: 200px; font-size: 3rem; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      nav { display: none; }
+      .trust-item { padding: .7rem 1rem; font-size: .78rem; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr; }
+      .float-wa-circle { width: 54px; height: 54px; }
+      .float-wa-circle svg { width: 28px; height: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  立即WhatsApp查詢免費報價 &nbsp;|&nbsp;
+  <a href="https://wa.me/85259186741?text=你好，我想查詢清潔服務報價" target="_blank" rel="noopener">
+    📱 59186741
+  </a>
+  &nbsp;|&nbsp; 歡迎客戶現場監察工作
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="nav-inner">
+    <div class="logo-wrap">
+      <div class="logo-icon">🫧</div>
+      <div>
+        <div class="logo-text-main">麗雅清潔公司</div>
+        <div class="logo-text-sub">Like &amp; Share Cleaning Company</div>
+      </div>
+    </div>
+    <nav>
+      <a href="#about">公司簡介</a>
+      <a href="#services">服務項目</a>
+      <a href="#process">預約流程</a>
+      <a href="#contact">聯絡我們</a>
+      <a class="nav-wa-btn"
+         href="https://wa.me/85259186741?text=你好，我想查詢清潔服務報價"
+         target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp 即時報價
+      </a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">🏆 香港九龍觀塘 ‧ 專業清潔服務</div>
+    <h1>清潔，由麗雅開始<br/><span>讓您的空間重煥光采</span></h1>
+    <p class="hero-sub">
+      辦公室 · 住宅 · 地氈機洗 · 裝修後清潔 · 霧化消毒 · 滅蟲<br/>
+      上門不限時間，不留手尾，歡迎現場監察
+    </p>
+    <div class="hero-ctas">
+      <a class="btn-wa-hero"
+         href="https://wa.me/85259186741?text=你好，我想查詢清潔服務報價，請問可以幫我報價嗎？"
+         target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp&nbsp;59186741&nbsp;即時查詢
+      </a>
+      <a class="btn-outline-hero" href="#services">查看服務項目 ↓</a>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+  <div class="trust-strip-inner">
+    <div class="trust-item"><span class="ti-icon">✅</span> 上門不限時間</div>
+    <div class="trust-item"><span class="ti-icon">🔍</span> 歡迎現場監察</div>
+    <div class="trust-item"><span class="ti-icon">💎</span> 甲級寫字樓質素</div>
+    <div class="trust-item"><span class="ti-icon">💰</span> 合理透明收費</div>
+    <div class="trust-item"><span class="ti-icon">📅</span> 逐次或合約優惠</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-visual">
+        <div>🫧✨</div>
+        <p>專業 · 用心 · 信賴</p>
+      </div>
+      <div>
+        <span class="section-label">公司簡介</span>
+        <h2 class="section-title">以行動建立信任<br/>以品質贏得口碑</h2>
+        <p class="section-desc" style="margin-bottom:0">
+          L&amp;S 麗雅清潔公司致力將專業清潔服務普及化，以合理收費及友善便捷的預約流程，
+          為每位客戶提供<strong>甲級寫字樓質素</strong>的清潔體驗。
+          我們承諾上門不限時間、不留手尾，並歡迎客戶全程現場監察，
+          以真實行動提升業界新標準。
+        </p>
+        <div class="about-promises">
+          <div class="promise-item">
+            <div class="promise-icon">⏱️</div>
+            <div class="promise-text">
+              <strong>不限時間</strong>
+              <span>做到滿意為止，絕不草草收場</span>
+            </div>
+          </div>
+          <div class="promise-item">
+            <div class="promise-icon">👁️</div>
+            <div class="promise-text">
+              <strong>透明作業</strong>
+              <span>歡迎客戶全程在場監察，品質有目共睹</span>
+            </div>
+          </div>
+          <div class="promise-item">
+            <div class="promise-icon">🛡️</div>
+            <div class="promise-text">
+              <strong>不留手尾</strong>
+              <span>完工後客人檢查滿意，方才收取尾數離場</span>
+            </div>
+          </div>
+          <div class="promise-item">
+            <div class="promise-icon">📋</div>
+            <div class="promise-text">
+              <strong>靈活付款</strong>
+              <span>逐次收費或簽訂合約，長期客戶享優惠</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stats-grid">
+    <div>
+      <div class="stat-num">500+</div>
+      <div class="stat-label">完成服務個案</div>
+    </div>
+    <div>
+      <div class="stat-num">11</div>
+      <div class="stat-label">專業服務類別</div>
+    </div>
+    <div>
+      <div class="stat-num">100%</div>
+      <div class="stat-label">滿意後才收尾數</div>
+    </div>
+    <div>
+      <div class="stat-num">即日</div>
+      <div class="stat-label">WhatsApp回覆報價</div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-inner">
+    <span class="section-label">服務項目</span>
+    <h2 class="section-title">一站式清潔解決方案</h2>
+    <p class="section-desc">辦公室、住宅及各類型場所均可服務，歡迎WhatsApp查詢詳情及報價。</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-emoji">🧹</div>
+        <div class="service-name">上門機洗地氈</div>
+      </div>
+      <div class="service-card">
+        <div class="service-emoji">✨</div>
+        <div class="service-name">機洗地磚地板石地</div>
+      </div>
+      <div class="service-card">
+        <div class="service-emoji">🏗️</div>
+        <div class="service-name">裝修後清潔<br/>入伙前清潔</div>
+      </div>
+      <div class="service-card">
+        <div class="service-emoji">🏢</div>
+        <div class="service-name">辦公室定期<br/>深層清潔</div>
+      </div>
+      <div class="service-card">
+        <div class="service-emoji">🏠</div>
+        <div class="service-name">家居定期大掃除</div>
+      </div>
+      <div class="service-card">
+        <div class="service-emoji">💨</div>
+        <div class="service-name">霧化消毒</div>
+      </div>
+      <div class="service-card">
+        <div class="service-emoji">🐜</div>
+        <div class="service-name">滅蟲服務</div>
+      </div>
+      <div class="service-card">
+        <div class="service-emoji">♨️</div>
+        <div class="service-name">高溫蒸氣消毒</div>
+      </div>
+      <div class="service-card">
+        <div class="service-emoji">🪟</div>
+        <div class="service-name">清潔招牌及<br/>玻璃門窗</div>
+      </div>
+      <div class="service-card">
+        <div class="service-emoji">💧</div>
+        <div class="service-name">吸水服務</div>
+      </div>
+      <div class="service-card">
+        <div class="service-emoji">🔧</div>
+        <div class="service-name">清洗隔油池</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why">
+  <div class="section-inner">
+    <span class="section-label">為何選擇我們</span>
+    <h2 class="section-title">麗雅清潔的承諾</h2>
+    <p class="section-desc">每一個選擇我們的理由，都是我們每天努力的方向。</p>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="wc-icon">🎯</div>
+        <h3>專業深層清潔</h3>
+        <p>使用專業機器設備，針對不同材質地板及地氈提供最合適的清潔方案，效果一目了然。</p>
+      </div>
+      <div class="why-card">
+        <div class="wc-icon">💬</div>
+        <h3>友善便捷預約</h3>
+        <p>WhatsApp即時聯繫，提供現場照片便可快速報價，無需多次來回溝通，省時省力。</p>
+      </div>
+      <div class="why-card">
+        <div class="wc-icon">💰</div>
+        <h3>合理透明收費</h3>
+        <p>報價清晰，無隱藏費用。提供逐次及合約優惠方案，長期合作更實惠。</p>
+      </div>
+      <div class="why-card">
+        <div class="wc-icon">🛡️</div>
+        <h3>滿意保證</h3>
+        <p>完工後請客人逐一檢查，確認滿意後方才收取尾數，讓您安心放心。</p>
+      </div>
+      <div class="why-card">
+        <div class="wc-icon">⏰</div>
+        <h3>靈活時間安排</h3>
+        <p>上門服務不限時間，做到乾淨為止。可配合客人時間表，彈性安排服務日期。</p>
+      </div>
+      <div class="why-card">
+        <div class="wc-icon">📍</div>
+        <h3>九龍觀塘為基地</h3>
+        <p>總部設於九龍觀塘，為香港各區提供上門服務，覆蓋辦公室、商場及住宅。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="section-inner">
+    <span class="section-label">預約流程</span>
+    <h2 class="section-title">四個步驟，輕鬆搞定</h2>
+    <p class="section-desc">簡單清晰的流程，讓您從查詢到完成清潔毫無後顧之憂。</p>
+    <div class="process-steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>WhatsApp 聯絡</h3>
+        <p>WhatsApp <strong>59186741</strong> 聯絡客服專員，最好同時提供現場照片，方便評估及報價。</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>建議方案及報價</h3>
+        <p>我們根據實際情況，向您建議最合適的清潔方案及提供透明報價。</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>預約日期及落訂</h3>
+        <p>確認方案後預約服務日期，繳付 <strong>10% 訂金</strong>即可鎖定名額。</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h3>清潔完成，驗收付款</h3>
+        <p>清潔過程歡迎現場監察，完成後客人檢查滿意，收取尾款後離場。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WA BANNER -->
+<section class="wa-banner" id="contact">
+  <h2>立即WhatsApp，免費查詢報價</h2>
+  <p>提供現場照片，即時回覆，24小時內確認服務方案</p>
+  <div class="wa-number-display">📱 5918 6741</div>
+  <a class="btn-wa-large"
+     href="https://wa.me/85259186741?text=你好！我想查詢清潔服務報價，請問可以幫我估價嗎？"
+     target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    立即WhatsApp查詢
+  </a>
+  <p class="wa-note">或電郵至 likeandsharecleaning@gmail.com</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="fb-name">麗雅清潔公司 Like and Share Cleaning Company</div>
+        <p>致力以合理收費提供甲級清潔服務，<br/>讓每個空間都煥然一新。</p>
+        <p style="margin-top:.8rem">
+          📍 九龍觀塘敬業街敬運工業大廈1樓<br/>
+          （敬請預約）
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>服務項目</h4>
+        <ul>
+          <li><a href="#services">上門機洗地氈</a></li>
+          <li><a href="#services">裝修後清潔</a></li>
+          <li><a href="#services">辦公室深層清潔</a></li>
+          <li><a href="#services">霧化消毒</a></li>
+          <li><a href="#services">滅蟲服務</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>聯絡我們</h4>
+        <ul>
+          <li>📞 <a href="tel:+85259186741">5918 6741</a></li>
+          <li>💬 <a href="https://wa.me/85259186741" target="_blank" rel="noopener">WhatsApp 5918 6741</a></li>
+          <li>✉️ likeandsharecleaning<br/>&nbsp;&nbsp;&nbsp;&nbsp;@gmail.com</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 麗雅清潔公司 Like and Share Cleaning Company ‧ 版權所有
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING WA BUTTON -->
+<a class="float-wa"
+   href="https://wa.me/85259186741?text=你好！我想查詢清潔服務報價，請問可以幫我估價嗎？"
+   target="_blank" rel="noopener" aria-label="WhatsApp查詢">
+  <div class="float-wa-label">即時查詢 59186741</div>
+  <div class="float-wa-circle">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </div>
+</a>
+
+</body>
+</html>
