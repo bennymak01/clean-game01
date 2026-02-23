@@ -50,46 +50,58 @@
         .site-footer {
             background: #0d1535;
             border-top: 1px solid #1e3a8a;
-            padding: 16px 2rem;
+            padding: 16px 2rem 12px;
+        }
+        .footer-rows {
             display: flex;
             flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-            min-height: 72px;
+            gap: 14px 32px;
+            margin-bottom: 14px;
+            align-items: flex-start;
         }
-        .footer-tools-label {
-            font-size: .75rem;
-            font-weight: 700;
-            letter-spacing: .1em;
-            text-transform: uppercase;
-            color: #5577cc;
-            margin-right: 10px;
-        }
-        .footer-tool-links {
+        .footer-group {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
             align-items: center;
         }
-        .footer-tool-link {
+        .footer-group-label {
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: #5577cc;
+            margin-right: 4px;
+            white-space: nowrap;
+        }
+        .footer-group-label.game-label { color: #22ccaa; }
+        .footer-link {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
             background: transparent;
-            border: 1.5px solid #FF2D78;
-            color: #FF2D78;
             text-decoration: none;
             font-size: .82rem;
             font-weight: 700;
             font-family: 'Noto Sans CJK TC', -apple-system, sans-serif;
-            padding: 6px 14px;
+            padding: 5px 13px;
             border-radius: 20px;
             transition: background .2s, color .2s;
         }
-        .footer-tool-link:hover { background: #FF2D78; color: #fff; }
-        .footer-copy {
-            font-size: .75rem;
+        .footer-link.tool {
+            border: 1.5px solid #FF2D78;
+            color: #FF2D78;
+        }
+        .footer-link.tool:hover { background: #FF2D78; color: #fff; }
+        .footer-link.game {
+            border: 1.5px solid #22ccaa;
+            color: #22ccaa;
+        }
+        .footer-link.game:hover { background: #22ccaa; color: #0d1535; }
+        .footer-bottom {
+            border-top: 1px solid #1a2a5a;
+            padding-top: 10px;
+            font-size: .72rem;
             color: #3a5a99;
         }
 
@@ -117,11 +129,19 @@
 
     <!-- FOOTER -->
     <footer class="site-footer">
-      <div class="footer-tool-links">
-        <span class="footer-tools-label">📦 文具小工具</span>
-        <a class="footer-tool-link" href="fabric-calculator.html">🧣 紅布尺寸計算機</a>
+      <div class="footer-rows">
+        <div class="footer-group">
+          <span class="footer-group-label">📦 文具小工具</span>
+          <a class="footer-link tool" href="fabric-calculator.html">🧣 紅布尺寸計算機</a>
+        </div>
+        <div class="footer-group">
+          <span class="footer-group-label game-label">🎮 小遊戲</span>
+          <a class="footer-link game" href="https://bennymak01.github.io/clean-game01/carpet_cleaning_game.html" target="_blank" rel="noopener">🧹 地毯清潔大師</a>
+          <a class="footer-link game" href="https://bennymak01.github.io/clean-game01/clock-learning-game.html" target="_blank" rel="noopener">⏰ 學習看時鐘</a>
+          <a class="footer-link game" href="https://bennymak01.github.io/clean-game01/feng.html" target="_blank" rel="noopener">📖 豐豐的故事</a>
+        </div>
       </div>
-      <span class="footer-copy">© 2026 志成文具店 CS Stationery</span>
+      <div class="footer-bottom">© 2026 志成文具店 CS Stationery · 版權所有</div>
     </footer>
 </body>
 </html>
