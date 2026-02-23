@@ -36,7 +36,7 @@
 
         main {
             width: 100%;
-            height: calc(100vh - 100px);
+            height: calc(100vh - 100px - 72px); /* minus header and footer */
         }
 
         iframe {
@@ -46,13 +46,62 @@
             display: block;
         }
 
+        /* ── FOOTER ── */
+        .site-footer {
+            background: #0d1535;
+            border-top: 1px solid #1e3a8a;
+            padding: 16px 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            min-height: 72px;
+        }
+        .footer-tools-label {
+            font-size: .75rem;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: #5577cc;
+            margin-right: 10px;
+        }
+        .footer-tool-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+        }
+        .footer-tool-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: transparent;
+            border: 1.5px solid #FF2D78;
+            color: #FF2D78;
+            text-decoration: none;
+            font-size: .82rem;
+            font-weight: 700;
+            font-family: 'Noto Sans CJK TC', -apple-system, sans-serif;
+            padding: 6px 14px;
+            border-radius: 20px;
+            transition: background .2s, color .2s;
+        }
+        .footer-tool-link:hover { background: #FF2D78; color: #fff; }
+        .footer-copy {
+            font-size: .75rem;
+            color: #3a5a99;
+        }
+
         @media (max-width: 768px) {
             h1 {
                 font-size: 1.8rem;
             }
-
             header {
                 padding: 1.5rem;
+            }
+            main {
+                height: calc(100vh - 80px - 100px);
             }
         }
     </style>
@@ -65,5 +114,14 @@
     <main>
         <iframe src="https://www.chishingcal.com.hk" title="志成文具店"></iframe>
     </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="footer-tool-links">
+        <span class="footer-tools-label">📦 文具小工具</span>
+        <a class="footer-tool-link" href="fabric-calculator.html">🧣 紅布尺寸計算機</a>
+      </div>
+      <span class="footer-copy">© 2026 志成文具店 CS Stationery</span>
+    </footer>
 </body>
 </html>
