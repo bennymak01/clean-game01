@@ -24,8 +24,150 @@
       background: #0D0D1F;
       color: #fff;
       min-height: 100vh;
-      padding: 16px;
+      padding: 0;
     }
+
+    /* ─── SITE HEADER ─── */
+    .site-header {
+      background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+      padding: 0 2rem;
+      box-shadow: 0 4px 16px rgba(0,0,0,.25);
+      position: sticky;
+      top: 0;
+      z-index: 200;
+    }
+    .site-header-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      gap: 1rem;
+    }
+    .site-logo {
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: 2px;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .site-nav-links {
+      display: flex;
+      gap: 1.4rem;
+      align-items: center;
+    }
+    .site-nav-links a {
+      color: rgba(255,255,255,.75);
+      text-decoration: none;
+      font-size: .88rem;
+      font-weight: 600;
+      transition: color .2s;
+    }
+    .site-nav-links a:hover,
+    .site-nav-links a.active { color: #fff; }
+    .site-nav-links a.active {
+      background: rgba(255,255,255,.18);
+      padding: 5px 13px;
+      border-radius: 20px;
+    }
+    @media (max-width: 480px) {
+      .site-logo { font-size: 1.1rem; }
+      .site-nav-links { gap: .8rem; }
+      .site-nav-links a { font-size: .8rem; }
+    }
+
+    /* ─── MAIN PADDING ─── */
+    .main-content { padding: 16px; }
+
+    /* ─── SITE FOOTER ─── */
+    .site-footer {
+      background: #0a0a18;
+      border-top: 1px solid #1e1e3a;
+      padding: 32px 2rem 20px;
+      margin-top: 32px;
+    }
+    .site-footer-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .footer-tools {
+      margin-bottom: 20px;
+    }
+    .footer-tools h4 {
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: #666;
+      margin-bottom: 10px;
+    }
+    .footer-tool-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .footer-tool-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #16162E;
+      border: 1.5px solid #FF2D78;
+      color: #FF2D78;
+      text-decoration: none;
+      font-size: .82rem;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 20px;
+      transition: background .2s, color .2s;
+    }
+    .footer-tool-link:hover { background: #FF2D78; color: #fff; }
+    .footer-tool-link.current {
+      background: #FF2D78;
+      color: #fff;
+      pointer-events: none;
+    }
+    .footer-game-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #16162E;
+      border: 1.5px solid #22ccaa;
+      color: #22ccaa;
+      text-decoration: none;
+      font-size: .82rem;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 20px;
+      transition: background .2s, color .2s;
+    }
+    .footer-game-link:hover { background: #22ccaa; color: #0a0a18; }
+    .footer-games { margin-top: 16px; }
+    .footer-games h4 { color: #22ccaa; }
+    .footer-divider {
+      border: none;
+      border-top: 1px solid #1e1e3a;
+      margin: 16px 0;
+    }
+    .footer-bottom-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+    .footer-copy {
+      font-size: .78rem;
+      color: #444;
+    }
+    .footer-shop-link {
+      font-size: .82rem;
+      font-weight: 700;
+      color: #666;
+      text-decoration: none;
+    }
+    .footer-shop-link:hover { color: #FF2D78; }
 
     /* ─── HERO ─── */
     .hero {
@@ -395,6 +537,20 @@
   </style>
 </head>
 <body>
+
+<!-- ── SITE HEADER ── -->
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="site-logo" href="chishing_stationery.html">志成文具店</a>
+    <nav class="site-nav-links">
+      <a href="chishing_stationery.html">首頁</a>
+      <a href="cs-hub.html">🗂️ 工具中心</a>
+      <a href="fabric-calculator.html" class="active">🧣 布料計算機</a>
+    </nav>
+  </div>
+</header>
+
+<div class="main-content">
 <div class="container">
 
   <!-- HERO -->
@@ -564,8 +720,37 @@
     </a>
   </div>
 
-  <p class="footer-note">志成文具 CS Stationery · 紅綢布 &amp; 紅絨布</p>
 </div>
+</div><!-- /.main-content -->
+
+<!-- ── SITE FOOTER ── -->
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="footer-tools">
+      <h4>🗂️ 工具中心</h4>
+      <div class="footer-tool-links" style="margin-bottom:12px">
+        <a class="footer-tool-link" href="cs-hub.html">全部工具與遊戲</a>
+      </div>
+      <h4>📦 文具小工具</h4>
+      <div class="footer-tool-links">
+        <a class="footer-tool-link current" href="fabric-calculator.html">🧣 紅布尺寸計算機</a>
+      </div>
+    </div>
+    <div class="footer-games">
+      <h4>🎮 小遊戲</h4>
+      <div class="footer-tool-links" style="margin-top:10px">
+        <a class="footer-game-link" href="https://bennymak01.github.io/clean-game01/carpet_cleaning_game.html" target="_blank" rel="noopener">🧹 地毯清潔大師</a>
+        <a class="footer-game-link" href="https://bennymak01.github.io/clean-game01/clock-learning-game.html" target="_blank" rel="noopener">⏰ 學習看時鐘</a>
+        <a class="footer-game-link" href="https://bennymak01.github.io/clean-game01/feng.html" target="_blank" rel="noopener">📖 豐豐的故事</a>
+      </div>
+    </div>
+    <hr class="footer-divider">
+    <div class="footer-bottom-row">
+      <span class="footer-copy">© 2026 志成文具店 CS Stationery · 版權所有</span>
+      <a class="footer-shop-link" href="https://csstationery.com" target="_blank" rel="noopener">🌐 csstationery.com →</a>
+    </div>
+  </div>
+</footer>
 
 <script>
   // ─── PRICES ───────────────────────────────────────────────
