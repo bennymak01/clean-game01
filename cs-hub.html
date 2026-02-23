@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>工具與遊戲中心｜志成文具店</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --pink:   #FF2D78;
+      --yellow: #FFE500;
+      --cyan:   #00E5FF;
+      --purple: #7C3AED;
+      --orange: #FF6B35;
+      --teal:   #22ccaa;
+      --bg:     #0D0D1F;
+    }
+
+    body {
+      font-family: 'Noto Sans TC', 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: #fff;
+      min-height: 100vh;
+    }
+
+    /* ── SITE HEADER ── */
+    .site-header {
+      background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+      padding: 0 2rem;
+      box-shadow: 0 4px 16px rgba(0,0,0,.3);
+      position: sticky;
+      top: 0;
+      z-index: 200;
+    }
+    .site-header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      gap: 1rem;
+    }
+    .site-logo {
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: 2px;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .site-nav-links {
+      display: flex;
+      gap: 1.4rem;
+      align-items: center;
+    }
+    .site-nav-links a {
+      color: rgba(255,255,255,.75);
+      text-decoration: none;
+      font-size: .88rem;
+      font-weight: 600;
+      transition: color .2s;
+    }
+    .site-nav-links a:hover { color: #fff; }
+    .site-nav-links a.active {
+      color: #fff;
+      background: rgba(255,255,255,.18);
+      padding: 5px 13px;
+      border-radius: 20px;
+    }
+    @media (max-width: 520px) {
+      .site-logo { font-size: 1.05rem; }
+      .site-nav-links { gap: .7rem; }
+      .site-nav-links a { font-size: .78rem; }
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 64px 24px 56px;
+      text-align: center;
+      background: linear-gradient(160deg, #0D0D1F 0%, #130d2e 50%, #0a1a2e 100%);
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 40%, rgba(124,58,237,.35) 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 60%, rgba(255,45,120,.3) 0%, transparent 55%),
+        radial-gradient(ellipse at 50% 100%, rgba(0,229,255,.2) 0%, transparent 50%);
+      animation: pulse-bg 7s ease-in-out infinite alternate;
+    }
+    @keyframes pulse-bg {
+      from { opacity: .7; transform: scale(1); }
+      to   { opacity: 1;  transform: scale(1.06); }
+    }
+    .hero-inner { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 999px;
+      padding: 5px 18px;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      backdrop-filter: blur(6px);
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 6vw, 3.4rem);
+      font-weight: 900;
+      line-height: 1.2;
+      background: linear-gradient(135deg, #fff 0%, var(--cyan) 50%, var(--pink) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 14px;
+    }
+    .hero-sub {
+      font-size: clamp(.9rem, 2vw, 1.05rem);
+      color: rgba(255,255,255,.7);
+      line-height: 1.8;
+    }
+
+    /* ── MAIN ── */
+    .main-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 48px 20px 16px;
+    }
+
+    /* ── SECTION HEADING ── */
+    .section-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .section-head-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+    .section-head-icon.tool-icon { background: rgba(255,45,120,.2); }
+    .section-head-icon.game-icon { background: rgba(34,204,170,.2); }
+    .section-head-text h2 {
+      font-size: 1.25rem;
+      font-weight: 900;
+      letter-spacing: .04em;
+    }
+    .section-head-text p {
+      font-size: .82rem;
+      color: #888;
+      margin-top: 2px;
+    }
+
+    /* ── CARD GRID ── */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 20px;
+      margin-bottom: 52px;
+    }
+
+    /* ── CARD ── */
+    .hub-card {
+      border-radius: 22px;
+      padding: 28px 24px 24px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      text-decoration: none;
+      color: #fff;
+      transition: transform .22s, box-shadow .22s;
+      border: 2px solid transparent;
+    }
+    .hub-card:hover { transform: translateY(-6px); }
+
+    /* Tool card */
+    .hub-card.tool {
+      background: linear-gradient(145deg, #16162E, #1e1040);
+      border-color: var(--pink);
+      box-shadow: 0 4px 28px rgba(255,45,120,.15);
+    }
+    .hub-card.tool:hover { box-shadow: 0 12px 40px rgba(255,45,120,.35); }
+
+    /* Game cards */
+    .hub-card.game-carpet {
+      background: linear-gradient(145deg, #16162E, #1a1600);
+      border-color: var(--yellow);
+      box-shadow: 0 4px 28px rgba(255,229,0,.12);
+    }
+    .hub-card.game-carpet:hover { box-shadow: 0 12px 40px rgba(255,229,0,.3); }
+
+    .hub-card.game-clock {
+      background: linear-gradient(145deg, #16162E, #001a2e);
+      border-color: var(--cyan);
+      box-shadow: 0 4px 28px rgba(0,229,255,.12);
+    }
+    .hub-card.game-clock:hover { box-shadow: 0 12px 40px rgba(0,229,255,.3); }
+
+    .hub-card.game-story {
+      background: linear-gradient(145deg, #16162E, #1a002e);
+      border-color: var(--purple);
+      box-shadow: 0 4px 28px rgba(124,58,237,.15);
+    }
+    .hub-card.game-story:hover { box-shadow: 0 12px 40px rgba(124,58,237,.35); }
+
+    /* Glow blob */
+    .hub-card::before {
+      content: '';
+      position: absolute;
+      width: 140px; height: 140px;
+      border-radius: 50%;
+      top: -40px; right: -40px;
+      opacity: .12;
+      filter: blur(30px);
+      transition: opacity .3s;
+    }
+    .hub-card:hover::before { opacity: .25; }
+    .hub-card.tool::before          { background: var(--pink); }
+    .hub-card.game-carpet::before   { background: var(--yellow); }
+    .hub-card.game-clock::before    { background: var(--cyan); }
+    .hub-card.game-story::before    { background: var(--purple); }
+
+    .card-emoji {
+      font-size: 2.8rem;
+      margin-bottom: 14px;
+      display: block;
+      line-height: 1;
+    }
+    .card-category {
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      opacity: .6;
+      margin-bottom: 6px;
+    }
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: 900;
+      line-height: 1.3;
+      margin-bottom: 10px;
+    }
+    .card-desc {
+      font-size: .86rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,.7);
+      flex: 1;
+      margin-bottom: 20px;
+    }
+    .card-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 12px;
+      padding: 9px 18px;
+      font-size: .88rem;
+      font-weight: 800;
+      font-family: inherit;
+      width: fit-content;
+      transition: filter .2s;
+    }
+    .hub-card:hover .card-cta { filter: brightness(1.15); }
+    .hub-card.tool        .card-cta { background: var(--pink);   color: #fff; }
+    .hub-card.game-carpet .card-cta { background: var(--yellow); color: #1a0a00; }
+    .hub-card.game-clock  .card-cta { background: var(--cyan);   color: #001a2e; }
+    .hub-card.game-story  .card-cta { background: var(--purple); color: #fff; }
+
+    .card-tag {
+      position: absolute;
+      top: 18px; right: 18px;
+      font-size: .68rem;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 999px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+    .tag-tool  { background: rgba(255,45,120,.25);  color: var(--pink); }
+    .tag-game  { background: rgba(34,204,170,.2);   color: var(--teal); }
+
+    /* ── DIVIDER ── */
+    .section-divider {
+      border: none;
+      border-top: 1px solid #1e1e3a;
+      margin: 4px 0 48px;
+    }
+
+    /* ── SITE FOOTER ── */
+    .site-footer {
+      background: #0a0a18;
+      border-top: 1px solid #1e1e3a;
+      padding: 28px 2rem 18px;
+      margin-top: 20px;
+    }
+    .site-footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .footer-rows {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px 32px;
+      margin-bottom: 16px;
+      align-items: flex-start;
+    }
+    .footer-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+    .footer-group-label {
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: #5577cc;
+      margin-right: 4px;
+      white-space: nowrap;
+    }
+    .footer-group-label.game-label { color: var(--teal); }
+    .footer-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: transparent;
+      text-decoration: none;
+      font-size: .82rem;
+      font-weight: 700;
+      padding: 5px 13px;
+      border-radius: 20px;
+      transition: background .2s, color .2s;
+    }
+    .footer-link.tool { border: 1.5px solid var(--pink); color: var(--pink); }
+    .footer-link.tool:hover { background: var(--pink); color: #fff; }
+    .footer-link.game { border: 1.5px solid var(--teal); color: var(--teal); }
+    .footer-link.game:hover { background: var(--teal); color: #0a0a18; }
+    .footer-link.current { opacity: .45; pointer-events: none; }
+    .footer-divider {
+      border: none;
+      border-top: 1px solid #1e1e3a;
+      margin: 14px 0;
+    }
+    .footer-bottom-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+    .footer-copy { font-size: .75rem; color: #444; }
+    .footer-shop-link { font-size: .82rem; font-weight: 700; color: #666; text-decoration: none; }
+    .footer-shop-link:hover { color: var(--pink); }
+
+    @media (max-width: 600px) {
+      .card-grid { grid-template-columns: 1fr; }
+      .hero { padding: 48px 16px 40px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="site-logo" href="chishing_stationery.html">志成文具店</a>
+    <nav class="site-nav-links">
+      <a href="chishing_stationery.html">首頁</a>
+      <a href="cs-hub.html" class="active">🗂️ 工具中心</a>
+      <a href="fabric-calculator.html">🧣 布料計算機</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">✨ 志成文具 · 互動工具集</div>
+    <h1>工具與遊戲中心</h1>
+    <p class="hero-sub">
+      一站式精選文具工具及趣味小遊戲<br>
+      讓購物更輕鬆，讓學習更好玩
+    </p>
+  </div>
+</section>
+
+<!-- ── MAIN ── -->
+<div class="main-content">
+
+  <!-- 文具小工具 -->
+  <div class="section-head">
+    <div class="section-head-icon tool-icon">📦</div>
+    <div class="section-head-text">
+      <h2>文具小工具</h2>
+      <p>實用計算工具，幫你快速揀選合適產品</p>
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <a class="hub-card tool" href="fabric-calculator.html">
+      <span class="card-tag tag-tool">工具</span>
+      <span class="card-emoji">🧣</span>
+      <div class="card-category">布料 · 開張佈置</div>
+      <div class="card-title">紅布尺寸計算機</div>
+      <div class="card-desc">
+        輸入桌子長闊高，或橫額尺寸，即時推薦最合適的紅綢布／紅絨布尺寸及報價。開張擺設一次搞掂！
+      </div>
+      <div class="card-cta">立即使用 →</div>
+    </a>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- 小遊戲 -->
+  <div class="section-head">
+    <div class="section-head-icon game-icon">🎮</div>
+    <div class="section-head-text">
+      <h2>小遊戲</h2>
+      <p>趣味益智小遊戲，適合大人小朋友一起玩</p>
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <a class="hub-card game-carpet"
+       href="https://bennymak01.github.io/clean-game01/carpet_cleaning_game.html"
+       target="_blank" rel="noopener">
+      <span class="card-tag tag-game">遊戲</span>
+      <span class="card-emoji">🧹</span>
+      <div class="card-category">清潔 · 模擬遊戲</div>
+      <div class="card-title">地毯清潔大師</div>
+      <div class="card-desc">
+        化身專業清潔師傅，清洗各種污漬地毯！考驗你的速度與精準度，看看你能得到幾多分。
+      </div>
+      <div class="card-cta">▶ 開始遊戲</div>
+    </a>
+
+    <a class="hub-card game-clock"
+       href="https://bennymak01.github.io/clean-game01/clock-learning-game.html"
+       target="_blank" rel="noopener">
+      <span class="card-tag tag-game">遊戲</span>
+      <span class="card-emoji">⏰</span>
+      <div class="card-category">教育 · 學習時鐘</div>
+      <div class="card-title">學習看時鐘</div>
+      <div class="card-desc">
+        互動式時鐘學習遊戲，幫助小朋友輕鬆認識時間，以有趣方式掌握小時和分鐘的概念。
+      </div>
+      <div class="card-cta">▶ 開始遊戲</div>
+    </a>
+
+    <a class="hub-card game-story"
+       href="https://bennymak01.github.io/clean-game01/feng.html"
+       target="_blank" rel="noopener">
+      <span class="card-tag tag-game">故事</span>
+      <span class="card-emoji">📖</span>
+      <div class="card-category">繪本 · 互動故事</div>
+      <div class="card-title">豐豐的故事</div>
+      <div class="card-desc">
+        初生寶寶豐豐的成長故事，溫馨感人的互動繪本，適合父母與小朋友一同閱讀分享。
+      </div>
+      <div class="card-cta">▶ 開始閱讀</div>
+    </a>
+  </div>
+
+</div><!-- /.main-content -->
+
+<!-- ── FOOTER ── -->
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="footer-rows">
+      <div class="footer-group">
+        <span class="footer-group-label">📦 文具小工具</span>
+        <a class="footer-link tool" href="fabric-calculator.html">🧣 紅布尺寸計算機</a>
+      </div>
+      <div class="footer-group">
+        <span class="footer-group-label game-label">🎮 小遊戲</span>
+        <a class="footer-link game" href="https://bennymak01.github.io/clean-game01/carpet_cleaning_game.html" target="_blank" rel="noopener">🧹 地毯清潔大師</a>
+        <a class="footer-link game" href="https://bennymak01.github.io/clean-game01/clock-learning-game.html" target="_blank" rel="noopener">⏰ 學習看時鐘</a>
+        <a class="footer-link game" href="https://bennymak01.github.io/clean-game01/feng.html" target="_blank" rel="noopener">📖 豐豐的故事</a>
+      </div>
+    </div>
+    <hr class="footer-divider">
+    <div class="footer-bottom-row">
+      <span class="footer-copy">© 2026 志成文具店 CS Stationery · 版權所有</span>
+      <a class="footer-shop-link" href="https://csstationery.com" target="_blank" rel="noopener">🌐 csstationery.com →</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
