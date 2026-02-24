@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PE珍珠棉計算器 - 志成文具店</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft JhengHei', 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            padding: 30px;
+            text-align: center;
+            color: #333;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .input-group input,
+        .input-group select {
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            transition: border-color 0.3s;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .calculate-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .calculate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .calculate-btn:active {
+            transform: translateY(0);
+        }
+
+        .result {
+            margin-top: 30px;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+            display: none;
+        }
+
+        .result.show {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .result h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .recommendation {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border: 2px solid #e0e0e0;
+        }
+
+        .recommendation.best {
+            border-color: #4CAF50;
+            background: #f1f8f4;
+        }
+
+        .recommendation h3 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .recommendation.best h3 {
+            color: #4CAF50;
+        }
+
+        .recommendation .badge {
+            display: inline-block;
+            background: #4CAF50;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-left: 10px;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            color: #666;
+        }
+
+        .detail-value {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .price {
+            font-size: 24px;
+            color: #667eea;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .note {
+            margin-top: 20px;
+            padding: 15px;
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            border-radius: 5px;
+            font-size: 14px;
+            color: #856404;
+        }
+
+        .product-info {
+            margin-top: 30px;
+            padding: 20px;
+            background: #e8eaf6;
+            border-radius: 10px;
+        }
+
+        .product-info h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .product-table {
+            width: 100%;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .product-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .product-table th,
+        .product-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .product-table th {
+            background: #667eea;
+            color: white;
+            font-weight: bold;
+        }
+
+        .product-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .out-of-stock {
+            color: #999;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🛒 PE珍珠棉計算器</h1>
+            <p>志成文具店 - 專業包裝材料供應</p>
+        </div>
+
+        <div class="content">
+            <div class="input-group">
+                <label for="area">📏 請輸入所需面積（平方呎）</label>
+                <input type="number" id="area" placeholder="例如：1500" min="1" step="1">
+            </div>
+
+            <div class="input-group">
+                <label for="thickness">📦 請選擇厚度</label>
+                <select id="thickness">
+                    <option value="">-- 請選擇 --</option>
+                    <option value="2mm">2mm（薄）</option>
+                    <option value="5mm">5mm（厚）</option>
+                </select>
+            </div>
+
+            <button class="calculate-btn" onclick="calculate()">💡 計算建議用量</button>
+
+            <div id="result" class="result"></div>
+
+            <div class="product-info">
+                <h3>📋 現貨產品列表</h3>
+                <div class="product-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>厚度</th>
+                                <th>尺寸（闊 x 長）</th>
+                                <th>價格</th>
+                                <th>狀態</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2mm</td>
+                                <td>19吋 x 48米（細卷）</td>
+                                <td>$110.00</td>
+                                <td><span style="color: #4CAF50; font-weight: bold;">✓ 現貨</span></td>
+                            </tr>
+                            <tr>
+                                <td>2mm</td>
+                                <td>1米 x 150米（大卷）</td>
+                                <td>$430.00</td>
+                                <td><span style="color: #4CAF50; font-weight: bold;">✓ 現貨</span></td>
+                            </tr>
+                            <tr>
+                                <td>5mm</td>
+                                <td>19吋 x 23米（細卷）</td>
+                                <td>$150.00</td>
+                                <td><span style="color: #4CAF50; font-weight: bold;">✓ 現貨</span></td>
+                            </tr>
+                            <tr>
+                                <td>5mm</td>
+                                <td>1米 x 50米（大卷）</td>
+                                <td>$400.00</td>
+                                <td><span style="color: #4CAF50; font-weight: bold;">✓ 現貨</span></td>
+                            </tr>
+                            <tr class="out-of-stock">
+                                <td>1mm</td>
+                                <td>1米 x 300米（大卷）</td>
+                                <td>$430.00</td>
+                                <td><span style="color: #999;">需訂貨</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function calculate() {
+            const area = parseFloat(document.getElementById('area').value);
+            const thickness = document.getElementById('thickness').value;
+            const resultDiv = document.getElementById('result');
+
+            if (!area || area <= 0) {
+                alert('請輸入有效的面積！');
+                return;
+            }
+
+            if (!thickness) {
+                alert('請選擇厚度！');
+                return;
+            }
+
+            // 產品規格 (converted to square feet)
+            const products = {
+                '2mm': [
+                    {
+                        name: '2mm x 19吋 x 48米（細卷）',
+                        width: 19 / 12, // 19 inches to feet
+                        length: 48 * 3.28084, // 48 meters to feet
+                        price: 110,
+                        inStock: true
+                    },
+                    {
+                        name: '2mm x 1米 x 150米（大卷）',
+                        width: 3.28084, // 1 meter to feet
+                        length: 150 * 3.28084, // 150 meters to feet
+                        price: 430,
+                        inStock: true
+                    }
+                ],
+                '5mm': [
+                    {
+                        name: '5mm x 19吋 x 23米（細卷）',
+                        width: 19 / 12,
+                        length: 23 * 3.28084,
+                        price: 150,
+                        inStock: true
+                    },
+                    {
+                        name: '5mm x 1米 x 50米（大卷）',
+                        width: 3.28084,
+                        length: 50 * 3.28084,
+                        price: 400,
+                        inStock: true
+                    }
+                ]
+            };
+
+            const selectedProducts = products[thickness];
+            let recommendations = [];
+
+            selectedProducts.forEach(product => {
+                const areaPerRoll = product.width * product.length;
+                const rollsNeeded = Math.ceil(area / areaPerRoll);
+                const totalCost = rollsNeeded * product.price;
+                const totalArea = rollsNeeded * areaPerRoll;
+                const waste = ((totalArea - area) / area * 100).toFixed(1);
+                const costPerSqFt = (totalCost / area).toFixed(2);
+
+                recommendations.push({
+                    product: product,
+                    rollsNeeded: rollsNeeded,
+                    totalCost: totalCost,
+                    totalArea: totalArea.toFixed(1),
+                    waste: waste,
+                    costPerSqFt: costPerSqFt,
+                    areaPerRoll: areaPerRoll.toFixed(1)
+                });
+            });
+
+            // 找出最划算的選項 (in stock only)
+            const inStockRecs = recommendations.filter(r => r.product.inStock);
+            const bestOption = inStockRecs.reduce((best, current) => 
+                current.costPerSqFt < best.costPerSqFt ? current : best
+            );
+
+            // 顯示結果
+            let html = '<h2>📊 建議購買方案</h2>';
+
+            recommendations.forEach(rec => {
+                const isBest = rec === bestOption;
+                html += `
+                    <div class="recommendation ${isBest ? 'best' : ''}">
+                        <h3>
+                            ${rec.product.name}
+                            ${isBest ? '<span class="badge">💰 最划算</span>' : ''}
+                        </h3>
+                        <div class="detail-row">
+                            <span class="detail-label">每卷面積：</span>
+                            <span class="detail-value">${rec.areaPerRoll} 平方呎</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">建議購買：</span>
+                            <span class="detail-value">${rec.rollsNeeded} 卷</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">總面積：</span>
+                            <span class="detail-value">${rec.totalArea} 平方呎</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">多出：</span>
+                            <span class="detail-value">${rec.waste}%</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">每平方呎成本：</span>
+                            <span class="detail-value">$${rec.costPerSqFt}</span>
+                        </div>
+                        <div class="price">總價：$${rec.totalCost.toFixed(2)}</div>
+                    </div>
+                `;
+            });
+
+            html += `
+                <div class="note">
+                    <strong>💡 溫馨提示：</strong><br>
+                    • 以上計算已考慮實際需求面積<br>
+                    • 建議多預留少量以應付裁切損耗<br>
+                    • 大卷通常較划算，但需考慮儲存空間<br>
+                    • 所有2mm和5mm產品均有現貨供應
+                </div>
+            `;
+
+            resultDiv.innerHTML = html;
+            resultDiv.classList.add('show');
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // 按Enter鍵也可以計算
+        document.getElementById('area').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                calculate();
+            }
+        });
+    </script>
+</body>
+</html>
