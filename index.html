@@ -466,7 +466,7 @@
     }
     .footer-grid {
       display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
       gap: 2.5rem;
       margin-bottom: 2.5rem;
     }
@@ -538,6 +538,9 @@
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
       .footer-grid { grid-template-columns: 1fr 1fr; }
     }
+    @media (max-width: 1100px) {
+      .footer-grid { grid-template-columns: 2fr 1fr 1fr; }
+    }
     @media (max-width: 640px) {
       nav { display: none; }
       .trust-item { padding: .7rem 1rem; font-size: .78rem; }
@@ -570,10 +573,11 @@
       </div>
     </div>
     <nav>
-      <a href="#about">公司簡介</a>
+      <a href="index.html">首頁</a>
       <a href="services.html">服務項目</a>
-      <a href="#process">預約流程</a>
-      <a href="#contact">聯絡我們</a>
+      <a href="blog.html">最新文章</a>
+      <a href="testimonials.html">客戶見證</a>
+      <a href="contact.html">聯絡我們</a>
       <a class="nav-wa-btn"
          href="https://wa.me/85259186741?text=你好，我想查詢清潔服務報價"
          target="_blank" rel="noopener">
@@ -851,6 +855,16 @@
           <li><a href="office-deep-cleaning.html">辦公室深層清潔</a></li>
           <li><a href="services.html#disinfection-pest">霧化消毒</a></li>
           <li><a href="services.html#disinfection-pest">滅蟲服務</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>快速連結</h4>
+        <ul>
+          <li><a href="index.html">🏠 首頁</a></li>
+          <li><a href="services.html">🧹 服務項目</a></li>
+          <li><a href="blog.html">📝 最新文章</a></li>
+          <li><a href="testimonials.html">⭐ 客戶見證</a></li>
+          <li><a href="contact.html">📞 聯絡我們</a></li>
         </ul>
       </div>
       <div class="footer-col">
