@@ -5,10 +5,45 @@
   <!-- Home / Landing Page -->
   <url>
     <loc>https://www.clean.com.hk/</loc>
-    <lastmod>2026-02-21</lastmod>
+    <lastmod>2026-02-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="zh-TW" href="https://www.clean.com.hk/"/>
+  </url>
+
+  <!-- Service Pages -->
+  <url>
+    <loc>https://www.clean.com.hk/carpet-cleaning-service.html</loc>
+    <lastmod>2026-02-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://www.clean.com.hk/carpet-cleaning-service.html"/>
+  </url>
+
+  <url>
+    <loc>https://www.clean.com.hk/office-deep-cleaning.html</loc>
+    <lastmod>2026-02-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://www.clean.com.hk/office-deep-cleaning.html"/>
+  </url>
+
+  <!-- Blog Posts -->
+  <url>
+    <loc>https://www.clean.com.hk/blog-post-renovation-cleaning.html</loc>
+    <lastmod>2026-02-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://www.clean.com.hk/blog-post-renovation-cleaning.html"/>
+  </url>
+
+  <!-- Interactive / Engagement -->
+  <url>
+    <loc>https://www.clean.com.hk/carpet_cleaning_game.html</loc>
+    <lastmod>2026-02-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://www.clean.com.hk/carpet_cleaning_game.html"/>
   </url>
 
 </urlset>
