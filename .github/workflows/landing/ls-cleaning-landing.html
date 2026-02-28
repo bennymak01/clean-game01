@@ -1,0 +1,1490 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L&S 麗雅清潔公司 — 新居入伙 · 裝修後清潔專家</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-deep: #0d3b1e;
+    --green-dark: #1a5c32;
+    --green-mid: #2d7a47;
+    --green-bright: #3fa35b;
+    --green-light: #7dc99a;
+    --green-pale: #e8f5ed;
+    --gold: #c9a84c;
+    --gold-light: #f0d080;
+    --white: #ffffff;
+    --off-white: #f7faf8;
+    --grey-light: #e8ebe9;
+    --grey: #8a9490;
+    --dark: #0a1f10;
+    --text: #1c2e22;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Sans TC', sans-serif;
+    color: var(--text);
+    background: var(--off-white);
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.4;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--green-deep);
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0; right: 0;
+    height: 80px;
+    background: var(--off-white);
+    clip-path: ellipse(55% 100% at 50% 100%);
+  }
+
+  /* diagonal green stripes background */
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 40px,
+      rgba(255,255,255,0.015) 40px,
+      rgba(255,255,255,0.015) 80px
+    );
+  }
+
+  /* ── NAV BAR ── */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 48px;
+    position: relative;
+    z-index: 10;
+  }
+
+  .logo {
+    font-family: 'Noto Serif TC', serif;
+    font-weight: 900;
+    font-size: 1.5rem;
+    color: var(--white);
+    letter-spacing: 0.05em;
+  }
+
+  .logo span { color: var(--gold); }
+
+  .nav-badge {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: var(--green-light);
+    padding: 8px 20px;
+    border-radius: 100px;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+  }
+
+  /* ── HERO CONTENT ── */
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 24px 120px;
+    position: relative;
+    z-index: 10;
+  }
+
+  .hero-eyebrow {
+    display: inline-block;
+    background: var(--green-mid);
+    color: var(--green-light);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 6px 20px;
+    border-radius: 100px;
+    margin-bottom: 28px;
+    animation: fadeDown 0.8s ease both;
+  }
+
+  .hero-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: clamp(2.2rem, 6vw, 4.5rem);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 16px;
+    animation: fadeDown 0.8s 0.15s ease both;
+  }
+
+  .hero-title .accent { color: var(--gold); }
+
+  .hero-subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 48px;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    animation: fadeDown 0.8s 0.3s ease both;
+  }
+
+  .hero-cta-group {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+    animation: fadeDown 0.8s 0.45s ease both;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--green-deep);
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 16px 36px;
+    border-radius: 4px;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: all 0.25s;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-primary:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(201,168,76,0.4);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--white);
+    font-size: 1rem;
+    padding: 16px 36px;
+    border-radius: 4px;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    border: 1px solid rgba(255,255,255,0.35);
+    transition: all 0.25s;
+    cursor: pointer;
+  }
+
+  .btn-secondary:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.6);
+  }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    padding: 0 48px 60px;
+    position: relative;
+    z-index: 10;
+    animation: fadeDown 0.8s 0.6s ease both;
+  }
+
+  .stat {
+    flex: 1;
+    max-width: 200px;
+    text-align: center;
+    padding: 0 24px;
+    border-right: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .stat:last-child { border-right: none; }
+
+  .stat-number {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: var(--gold);
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.1em;
+    margin-top: 4px;
+    display: block;
+  }
+
+  /* ── SECTION SHARED ── */
+  section {
+    padding: 100px 24px;
+  }
+
+  .container {
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--green-mid);
+    font-weight: 700;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .section-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 900;
+    color: var(--green-deep);
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .section-desc {
+    font-size: 1rem;
+    color: var(--grey);
+    line-height: 1.8;
+    max-width: 560px;
+  }
+
+  /* ── PROBLEM SECTION (P) ── */
+  .problem {
+    background: var(--off-white);
+  }
+
+  .problem-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+    margin-top: 60px;
+  }
+
+  .pain-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .pain-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    background: var(--white);
+    border: 1px solid var(--grey-light);
+    border-left: 4px solid #e05252;
+    padding: 20px 24px;
+    border-radius: 2px;
+    transition: transform 0.2s;
+  }
+
+  .pain-item:hover { transform: translateX(4px); }
+
+  .pain-icon {
+    font-size: 1.4rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .pain-text strong {
+    display: block;
+    font-weight: 700;
+    color: var(--green-deep);
+    margin-bottom: 4px;
+  }
+
+  .pain-text span {
+    font-size: 0.88rem;
+    color: var(--grey);
+    line-height: 1.6;
+  }
+
+  .problem-quote {
+    background: var(--green-deep);
+    color: var(--white);
+    padding: 48px 40px;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .problem-quote::before {
+    content: '"';
+    font-family: 'Noto Serif TC', serif;
+    font-size: 12rem;
+    position: absolute;
+    top: -20px;
+    left: 20px;
+    color: rgba(255,255,255,0.05);
+    line-height: 1;
+  }
+
+  .problem-quote blockquote {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.3rem;
+    line-height: 1.7;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 24px;
+  }
+
+  .problem-quote cite {
+    font-size: 0.82rem;
+    color: var(--green-light);
+    font-style: normal;
+    letter-spacing: 0.1em;
+  }
+
+  /* ── APPROACH SECTION (A) ── */
+  .approach {
+    background: var(--green-deep);
+    color: var(--white);
+  }
+
+  .approach .section-label { color: var(--green-light); }
+  .approach .section-title { color: var(--white); }
+  .approach .section-desc { color: rgba(255,255,255,0.55); }
+
+  .approach-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 60px;
+    border: 2px solid rgba(255,255,255,0.08);
+  }
+
+  .approach-card {
+    background: rgba(255,255,255,0.04);
+    padding: 40px 32px;
+    position: relative;
+    transition: background 0.3s;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .approach-card:hover {
+    background: rgba(255,255,255,0.09);
+  }
+
+  .approach-num {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: rgba(255,255,255,0.07);
+    position: absolute;
+    top: 16px;
+    right: 24px;
+    line-height: 1;
+  }
+
+  .approach-icon {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .approach-card h3 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--gold);
+  }
+
+  .approach-card p {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.7;
+  }
+
+  /* service table */
+  .service-table-wrap {
+    margin-top: 60px;
+    overflow-x: auto;
+  }
+
+  .service-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+  }
+
+  .service-table thead tr {
+    background: var(--green-mid);
+  }
+
+  .service-table th {
+    padding: 16px 20px;
+    text-align: left;
+    font-weight: 600;
+    color: var(--white);
+    letter-spacing: 0.08em;
+    font-size: 0.8rem;
+  }
+
+  .service-table td {
+    padding: 14px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    color: rgba(255,255,255,0.75);
+    vertical-align: middle;
+  }
+
+  .service-table tbody tr:hover td {
+    background: rgba(255,255,255,0.04);
+  }
+
+  .check { color: var(--green-light); font-size: 1.1rem; }
+  .cross { color: rgba(255,255,255,0.2); font-size: 1.1rem; }
+
+  /* ── PROOF SECTION (P) — Before/After ── */
+  .proof {
+    background: var(--white);
+  }
+
+  .before-after-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-top: 60px;
+  }
+
+  .ba-card {
+    border: 1px solid var(--grey-light);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .ba-images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 260px;
+    position: relative;
+  }
+
+  .ba-img {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ba-img-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+  }
+
+  .ba-img-placeholder.before {
+    background: linear-gradient(135deg, #d4c5b0, #b8a990);
+  }
+
+  .ba-img-placeholder.after {
+    background: linear-gradient(135deg, #c8e6d0, #a8d4b4);
+  }
+
+  .ba-tag {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    padding: 4px 12px;
+    border-radius: 2px;
+  }
+
+  .tag-before {
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+  }
+
+  .tag-after {
+    background: var(--green-mid);
+    color: #fff;
+  }
+
+  .ba-divider {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 36px;
+    height: 36px;
+    background: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    z-index: 5;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+    color: var(--green-mid);
+    font-weight: 900;
+  }
+
+  .ba-info {
+    padding: 20px 24px;
+    background: var(--off-white);
+  }
+
+  .ba-info h4 {
+    font-family: 'Noto Serif TC', serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--green-deep);
+    margin-bottom: 6px;
+  }
+
+  .ba-info p {
+    font-size: 0.82rem;
+    color: var(--grey);
+    line-height: 1.6;
+  }
+
+  /* feature bullets */
+  .features-wrap {
+    margin-top: 60px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .feature-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 20px;
+    background: var(--off-white);
+    border-radius: 4px;
+    border: 1px solid var(--grey-light);
+    transition: box-shadow 0.2s;
+  }
+
+  .feature-item:hover {
+    box-shadow: 0 4px 20px rgba(29,92,50,0.08);
+  }
+
+  .feature-dot {
+    width: 10px;
+    height: 10px;
+    background: var(--green-mid);
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 5px;
+  }
+
+  .feature-item strong {
+    display: block;
+    font-weight: 700;
+    color: var(--green-deep);
+    font-size: 0.9rem;
+    margin-bottom: 4px;
+  }
+
+  .feature-item span {
+    font-size: 0.82rem;
+    color: var(--grey);
+    line-height: 1.6;
+  }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials {
+    background: var(--green-pale);
+  }
+
+  .testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 60px;
+  }
+
+  .testimonial-card {
+    background: var(--white);
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid var(--grey-light);
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+
+  .testimonial-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(29,92,50,0.12);
+  }
+
+  .t-before-after {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 140px;
+  }
+
+  .t-ba-half {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    gap: 4px;
+    position: relative;
+  }
+
+  .t-ba-half.t-before { background: linear-gradient(135deg,#d4c5b0,#c4b09a); }
+  .t-ba-half.t-after  { background: linear-gradient(135deg,#b8dfc4,#8ec9a4); }
+
+  .t-ba-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 2px;
+  }
+
+  .t-before .t-ba-label { background: rgba(0,0,0,0.4); color:#fff; }
+  .t-after  .t-ba-label { background: var(--green-mid); color:#fff; }
+
+  .t-body {
+    padding: 24px;
+  }
+
+  .t-stars {
+    color: var(--gold);
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+  }
+
+  .t-quote {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: var(--text);
+    margin-bottom: 16px;
+    font-style: italic;
+  }
+
+  .t-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .t-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .t-name {
+    font-weight: 700;
+    font-size: 0.82rem;
+    color: var(--green-deep);
+    display: block;
+  }
+
+  .t-loc {
+    font-size: 0.72rem;
+    color: var(--grey);
+  }
+
+  /* ── PRICING ── */
+  .pricing {
+    background: var(--off-white);
+  }
+
+  .pricing-card {
+    background: var(--white);
+    border: 2px solid var(--green-mid);
+    border-radius: 4px;
+    padding: 48px;
+    max-width: 560px;
+    margin: 60px auto 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pricing-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--green-mid), var(--gold));
+  }
+
+  .price-tag {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: var(--green-deep);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .price-tag span {
+    font-size: 1.5rem;
+    color: var(--green-mid);
+  }
+
+  .price-note {
+    font-size: 0.82rem;
+    color: var(--grey);
+    margin-bottom: 32px;
+  }
+
+  .price-features {
+    list-style: none;
+    text-align: left;
+    margin-bottom: 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .price-features li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.9rem;
+    color: var(--text);
+  }
+
+  .price-features li::before {
+    content: '✓';
+    color: var(--green-mid);
+    font-weight: 700;
+    flex-shrink: 0;
+    font-size: 1rem;
+  }
+
+  /* ── FAQ ── */
+  .faq {
+    background: var(--white);
+  }
+
+  .faq-list {
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid var(--grey-light);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid var(--grey-light);
+  }
+
+  .faq-item:last-child { border-bottom: none; }
+
+  .faq-q {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 28px;
+    cursor: pointer;
+    background: var(--white);
+    transition: background 0.2s;
+  }
+
+  .faq-q:hover { background: var(--off-white); }
+
+  .faq-q strong {
+    font-family: 'Noto Serif TC', serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--green-deep);
+    line-height: 1.5;
+  }
+
+  .faq-icon {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border: 2px solid var(--green-mid);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--green-mid);
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-left: 16px;
+    transition: all 0.3s;
+  }
+
+  .faq-item.open .faq-icon {
+    background: var(--green-mid);
+    color: white;
+    transform: rotate(45deg);
+  }
+
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+
+  .faq-item.open .faq-a {
+    max-height: 400px;
+  }
+
+  .faq-a-inner {
+    padding: 0 28px 24px;
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: var(--grey);
+    border-top: 1px solid var(--grey-light);
+    padding-top: 20px;
+  }
+
+  .faq-a-inner ul {
+    margin-top: 12px;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .faq-a-inner li {
+    font-size: 0.88rem;
+  }
+
+  /* ── CTA FINAL ── */
+  .cta-final {
+    background: var(--green-deep);
+    padding: 120px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-final::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 50%, rgba(45,122,71,0.4) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 50%, rgba(201,168,76,0.08) 0%, transparent 60%);
+  }
+
+  .cta-final .section-label { color: var(--green-light); position: relative; }
+
+  .cta-final .section-title {
+    color: var(--white);
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .cta-final p {
+    color: rgba(255,255,255,0.55);
+    font-size: 1rem;
+    margin-bottom: 48px;
+    position: relative;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.8;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+  }
+
+  .whatsapp-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: #25D366;
+    color: white;
+    font-weight: 700;
+    font-size: 1.05rem;
+    padding: 18px 40px;
+    border-radius: 4px;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: all 0.25s;
+  }
+
+  .whatsapp-btn:hover {
+    background: #1fb354;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(37,211,102,0.35);
+  }
+
+  .whatsapp-icon {
+    font-size: 1.4rem;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark);
+    color: rgba(255,255,255,0.4);
+    text-align: center;
+    padding: 32px 24px;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+  }
+
+  footer span { color: var(--green-light); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 20px 24px; }
+    .stats-bar { gap: 0; padding: 0 24px 60px; }
+    .stat { padding: 0 16px; }
+    .stat-number { font-size: 1.8rem; }
+    .problem-grid,
+    .before-after-grid,
+    .features-wrap { grid-template-columns: 1fr; }
+    .approach-grid { grid-template-columns: 1fr; }
+    .testimonial-grid { grid-template-columns: 1fr; }
+    .pricing-card { padding: 32px 24px; }
+    .cta-final { padding: 80px 24px; }
+    .ba-images { height: 200px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+
+  <nav>
+    <div class="logo"><span>L&S</span> 麗雅清潔公司</div>
+    <div class="nav-badge">WhatsApp 59186741</div>
+  </nav>
+
+  <div class="hero-content">
+    <span class="hero-eyebrow">10年經驗 · 港九新界 · 歡迎監督比較</span>
+    <h1 class="hero-title">
+      新居入伙 <span class="accent">·</span> 裝修後清潔<br>
+      <span class="accent">專業到位，一次搞掂</span>
+    </h1>
+    <p class="hero-subtitle">不鬥平，只做好 — 包括全屋地面、窗台、廚廁、櫃內外</p>
+    <div class="hero-cta-group">
+      <a href="#cta" class="btn-primary">立即 WhatsApp 查詢</a>
+      <a href="#proof" class="btn-secondary">查看清潔效果</a>
+    </div>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat">
+      <span class="stat-number">10+</span>
+      <span class="stat-label">年業界經驗</span>
+    </div>
+    <div class="stat">
+      <span class="stat-number">500+</span>
+      <span class="stat-label">完成個案</span>
+    </div>
+    <div class="stat">
+      <span class="stat-number">$3000</span>
+      <span class="stat-label">市區500呎起</span>
+    </div>
+    <div class="stat">
+      <span class="stat-number">100%</span>
+      <span class="stat-label">客戶滿意度</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ P — PROBLEM ══ -->
+<section class="problem">
+  <div class="container">
+    <span class="section-label">您是否面對這些煩惱？</span>
+    <h2 class="section-title">裝修後清潔，<br>真的很頭痛</h2>
+
+    <div class="problem-grid">
+      <ul class="pain-list">
+        <li class="pain-item">
+          <span class="pain-icon">🏗️</span>
+          <div class="pain-text">
+            <strong>油漆污漬、石屎粉末無處不在</strong>
+            <span>裝修師傅走後，地磚縫、窗框角落全是頑固污垢，自己根本清不乾淨。</span>
+          </div>
+        </li>
+        <li class="pain-item">
+          <span class="pain-icon">😤</span>
+          <div class="pain-text">
+            <strong>清潔公司時數有限，做唔完就走</strong>
+            <span>報了4小時，清潔員草草了事，廚廁、橱櫃內部根本沒人理。</span>
+          </div>
+        </li>
+        <li class="pain-item">
+          <span class="pain-icon">🔧</span>
+          <div class="pain-text">
+            <strong>雜牌工具，效果差強人意</strong>
+            <span>用家用掃把拖把，面對工業級污垢，等同以蛋擊石，浪費時間金錢。</span>
+          </div>
+        </li>
+        <li class="pain-item">
+          <span class="pain-icon">🤷</span>
+          <div class="pain-text">
+            <strong>不知道有沒有甲醛？</strong>
+            <span>新裝修甲醛超標是常見問題，卻沒有公司幫你測試，入伙前心存疑慮。</span>
+          </div>
+        </li>
+      </ul>
+
+      <div class="problem-quote">
+        <blockquote>
+          「我地唔係最平嘅，<br>但係我地係做得最好嘅。<br>每一個客戶，都係我地的招牌。」
+        </blockquote>
+        <cite>— L&S 麗雅清潔，創辦人理念</cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ A — APPROACH ══ -->
+<section class="approach">
+  <div class="container">
+    <span class="section-label">我們的解決方案</span>
+    <h2 class="section-title">三大核心承諾，<br>讓您放心入伙</h2>
+    <p class="section-desc">麗雅清潔以「做好」為第一原則，從工具到人員，全面專業配置。</p>
+
+    <div class="approach-grid">
+      <div class="approach-card">
+        <span class="approach-num">01</span>
+        <span class="approach-icon">⏱️</span>
+        <h3>✅ 不限時作業</h3>
+        <p>我們按工程完成度計算，而非按鐘點計費。直到您滿意為止，清潔員絕不中途離場。</p>
+      </div>
+      <div class="approach-card">
+        <span class="approach-num">02</span>
+        <span class="approach-icon">🛠️</span>
+        <h3>✅ 專業工具齊備</h3>
+        <p>使用工業級高壓清洗機、除甲醛測試儀、專業清潔劑，工具決定成效，我們一樣都不少。</p>
+      </div>
+      <div class="approach-card">
+        <span class="approach-num">03</span>
+        <span class="approach-icon">👷</span>
+        <h3>✅ 謝絕雜牌軍</h3>
+        <p>所有清潔員均由公司直接培訓及管理，絕不外判。每個團隊成員均有豐富的新居清潔經驗。</p>
+      </div>
+    </div>
+
+    <!-- SERVICE TABLE -->
+    <div class="service-table-wrap">
+      <table class="service-table">
+        <thead>
+          <tr>
+            <th>清潔項目</th>
+            <th>覆蓋範圍</th>
+            <th>L&S 包辦</th>
+            <th>一般清潔公司</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>全屋地面（磁磚 / 木地板）</td>
+            <td>全部房間、走廊、陽台</td>
+            <td><span class="check">✓</span></td>
+            <td><span class="check">✓</span></td>
+          </tr>
+          <tr>
+            <td>廚房深層清潔</td>
+            <td>灶台、抽油煙機、磁磚縫</td>
+            <td><span class="check">✓</span></td>
+            <td><span class="cross">—</span></td>
+          </tr>
+          <tr>
+            <td>廁所除垢消毒</td>
+            <td>馬桶、浴缸、花灑、地磚縫</td>
+            <td><span class="check">✓</span></td>
+            <td><span class="check">✓</span></td>
+          </tr>
+          <tr>
+            <td>橱櫃內外清潔</td>
+            <td>廚櫃、衣櫃、儲物櫃內壁</td>
+            <td><span class="check">✓</span></td>
+            <td><span class="cross">—</span></td>
+          </tr>
+          <tr>
+            <td>窗台 / 窗框清潔</td>
+            <td>玻璃、窗框槽、紗窗</td>
+            <td><span class="check">✓</span></td>
+            <td><span class="cross">—</span></td>
+          </tr>
+          <tr>
+            <td>甲醛測試</td>
+            <td>全屋空氣質素檢測</td>
+            <td><span class="check">✓</span></td>
+            <td><span class="cross">—</span></td>
+          </tr>
+          <tr>
+            <td>不限時完成</td>
+            <td>直到客戶滿意為止</td>
+            <td><span class="check">✓</span></td>
+            <td><span class="cross">✗</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ P — PROOF / BEFORE-AFTER ══ -->
+<section class="proof" id="proof">
+  <div class="container">
+    <span class="section-label">清潔實例</span>
+    <h2 class="section-title">眼見為實，<br>對比一目了然</h2>
+    <p class="section-desc">以下為真實客戶案例，每個項目均由我們團隊親手完成，效果有目共睹。</p>
+
+    <div class="before-after-grid">
+      <div class="ba-card">
+        <div class="ba-images">
+          <div class="ba-img ba-img-placeholder before">
+            🚽
+            <div class="ba-tag tag-before">清潔前</div>
+          </div>
+          <div class="ba-img ba-img-placeholder after">
+            ✨
+            <div class="ba-tag tag-after">清潔後</div>
+          </div>
+          <div class="ba-divider">↔</div>
+        </div>
+        <div class="ba-info">
+          <h4>廁所地磚縫深層除垢</h4>
+          <p>裝修後黑色霉菌及水泥漬嚴重，使用高壓噴射配合專業去霉劑，效果立竿見影。</p>
+        </div>
+      </div>
+
+      <div class="ba-card">
+        <div class="ba-images">
+          <div class="ba-img ba-img-placeholder before" style="background:linear-gradient(135deg,#c9bfaf,#b8a890)">
+            🪟
+            <div class="ba-tag tag-before">清潔前</div>
+          </div>
+          <div class="ba-img ba-img-placeholder after" style="background:linear-gradient(135deg,#d0e8d8,#b0d4bc)">
+            🌟
+            <div class="ba-tag tag-after">清潔後</div>
+          </div>
+          <div class="ba-divider">↔</div>
+        </div>
+        <div class="ba-info">
+          <h4>窗台及玻璃清潔</h4>
+          <p>建築塵埃、油漆點、水漬全面清除，玻璃晶瑩剔透，採光大幅提升。</p>
+        </div>
+      </div>
+
+      <div class="ba-card">
+        <div class="ba-images">
+          <div class="ba-img ba-img-placeholder before" style="background:linear-gradient(135deg,#c4b8a8,#b0a090)">
+            🔧
+            <div class="ba-tag tag-before">清潔前</div>
+          </div>
+          <div class="ba-img ba-img-placeholder after" style="background:linear-gradient(135deg,#c0dcc8,#a0c8b0)">
+            🍳
+            <div class="ba-tag tag-after">清潔後</div>
+          </div>
+          <div class="ba-divider">↔</div>
+        </div>
+        <div class="ba-info">
+          <h4>廚房抽油煙機及灶台</h4>
+          <p>多年油漬積垢徹底清除，還原廚房清潔感，為您的新生活做好準備。</p>
+        </div>
+      </div>
+
+      <div class="ba-card">
+        <div class="ba-images">
+          <div class="ba-img ba-img-placeholder before" style="background:linear-gradient(135deg,#cec0b0,#bcac9c)">
+            📦
+            <div class="ba-tag tag-before">清潔前</div>
+          </div>
+          <div class="ba-img ba-img-placeholder after" style="background:linear-gradient(135deg,#b8d8c4,#98c4ac)">
+            🗄️
+            <div class="ba-tag tag-after">清潔後</div>
+          </div>
+          <div class="ba-divider">↔</div>
+        </div>
+        <div class="ba-info">
+          <h4>全屋橱櫃內外清潔</h4>
+          <p>裝修木屑、灰塵、保護膠膜徹底清除，橱櫃內外煥然一新，直接入住。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature bullets -->
+    <div class="features-wrap" style="margin-top:48px">
+      <div class="feature-item">
+        <div class="feature-dot"></div>
+        <div>
+          <strong>全屋地面覆蓋</strong>
+          <span>磁磚、木地板、石材均可處理，不同材質採用對應清潔方案。</span>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-dot"></div>
+        <div>
+          <strong>窗台窗框全包</strong>
+          <span>連窗框滑道、紗窗一同清潔，密封膠位亦細心處理。</span>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-dot"></div>
+        <div>
+          <strong>廚廁深層消毒</strong>
+          <span>使用食品級安全消毒劑，適合家有小孩及長者的家庭。</span>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-dot"></div>
+        <div>
+          <strong>甲醛空氣檢測</strong>
+          <span>配備專業檢測儀，數字化報告讓您安心入住。</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ TESTIMONIALS ══ -->
+<section class="testimonials">
+  <div class="container">
+    <span class="section-label">客戶真實心聲</span>
+    <h2 class="section-title">他們說，比想像中<br>還要乾淨</h2>
+
+    <div class="testimonial-grid">
+
+      <div class="testimonial-card">
+        <div class="t-before-after">
+          <div class="t-ba-half t-before">
+            😰
+            <span class="t-ba-label">清潔前</span>
+          </div>
+          <div class="t-ba-half t-after">
+            😍
+            <span class="t-ba-label">清潔後</span>
+          </div>
+        </div>
+        <div class="t-body">
+          <div class="t-stars">★★★★★</div>
+          <p class="t-quote">「廁所磁磚縫黑到以為要換磚，麗雅清潔後簡直係返回新的狀態，真係好驚喜！個team做足10個鐘先走，完全唔催我。」</p>
+          <div class="t-meta">
+            <div class="t-avatar" style="background:#e8f5ed">👩</div>
+            <div>
+              <span class="t-name">陳太太</span>
+              <span class="t-loc">將軍澳新入伙業主</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="t-before-after">
+          <div class="t-ba-half t-before" style="background:linear-gradient(135deg,#c8b8a8,#b8a898)">
+            😤
+            <span class="t-ba-label">清潔前</span>
+          </div>
+          <div class="t-ba-half t-after" style="background:linear-gradient(135deg,#b0d8c0,#90c4a8)">
+            🙌
+            <span class="t-ba-label">清潔後</span>
+          </div>
+        </div>
+        <div class="t-body">
+          <div class="t-stars">★★★★★</div>
+          <p class="t-quote">「之前試過另一間清潔公司，做完仲係好多地方冇做到。呢次揀咗麗雅，連橱櫃入面都幫我抹晒，真係值回票價！」</p>
+          <div class="t-meta">
+            <div class="t-avatar" style="background:#fff3e0">👨</div>
+            <div>
+              <span class="t-name">黎先生</span>
+              <span class="t-loc">沙田裝修後清潔</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="t-before-after">
+          <div class="t-ba-half t-before" style="background:linear-gradient(135deg,#d0c0b0,#c0b0a0)">
+            😓
+            <span class="t-ba-label">清潔前</span>
+          </div>
+          <div class="t-ba-half t-after" style="background:linear-gradient(135deg,#c0e0cc,#a0ccb4)">
+            💪
+            <span class="t-ba-label">清潔後</span>
+          </div>
+        </div>
+        <div class="t-body">
+          <div class="t-stars">★★★★★</div>
+          <p class="t-quote">「我有小朋友，特別擔心甲醛問題。麗雅幫我做埋空氣檢測，數值正常先安心入住，服務超貼心，強烈推介！」</p>
+          <div class="t-meta">
+            <div class="t-avatar" style="background:#f3e5f5">👩‍👧</div>
+            <div>
+              <span class="t-name">方媽媽</span>
+              <span class="t-loc">九龍城新居入伙</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ PRICING ══ -->
+<section class="pricing">
+  <div class="container" style="text-align:center">
+    <span class="section-label">收費方案</span>
+    <h2 class="section-title">清晰定價，<br>無隱藏收費</h2>
+
+    <div class="pricing-card">
+      <div class="price-tag"><span>HK$</span>3,000<span>起</span></div>
+      <p class="price-note">市區 500 呎以內單位（新界離島另議，歡迎查詢）</p>
+      <ul class="price-features">
+        <li>全屋地面、窗台、廚廁、橱櫃內外</li>
+        <li>不限時完成，直到您滿意</li>
+        <li>專業工業級清潔工具齊備</li>
+        <li>甲醛空氣質素測試（附報告）</li>
+        <li>港九新界均提供服務</li>
+        <li>歡迎全程監督及比較</li>
+      </ul>
+      <a href="https://wa.me/85259186741" class="btn-primary" style="display:inline-block;font-size:1rem">
+        WhatsApp 59186741 即時報價
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ FAQ ══ -->
+<section class="faq">
+  <div class="container">
+    <span class="section-label">常見問題</span>
+    <h2 class="section-title">您可能想知道的</h2>
+
+    <div class="faq-list">
+
+      <div class="faq-item open">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <strong>Q1：預約清潔前，我需要準備什麼？</strong>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <p>您基本上不需要特別準備，我們的清潔團隊會帶齊所有工具和清潔劑到場。以下是您可以留意的事項：</p>
+            <ul>
+              <li>確保清潔當日單位有水電供應（清潔過程需要用水及電力）</li>
+              <li>如有特別需要保護的傢俱或物品，請提前告知</li>
+              <li>建議清潔前將裝修垃圾先清走，方便我們更有效率地進行清潔</li>
+              <li>如需甲醛測試，清潔完成後需關窗靜待約1小時再測量</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <strong>Q2：如果清潔完成後我不滿意，可以如何處理？</strong>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <p>麗雅清潔以客戶滿意為最終目標。我們的服務承諾包括：</p>
+            <ul>
+              <li><strong>不限時完成</strong>：我們不按鐘點走人，直到您確認滿意才算完工</li>
+              <li><strong>現場即時跟進</strong>：如您在清潔過程中發現有遺漏之處，請即時告知，我們會馬上補做</li>
+              <li><strong>完工驗收</strong>：清潔完成後，我們會請您逐間房間驗收，有問題即場解決</li>
+              <li>如事後發現問題，請於48小時內以 WhatsApp 聯絡我們，我們將安排跟進</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ CTA FINAL ══ -->
+<section class="cta-final" id="cta">
+  <div class="container">
+    <span class="section-label">立即行動</span>
+    <h2 class="section-title">準備好迎接<br>您的新家了嗎？</h2>
+    <p>WhatsApp 我們，即時報價，不收任何查詢費用。<br>港九新界均可服務，歡迎監督比較。</p>
+    <div class="cta-buttons">
+      <a href="https://wa.me/85259186741" class="whatsapp-btn">
+        <span class="whatsapp-icon">💬</span>
+        WhatsApp 59186741 即時查詢
+      </a>
+      <a href="tel:+85259186741" class="btn-secondary">
+        📞 直接致電
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2024 <span>L&S 麗雅清潔公司</span> · 港九新界上門清潔服務 · WhatsApp: 59186741</p>
+  <p style="margin-top:8px">不鬥平，只做好</p>
+</footer>
+
+<script>
+  // FAQ toggle already handled inline
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.pain-item, .approach-card, .ba-card, .testimonial-card, .feature-item').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
