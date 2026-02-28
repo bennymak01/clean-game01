@@ -492,22 +492,24 @@
     overflow: hidden;
   }
 
-  .ba-img-placeholder {
+  .ba-img img {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2.5rem;
+    object-fit: cover;
+    object-position: center;
+    display: block;
   }
 
-  .ba-img-placeholder.before {
-    background: linear-gradient(135deg, #d4c5b0, #b8a990);
+  .ba-img.ba-before { background: linear-gradient(135deg, #d4c5b0, #b8a990); }
+  .ba-img.ba-after  { background: linear-gradient(135deg, #c8e6d0, #a8d4b4); }
+
+  .ba-img.ba-before img {
+    filter: sepia(0.45) contrast(0.82) brightness(0.72) saturate(0.6);
   }
 
-  .ba-img-placeholder.after {
-    background: linear-gradient(135deg, #c8e6d0, #a8d4b4);
-  }
+  .ba-tag { z-index: 1; }
 
   .ba-tag {
     position: absolute;
@@ -658,12 +660,27 @@
   .t-ba-half.t-before { background: linear-gradient(135deg,#d4c5b0,#c4b09a); }
   .t-ba-half.t-after  { background: linear-gradient(135deg,#b8dfc4,#8ec9a4); }
 
+  .t-ba-half img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .t-ba-half.t-before img {
+    filter: sepia(0.45) contrast(0.82) brightness(0.72) saturate(0.6);
+  }
+
   .t-ba-label {
     font-size: 0.6rem;
     letter-spacing: 0.15em;
     font-weight: 700;
     padding: 2px 8px;
     border-radius: 2px;
+    position: relative;
+    z-index: 1;
   }
 
   .t-before .t-ba-label { background: rgba(0,0,0,0.4); color:#fff; }
@@ -1178,12 +1195,12 @@
     <div class="before-after-grid">
       <div class="ba-card">
         <div class="ba-images">
-          <div class="ba-img ba-img-placeholder before">
-            🚽
+          <div class="ba-img ba-before">
+            <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=600&h=520&q=80" alt="廁所清潔前" loading="lazy" onerror="this.style.display='none'">
             <div class="ba-tag tag-before">清潔前</div>
           </div>
-          <div class="ba-img ba-img-placeholder after">
-            ✨
+          <div class="ba-img ba-after">
+            <img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=600&h=520&q=80" alt="廁所清潔後" loading="lazy" onerror="this.style.display='none'">
             <div class="ba-tag tag-after">清潔後</div>
           </div>
           <div class="ba-divider">↔</div>
@@ -1196,12 +1213,12 @@
 
       <div class="ba-card">
         <div class="ba-images">
-          <div class="ba-img ba-img-placeholder before" style="background:linear-gradient(135deg,#c9bfaf,#b8a890)">
-            🪟
+          <div class="ba-img ba-before" style="background:linear-gradient(135deg,#c9bfaf,#b8a890)">
+            <img src="https://images.unsplash.com/photo-1585792180666-f7347c490ee2?auto=format&fit=crop&w=600&h=520&q=80" alt="窗台清潔前" loading="lazy" onerror="this.style.display='none'">
             <div class="ba-tag tag-before">清潔前</div>
           </div>
-          <div class="ba-img ba-img-placeholder after" style="background:linear-gradient(135deg,#d0e8d8,#b0d4bc)">
-            🌟
+          <div class="ba-img ba-after" style="background:linear-gradient(135deg,#d0e8d8,#b0d4bc)">
+            <img src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?auto=format&fit=crop&w=600&h=520&q=80" alt="窗台清潔後" loading="lazy" onerror="this.style.display='none'">
             <div class="ba-tag tag-after">清潔後</div>
           </div>
           <div class="ba-divider">↔</div>
@@ -1214,12 +1231,12 @@
 
       <div class="ba-card">
         <div class="ba-images">
-          <div class="ba-img ba-img-placeholder before" style="background:linear-gradient(135deg,#c4b8a8,#b0a090)">
-            🔧
+          <div class="ba-img ba-before" style="background:linear-gradient(135deg,#c4b8a8,#b0a090)">
+            <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=600&h=520&q=80" alt="廚房清潔前" loading="lazy" onerror="this.style.display='none'">
             <div class="ba-tag tag-before">清潔前</div>
           </div>
-          <div class="ba-img ba-img-placeholder after" style="background:linear-gradient(135deg,#c0dcc8,#a0c8b0)">
-            🍳
+          <div class="ba-img ba-after" style="background:linear-gradient(135deg,#c0dcc8,#a0c8b0)">
+            <img src="https://images.unsplash.com/photo-1556909172-54557c7e4fb7?auto=format&fit=crop&w=600&h=520&q=80" alt="廚房清潔後" loading="lazy" onerror="this.style.display='none'">
             <div class="ba-tag tag-after">清潔後</div>
           </div>
           <div class="ba-divider">↔</div>
@@ -1232,12 +1249,12 @@
 
       <div class="ba-card">
         <div class="ba-images">
-          <div class="ba-img ba-img-placeholder before" style="background:linear-gradient(135deg,#cec0b0,#bcac9c)">
-            📦
+          <div class="ba-img ba-before" style="background:linear-gradient(135deg,#cec0b0,#bcac9c)">
+            <img src="https://images.unsplash.com/photo-1556912173-3bb406ef7e77?auto=format&fit=crop&w=600&h=520&q=80" alt="橱櫃清潔前" loading="lazy" onerror="this.style.display='none'">
             <div class="ba-tag tag-before">清潔前</div>
           </div>
-          <div class="ba-img ba-img-placeholder after" style="background:linear-gradient(135deg,#b8d8c4,#98c4ac)">
-            🗄️
+          <div class="ba-img ba-after" style="background:linear-gradient(135deg,#b8d8c4,#98c4ac)">
+            <img src="https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=600&h=520&q=80" alt="橱櫃清潔後" loading="lazy" onerror="this.style.display='none'">
             <div class="ba-tag tag-after">清潔後</div>
           </div>
           <div class="ba-divider">↔</div>
@@ -1295,11 +1312,11 @@
       <div class="testimonial-card">
         <div class="t-before-after">
           <div class="t-ba-half t-before">
-            😰
+            <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=300&h=280&q=80" alt="清潔前" loading="lazy" onerror="this.style.display='none'">
             <span class="t-ba-label">清潔前</span>
           </div>
           <div class="t-ba-half t-after">
-            😍
+            <img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=300&h=280&q=80" alt="清潔後" loading="lazy" onerror="this.style.display='none'">
             <span class="t-ba-label">清潔後</span>
           </div>
         </div>
@@ -1319,11 +1336,11 @@
       <div class="testimonial-card">
         <div class="t-before-after">
           <div class="t-ba-half t-before" style="background:linear-gradient(135deg,#c8b8a8,#b8a898)">
-            😤
+            <img src="https://images.unsplash.com/photo-1556912173-3bb406ef7e77?auto=format&fit=crop&w=300&h=280&q=80" alt="清潔前" loading="lazy" onerror="this.style.display='none'">
             <span class="t-ba-label">清潔前</span>
           </div>
           <div class="t-ba-half t-after" style="background:linear-gradient(135deg,#b0d8c0,#90c4a8)">
-            🙌
+            <img src="https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=300&h=280&q=80" alt="清潔後" loading="lazy" onerror="this.style.display='none'">
             <span class="t-ba-label">清潔後</span>
           </div>
         </div>
@@ -1343,11 +1360,11 @@
       <div class="testimonial-card">
         <div class="t-before-after">
           <div class="t-ba-half t-before" style="background:linear-gradient(135deg,#d0c0b0,#c0b0a0)">
-            😓
+            <img src="https://images.unsplash.com/photo-1486946255434-2466348c2166?auto=format&fit=crop&w=300&h=280&q=80" alt="清潔前" loading="lazy" onerror="this.style.display='none'">
             <span class="t-ba-label">清潔前</span>
           </div>
           <div class="t-ba-half t-after" style="background:linear-gradient(135deg,#c0e0cc,#a0ccb4)">
-            💪
+            <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=300&h=280&q=80" alt="清潔後" loading="lazy" onerror="this.style.display='none'">
             <span class="t-ba-label">清潔後</span>
           </div>
         </div>
