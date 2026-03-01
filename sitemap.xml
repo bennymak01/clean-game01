@@ -43,14 +43,6 @@
   </url>
 
   <url>
-    <loc>https://www.clean.com.hk/sitemap-page.html</loc>
-    <lastmod>2026-03-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://www.clean.com.hk/sitemap-page.html"/>
-  </url>
-
-  <url>
     <loc>https://www.clean.com.hk/ls-cleaning-landing.html</loc>
     <lastmod>2026-03-01</lastmod>
     <changefreq>monthly</changefreq>
@@ -80,6 +72,14 @@
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="zh-TW" href="https://www.clean.com.hk/services.html"/>
+  </url>
+
+  <url>
+    <loc>https://www.clean.com.hk/sitemap-page.html</loc>
+    <lastmod>2026-03-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://www.clean.com.hk/sitemap-page.html"/>
   </url>
 
   <url>
