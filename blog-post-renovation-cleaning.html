@@ -23,6 +23,164 @@
     <link rel="canonical" href="https://www.clean.com.hk/blog-post-renovation-cleaning.html" />
     <title>裝修後清潔：讓新家煥然一新的關鍵步驟 - 麗雅清潔公司</title>
     <style>
+        /* ── SITE NAV ── */
+        :root {
+            --green-900: #1b4332;
+            --green-700: #2d6a4f;
+            --green-600: #40916c;
+            --green-500: #52b788;
+            --green-300: #95d5b2;
+            --green-100: #d8f3dc;
+            --wa-green: #25d366;
+        }
+        .top-bar {
+            background: var(--green-900);
+            color: #d8f3dc;
+            text-align: center;
+            font-size: .82rem;
+            padding: .45rem 1rem;
+            letter-spacing: .02em;
+        }
+        .top-bar a { color: var(--green-300); font-weight: 600; text-decoration: none; }
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 900;
+            background: #fff;
+            border-bottom: 2px solid var(--green-100);
+            box-shadow: 0 2px 12px rgba(45,106,79,.10);
+            font-family: 'Microsoft JhengHei', 'PingFang TC', Arial, sans-serif;
+        }
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: .8rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .nav-logo {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--green-900);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+        }
+        .nav-logo img { width: 34px; height: 34px; object-fit: contain; border-radius: 4px; }
+        .nav-links { display: flex; gap: 1.2rem; align-items: center; flex-wrap: wrap; }
+        .nav-links a {
+            font-size: .88rem;
+            color: var(--green-700);
+            font-weight: 500;
+            text-decoration: none;
+            transition: color .2s;
+        }
+        .nav-links a:hover { color: var(--green-600); }
+        .nav-wa {
+            background: var(--wa-green) !important;
+            color: #fff !important;
+            padding: .42rem .95rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: .83rem;
+        }
+        .breadcrumb-bar {
+            background: #fff;
+            padding: .6rem 1.5rem;
+            border-bottom: 1px solid var(--green-100);
+            font-size: .82rem;
+            color: #6a9a6a;
+            font-family: 'Microsoft JhengHei', 'PingFang TC', Arial, sans-serif;
+        }
+        .breadcrumb-bar a { color: var(--green-600); text-decoration: none; }
+        .breadcrumb-bar span { margin: 0 .4rem; }
+        /* ── FLOATING WA ── */
+        .float-wa {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: .4rem;
+            text-decoration: none;
+        }
+        .float-wa-label {
+            background: #fff;
+            border: 1px solid var(--green-300);
+            color: var(--green-900);
+            font-size: .78rem;
+            font-weight: 600;
+            padding: .3rem .8rem;
+            border-radius: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,.15);
+            white-space: nowrap;
+            font-family: 'Microsoft JhengHei', 'PingFang TC', Arial, sans-serif;
+        }
+        .float-wa-circle {
+            width: 56px;
+            height: 56px;
+            background: var(--wa-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 16px rgba(0,0,0,.25);
+            transition: transform .2s;
+        }
+        .float-wa-circle:hover { transform: scale(1.1); }
+        .float-wa-circle svg { width: 28px; height: 28px; fill: #fff; }
+        /* ── BRANDED FOOTER ── */
+        .branded-footer {
+            background: var(--green-900);
+            color: #d8f3dc;
+            text-align: center;
+            padding: 2.2rem 1.5rem;
+            font-family: 'Microsoft JhengHei', 'PingFang TC', Arial, sans-serif;
+        }
+        .branded-footer .bf-name { font-size: 1rem; font-weight: 700; margin-bottom: .4rem; }
+        .branded-footer .bf-links {
+            margin: .8rem 0;
+            display: flex;
+            justify-content: center;
+            gap: 1.4rem;
+            flex-wrap: wrap;
+            font-size: .88rem;
+        }
+        .branded-footer .bf-links a { color: var(--green-300); text-decoration: none; }
+        .branded-footer .bf-links a:hover { text-decoration: underline; }
+        .branded-footer .bf-contact { font-size: .88rem; margin: .6rem 0; }
+        .branded-footer .bf-contact a { color: var(--green-300); text-decoration: none; }
+        .branded-footer .bf-copy { font-size: .78rem; opacity: .55; margin-top: .8rem; }
+        /* ── RELATED POSTS ── */
+        .related-section {
+            padding: 1.5rem 2rem 2rem;
+            background: #f0faf3;
+            border-top: 2px solid var(--green-100);
+            font-family: 'Microsoft JhengHei', 'PingFang TC', Arial, sans-serif;
+        }
+        .related-section h3 { color: var(--green-900); font-size: 1.1rem; margin-bottom: 1rem; }
+        .related-cards { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .related-card {
+            background: #fff;
+            border: 2px solid var(--green-100);
+            border-radius: 10px;
+            padding: 1rem 1.2rem;
+            flex: 1;
+            min-width: 200px;
+            text-decoration: none;
+            color: inherit;
+            transition: border-color .2s, box-shadow .2s;
+        }
+        .related-card:hover { border-color: var(--green-300); box-shadow: 0 4px 14px rgba(0,0,0,.08); }
+        .related-card .rc-label { font-size: .75rem; color: var(--green-600); font-weight: 700; margin-bottom: .3rem; text-transform: uppercase; }
+        .related-card .rc-title { font-size: .95rem; color: var(--green-900); font-weight: 700; }
+
         * {
             margin: 0;
             padding: 0;
