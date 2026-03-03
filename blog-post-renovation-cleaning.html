@@ -352,6 +352,83 @@
             text-decoration: underline;
         }
 
+        /* ── TESTIMONIALS ── */
+        .testimonials-section {
+            background: #f0faf3;
+            border-top: 3px solid var(--green-300);
+            border-bottom: 3px solid var(--green-300);
+            padding: 2.5rem 2rem;
+            margin: 2.5rem 0;
+        }
+        .testimonials-section h2 {
+            color: var(--green-900);
+            font-size: 1.4rem;
+            margin-bottom: 1.8rem;
+            text-align: center;
+        }
+        .testimonial-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .testimonial-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 1.6rem 1.8rem;
+            box-shadow: 0 4px 16px rgba(45,106,79,.10);
+            border-left: 5px solid var(--green-500);
+            position: relative;
+        }
+        .testimonial-card::before {
+            content: '\201C';
+            font-size: 4rem;
+            color: var(--green-300);
+            line-height: 1;
+            position: absolute;
+            top: .6rem;
+            left: 1.2rem;
+            font-family: Georgia, serif;
+        }
+        .testimonial-quote {
+            padding-top: 1.2rem;
+            font-size: 1rem;
+            color: #333;
+            line-height: 1.9;
+        }
+        .testimonial-meta {
+            margin-top: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: .7rem;
+        }
+        .testimonial-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: var(--green-500);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+        .testimonial-author-name {
+            font-weight: 700;
+            color: var(--green-900);
+            font-size: .95rem;
+        }
+        .testimonial-author-detail {
+            font-size: .82rem;
+            color: var(--green-600);
+        }
+        .testimonial-stars {
+            color: #f5a623;
+            font-size: 1rem;
+            letter-spacing: .05em;
+        }
+
         @media (max-width: 768px) {
             .blog-header h1 {
                 font-size: 1.5rem;
@@ -551,6 +628,58 @@
                 <h3>讓麗雅清潔為您的新家把關！</h3>
                 <p>專業裝修後清潔服務，讓您安心入住美麗新家</p>
                 <a href="https://wa.me/85259186741?text=你好！我想查詢裝修後清潔報價，請問可以幫我估價嗎？" class="cta-button" target="_blank" rel="noopener">💬 WhatsApp 立即免費查詢</a>
+            </div>
+
+            <!-- After-Deco Result Photo -->
+            <img src="https://www.clean.hk/images/after-deco/FB_IMG_1770700287846.jpg"
+                 alt="麗雅清潔公司裝修後清潔實例 — 完工效果"
+                 class="content-image">
+            <p class="image-caption">麗雅清潔團隊裝修後清潔實例 — 清潔完成後一塵不染的效果</p>
+
+            <!-- Testimonials -->
+            <div class="testimonials-section">
+                <h2>⭐ 客戶真實分享</h2>
+                <div class="testimonial-cards">
+
+                    <div class="testimonial-card">
+                        <p class="testimonial-quote">
+                            我剛完成了新居裝修，朋友介紹我聯絡麗雅清潔。Patrick 親自來現場評估，態度非常專業，
+                            耐心地逐一解釋整個清潔流程及所用的清潔劑，讓我完全放心。清潔當天他帶領的團隊準時到達，
+                            工作態度一絲不苟——連窗框的細縫、地板磁磚的縫隙都處理得乾乾淨淨。
+                            最令我感動的是，Patrick 在完工後特意留下來陪我逐個房間驗收，
+                            確保我對每個細節都滿意才離開。我從來沒有試過這麼貼心的師傅！
+                            現在我的新家真的煥然一新，完全超出預期，已經向身邊多位朋友大力推薦。
+                        </p>
+                        <div class="testimonial-stars">★★★★★</div>
+                        <div class="testimonial-meta">
+                            <div class="testimonial-avatar">陳</div>
+                            <div>
+                                <div class="testimonial-author-name">陳太太</div>
+                                <div class="testimonial-author-detail">沙田新居裝修後清潔客戶</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <p class="testimonial-quote">
+                            我公司辦公室剛完成翻新，交樓日期非常緊迫，情況十分急。
+                            聯絡 Patrick 之後，他二話不說，當天便安排上門評估，報價清晰合理，沒有任何隱藏收費。
+                            清潔當天我完全放心把鎖匙交給他，不需要在場監督。
+                            驗收時每一個角落都清潔得無比徹底，連我都驚訝他們可以做得這麼好。
+                            Patrick 整個過程主動溝通，遇到任何問題都即時處理，不讓客人操心。
+                            他那種認真負責的專業態度，真的令人信賴。以後有清潔需要，我一定再找麗雅！
+                        </p>
+                        <div class="testimonial-stars">★★★★★</div>
+                        <div class="testimonial-meta">
+                            <div class="testimonial-avatar">李</div>
+                            <div>
+                                <div class="testimonial-author-name">李先生</div>
+                                <div class="testimonial-author-detail">觀塘辦公室裝修後清潔客戶</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
 
             <!-- Conclusion -->
