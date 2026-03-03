@@ -163,7 +163,7 @@
 
     /* ── HERO ── */
     .hero {
-      background: linear-gradient(135deg, var(--green-900) 0%, var(--green-700) 55%, var(--green-500) 100%);
+      background: url("https://www.clean.hk/images/machine-wash-floor/FB_IMG_1770700295542.jpg") center center / cover no-repeat;
       color: #fff;
       padding: 80px 1.5rem 70px;
       text-align: center;
@@ -173,7 +173,7 @@
     .hero::before {
       content: "";
       position: absolute; inset: 0;
-      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      background: rgba(27, 67, 50, 0.72);
     }
     .hero-inner { position: relative; max-width: 800px; margin: 0 auto; }
     .hero-badge {
@@ -494,6 +494,37 @@
     }
     .step h4 { font-size: .92rem; font-weight: 700; color: var(--green-900); margin-bottom: .3rem; }
     .step p { font-size: .84rem; color: var(--text-mid); margin-bottom: 0; }
+
+    /* ── MID IMAGE FEATURE ── */
+    .mid-image-block {
+      margin: 2.5rem 0;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 36px rgba(45,106,79,.15);
+      border: 2px solid var(--green-100);
+    }
+    .mid-image-block img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .mid-image-caption {
+      background: var(--green-50);
+      padding: 1.4rem 1.8rem;
+    }
+    .mid-image-caption h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--green-900);
+      margin-bottom: .5rem;
+      margin-top: 0;
+    }
+    .mid-image-caption p {
+      font-size: .9rem;
+      color: var(--text-mid);
+      margin-bottom: 0;
+      line-height: 1.8;
+    }
 
     /* ── FAQ ── */
     .faq-section {
@@ -820,6 +851,20 @@
     <h3>🎬 觀看我們的地氈清洗實況</h3>
     <div class="video-container">
       <iframe width="560" height="315" src="https://www.youtube.com/embed/wKS0Lk3QG7o?si=S55XgjsrZoJG_duX" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <!-- MID FEATURE IMAGE -->
+  <div class="mid-image-block">
+    <img src="https://www.clean.hk/images/machine-wash-floor/FB_IMG_1770700306776.jpg"
+         alt="麗雅清潔公司師傅上門機洗地氈實況" loading="lazy" />
+    <div class="mid-image-caption">
+      <h3>🧹 師傅上門機洗地氈實況</h3>
+      <p>
+        圖為麗雅清潔公司資深師傅使用專業地氈清洗機，為客戶進行深層清洗服務。
+        強力機洗配合專業清潔劑，深入地氈纖維底層，有效去除積聚多年的污垢、油脂及細菌，
+        讓地氈煥然一新，重現清潔光鮮的面貌。
+      </p>
     </div>
   </div>
 
