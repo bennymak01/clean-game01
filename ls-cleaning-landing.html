@@ -92,20 +92,62 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 24px 48px;
+    padding: 20px 48px;
     position: relative;
     z-index: 10;
+    flex-wrap: wrap;
+    gap: 12px;
   }
 
   .logo {
     font-family: 'Noto Serif TC', serif;
     font-weight: 900;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     color: var(--white);
     letter-spacing: 0.05em;
+    text-decoration: none;
   }
 
   .logo span { color: var(--gold); }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .nav-links a {
+    color: rgba(255,255,255,0.8);
+    font-size: 0.88rem;
+    padding: 6px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--white); }
+
+  .nav-wa-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #25D366;
+    color: #fff !important;
+    font-weight: 700;
+    font-size: 0.82rem;
+    padding: 8px 18px;
+    border-radius: 4px;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .nav-wa-btn:hover {
+    background: #1fb354;
+    transform: translateY(-1px);
+  }
 
   .nav-badge {
     background: rgba(255,255,255,0.1);
@@ -988,6 +1030,23 @@
 
   footer span { color: var(--green-light); }
 
+  /* ── BANNER PHOTO ── */
+  .banner-photo {
+    width: 100%;
+    line-height: 0;
+    overflow: hidden;
+    max-height: 520px;
+  }
+
+  .banner-photo img {
+    width: 100%;
+    height: auto;
+    max-height: 520px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
   /* ── ANIMATIONS ── */
   @keyframes fadeDown {
     from { opacity: 0; transform: translateY(-20px); }
@@ -996,7 +1055,8 @@
 
   /* ── RESPONSIVE ── */
   @media (max-width: 768px) {
-    nav { padding: 20px 24px; }
+    nav { padding: 16px 20px; }
+    .nav-links a:not(.nav-wa-btn) { display: none; }
     .stats-bar { gap: 0; padding: 0 24px 60px; }
     .stat { padding: 0 16px; }
     .stat-number { font-size: 1.8rem; }
@@ -1018,8 +1078,16 @@
   <div class="hero-bg"></div>
 
   <nav>
-    <div class="logo"><span>L&S</span> 麗雅清潔公司</div>
-    <div class="nav-badge">WhatsApp 59186741</div>
+    <a href="index.html" class="logo"><span>L&S</span> 麗雅清潔公司</a>
+    <div class="nav-links">
+      <a href="index.html">首頁</a>
+      <a href="services.html">服務項目</a>
+      <a href="testimonials.html">客戶見證</a>
+      <a href="contact.html">聯絡我們</a>
+      <a class="nav-wa-btn" href="https://wa.me/85259186741?text=你好，我想查詢裝修後清潔服務報價" target="_blank" rel="noopener">
+        💬 WhatsApp 即時報價
+      </a>
+    </div>
   </nav>
 
   <div class="hero-content">
@@ -1055,6 +1123,11 @@
   </div>
 </section>
 
+
+<!-- ══ BANNER PHOTO ══ -->
+<div class="banner-photo">
+  <img src="https://www.clean.hk/images/IMG-20260228-WA0000.jpg" alt="麗雅清潔公司 — 專業裝修後清潔服務" loading="eager">
+</div>
 
 <!-- ══ P — PROBLEM ══ -->
 <section class="problem">
@@ -1488,7 +1561,7 @@
 </section>
 
 <footer>
-  <p>© 2024 <span>L&S 麗雅清潔公司</span> · 港九新界上門清潔服務 · WhatsApp: 59186741</p>
+  <p>© 2026 <span>L&S 麗雅清潔公司</span> · 港九新界上門清潔服務 · WhatsApp: 59186741</p>
   <p style="margin-top:8px">不鬥平，只做好</p>
 </footer>
 
