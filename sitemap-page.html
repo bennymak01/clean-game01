@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q76D3QQ8LD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Q76D3QQ8LD');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="麗雅清潔公司網站地圖 — 快速找到所有服務頁面，包括機器洗地、地氈清洗、辦公室深層清潔等。" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.clean.com.hk/sitemap-page.html" />
+  <title>網站地圖｜麗雅清潔公司</title>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Noto Sans TC", "Microsoft JhengHei", "PingFang TC", sans-serif;
+      color: #1a2e1a;
+      background: #fff;
+      line-height: 1.7;
+    }
+    a { text-decoration: none; }
+
+    :root {
+      --green-900: #1b4332;
+      --green-700: #2d6a4f;
+      --green-600: #40916c;
+      --green-500: #52b788;
+      --green-300: #95d5b2;
+      --green-100: #d8f3dc;
+      --green-50:  #f0faf3;
+      --wa-green:  #25d366;
+      --text-mid:  #3a5a3a;
+      --text-light: #6a9a6a;
+    }
+
+    /* TOP BAR */
+    .top-bar {
+      background: var(--green-900); color: #d8f3dc;
+      text-align: center; font-size: .82rem; padding: .45rem 1rem;
+    }
+    .top-bar a { color: var(--green-300); font-weight: 600; }
+
+    /* HEADER */
+    header {
+      position: sticky; top: 0; z-index: 900;
+      background: #fff; border-bottom: 2px solid var(--green-100);
+      box-shadow: 0 2px 12px rgba(45,106,79,.10);
+    }
+    .nav-inner {
+      max-width: 1140px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: .85rem 1.5rem; gap: 1rem;
+    }
+    .logo-wrap { display: flex; align-items: center; gap: .75rem; }
+    .logo-icon {
+      width: 44px; height: 44px; background: var(--green-700); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
+    }
+    .logo-text-main { font-size: 1rem; font-weight: 700; color: var(--green-900); line-height: 1.2; }
+    .logo-text-sub { font-size: .68rem; color: var(--green-600); font-weight: 500; }
+    nav { display: flex; gap: 1.4rem; align-items: center; }
+    nav a { font-size: .87rem; font-weight: 600; color: var(--text-mid); }
+    nav a:hover { color: var(--green-600); }
+    .nav-wa {
+      background: var(--wa-green); color: #fff !important;
+      padding: .45rem 1rem; border-radius: 30px; font-size: .87rem; font-weight: 700;
+    }
+
+    /* PAGE HERO */
+    .page-hero {
+      background: linear-gradient(135deg, var(--green-900), var(--green-700));
+      color: #fff; padding: 52px 1.5rem 44px; text-align: center;
+    }
+    .page-hero h1 { font-size: clamp(1.5rem, 4vw, 2.2rem); font-weight: 800; margin-bottom: .5rem; }
+    .page-hero p { font-size: .95rem; color: rgba(255,255,255,.82); }
+
+    /* SITEMAP WRAPPER */
+    .sitemap-wrap {
+      max-width: 900px; margin: 0 auto; padding: 3rem 1.5rem 4rem;
+    }
+
+    /* TOPIC CLUSTER */
+    .cluster { margin-bottom: 2.8rem; }
+    .cluster-header {
+      display: flex; align-items: center; gap: .75rem;
+      background: var(--green-700); color: #fff;
+      padding: .8rem 1.2rem; border-radius: 10px;
+      font-size: 1rem; font-weight: 800; margin-bottom: 0;
+    }
+    .cluster-header .ch-icon { font-size: 1.3rem; }
+
+    /* TREE */
+    .tree { list-style: none; padding: 0; margin: 0; }
+
+    /* Level 1 — direct children of cluster */
+    .tree > .tree-item {
+      border-left: 2px solid var(--green-300);
+      margin-left: 1.4rem;
+    }
+    .tree > .tree-item:last-child { border-left-color: transparent; }
+
+    /* Every tree-item row */
+    .tree-item { position: relative; }
+    .tree-item > .tree-row {
+      display: flex; align-items: center; gap: .6rem;
+      padding: .55rem .8rem .55rem 1.4rem;
+      position: relative;
+    }
+    /* Horizontal connector */
+    .tree-item > .tree-row::before {
+      content: "";
+      position: absolute; left: 0; top: 50%;
+      width: 1.1rem; height: 2px;
+      background: var(--green-300);
+    }
+
+    /* Leaf link */
+    .tree-row a {
+      font-size: .93rem; font-weight: 600;
+      color: var(--green-700);
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .tree-row a:hover { color: var(--green-500); text-decoration: underline; }
+    .tree-row .badge {
+      font-size: .68rem; font-weight: 700; letter-spacing: .05em;
+      padding: .15rem .55rem; border-radius: 20px;
+      background: var(--green-100); color: var(--green-700);
+    }
+    .tree-row .badge.new { background: #fff3cd; color: #856404; }
+
+    /* Level 2 sub-tree (grandchildren) */
+    .sub-tree {
+      list-style: none; padding: 0;
+      margin-left: 2.5rem;
+      border-left: 2px dashed var(--green-100);
+    }
+    .sub-tree .tree-item { border-left: none; }
+    .sub-tree .tree-item > .tree-row {
+      padding: .45rem .8rem .45rem 1.2rem;
+    }
+    .sub-tree .tree-item > .tree-row::before {
+      width: .9rem;
+      background: var(--green-100);
+    }
+    .sub-tree .tree-row a {
+      font-size: .88rem; font-weight: 500; color: var(--text-mid);
+    }
+    .sub-tree .tree-row a:hover { color: var(--green-600); }
+
+    /* Section label inside tree */
+    .tree-section-label {
+      font-size: .75rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--text-light);
+      padding: .8rem .8rem .2rem 1.4rem; display: block;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #0d1f0d; color: #8aaf8a;
+      padding: 1.8rem 1rem; text-align: center; font-size: .83rem;
+    }
+    footer a { color: var(--green-300); }
+
+    @media (max-width: 600px) {
+      nav a:not(.nav-wa) { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="top-bar">
+  即時查詢：<a href="https://wa.me/85259186741">WhatsApp 59186741</a>｜電郵：<a href="mailto:likeandsharecleaning@gmail.com">likeandsharecleaning@gmail.com</a>
+</div>
+
+<header>
+  <div class="nav-inner">
+    <div class="logo-wrap">
+      <div class="logo-icon">🧹</div>
+      <div>
+        <div class="logo-text-main">麗雅清潔公司</div>
+        <div class="logo-text-sub">Like and Share Cleaning</div>
+      </div>
+    </div>
+    <nav>
+      <a href="index.html">首頁</a>
+      <a href="services.html">服務</a>
+      <a href="blog.html">文章</a>
+      <a href="contact.html">聯絡</a>
+      <a href="https://wa.me/85259186741" class="nav-wa">WhatsApp報價</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page-hero">
+  <h1>網站地圖</h1>
+  <p>麗雅清潔公司全站頁面索引，按主題分類整理</p>
+</div>
+
+<main class="sitemap-wrap">
+
+  <!-- CLUSTER 1: 首頁 -->
+  <div class="cluster">
+    <div class="cluster-header">
+      <span class="ch-icon">🏠</span> 首頁
+    </div>
+    <ul class="tree">
+      <li class="tree-item">
+        <div class="tree-row">
+          <a href="index.html">麗雅清潔公司 — 官方首頁</a>
+          <span class="badge">主頁</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- CLUSTER 2: 清潔服務 -->
+  <div class="cluster">
+    <div class="cluster-header">
+      <span class="ch-icon">🧹</span> 清潔服務
+    </div>
+    <ul class="tree">
+
+      <li class="tree-item">
+        <div class="tree-row">
+          <a href="services.html">所有服務項目總覽</a>
+        </div>
+      </li>
+
+      <!-- Sub: 地板清潔 -->
+      <li class="tree-item">
+        <span class="tree-section-label">地板清潔</span>
+        <ul class="sub-tree">
+          <li class="tree-item">
+            <div class="tree-row">
+              <a href="machine-floor-cleaning.html">機器洗地服務（地磚 · 大理石 · PVC · 水泥）</a>
+              <span class="badge new">新</span>
+            </div>
+          </li>
+          <li class="tree-item">
+            <div class="tree-row">
+              <a href="carpet-cleaning-service.html">上門機洗地氈服務</a>
+            </div>
+          </li>
+        </ul>
+      </li>
+
+      <!-- Sub: 商業清潔 -->
+      <li class="tree-item">
+        <span class="tree-section-label">辦公室 · 商業清潔</span>
+        <ul class="sub-tree">
+          <li class="tree-item">
+            <div class="tree-row">
+              <a href="office-deep-cleaning.html">辦公室定期深層清潔</a>
+            </div>
+          </li>
+        </ul>
+      </li>
+
+      <!-- Sub: 住宅 & 裝修 -->
+      <li class="tree-item">
+        <span class="tree-section-label">住宅 · 裝修後清潔</span>
+        <ul class="sub-tree">
+          <li class="tree-item">
+            <div class="tree-row">
+              <a href="services.html#post-renovation">裝修後清潔 · 入伙前清潔</a>
+            </div>
+          </li>
+          <li class="tree-item">
+            <div class="tree-row">
+              <a href="services.html">家居定期大掃除</a>
+            </div>
+          </li>
+        </ul>
+      </li>
+
+      <!-- Sub: 消毒滅蟲 -->
+      <li class="tree-item">
+        <span class="tree-section-label">消毒 · 滅蟲</span>
+        <ul class="sub-tree">
+          <li class="tree-item">
+            <div class="tree-row">
+              <a href="services.html#disinfection-pest">霧化消毒服務</a>
+            </div>
+          </li>
+          <li class="tree-item">
+            <div class="tree-row">
+              <a href="services.html#disinfection-pest">滅蟲服務</a>
+            </div>
+          </li>
+          <li class="tree-item">
+            <div class="tree-row">
+              <a href="services.html">高溫蒸氣消毒</a>
+            </div>
+          </li>
+        </ul>
+      </li>
+
+      <!-- Sub: 其他 -->
+      <li class="tree-item">
+        <span class="tree-section-label">其他專業服務</span>
+        <ul class="sub-tree">
+          <li class="tree-item">
+            <div class="tree-row">
+              <a href="services.html">清潔招牌及玻璃門窗</a>
+            </div>
+          </li>
+          <li class="tree-item">
+            <div class="tree-row">
+              <a href="services.html">吸水服務</a>
+            </div>
+          </li>
+          <li class="tree-item">
+            <div class="tree-row">
+              <a href="services.html">清洗隔油池</a>
+            </div>
+          </li>
+        </ul>
+      </li>
+
+    </ul>
+  </div>
+
+  <!-- CLUSTER 3: 資訊中心 -->
+  <div class="cluster">
+    <div class="cluster-header">
+      <span class="ch-icon">📝</span> 資訊中心
+    </div>
+    <ul class="tree">
+      <li class="tree-item">
+        <div class="tree-row">
+          <a href="blog.html">最新文章 · 清潔知識</a>
+        </div>
+        <ul class="sub-tree">
+          <li class="tree-item">
+            <div class="tree-row">
+              <a href="blog-post-renovation-cleaning.html">裝修後清潔完全指南</a>
+            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <!-- CLUSTER 4: 關於麗雅 -->
+  <div class="cluster">
+    <div class="cluster-header">
+      <span class="ch-icon">⭐</span> 關於麗雅清潔
+    </div>
+    <ul class="tree">
+      <li class="tree-item">
+        <div class="tree-row">
+          <a href="testimonials.html">客戶見證 · 真實評價</a>
+        </div>
+      </li>
+      <li class="tree-item">
+        <div class="tree-row">
+          <a href="contact.html">聯絡我們 · 查詢報價</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- CLUSTER 5: 技術 -->
+  <div class="cluster">
+    <div class="cluster-header">
+      <span class="ch-icon">🔧</span> 技術資源
+    </div>
+    <ul class="tree">
+      <li class="tree-item">
+        <div class="tree-row">
+          <a href="sitemap.xml" target="_blank" rel="noopener">XML Sitemap（搜尋引擎）</a>
+          <span class="badge">SEO</span>
+        </div>
+      </li>
+      <li class="tree-item">
+        <div class="tree-row">
+          <a href="sitemap-page.html">HTML 網站地圖（本頁）</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+</main>
+
+<footer>
+  <p>麗雅清潔公司 Like and Share Cleaning Company</p>
+  <p>地址：九龍觀塘敬業街敬運工業大廈1樓｜電話：<a href="tel:+85259186741">5918 6741</a>｜WhatsApp：<a href="https://wa.me/85259186741">59186741</a></p>
+  <p style="margin-top:.5rem;">© 2025 麗雅清潔公司版權所有｜<a href="index.html">首頁</a> · <a href="services.html">服務</a> · <a href="sitemap-page.html">網站地圖</a></p>
+</footer>
+
+</body>
+</html>
