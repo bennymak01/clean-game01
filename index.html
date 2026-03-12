@@ -547,6 +547,102 @@
       50%       { box-shadow: 0 10px 36px rgba(37,211,102,.75); }
     }
 
+    /* ── BLOG CAROUSEL ── */
+    .blog-posts { background: var(--green-50); }
+    .blog-carousel-wrap {
+      position: relative;
+    }
+    .blog-carousel {
+      display: flex;
+      gap: 1.5rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 1rem;
+      scrollbar-width: thin;
+      scrollbar-color: var(--green-300) transparent;
+    }
+    .blog-carousel::-webkit-scrollbar { height: 5px; }
+    .blog-carousel::-webkit-scrollbar-track { background: transparent; }
+    .blog-carousel::-webkit-scrollbar-thumb { background: var(--green-300); border-radius: 10px; }
+    .blog-card {
+      flex: 0 0 calc(33.333% - 1rem);
+      min-width: 260px;
+      background: #fff;
+      border-radius: 16px;
+      padding: 2rem 1.75rem;
+      scroll-snap-align: start;
+      box-shadow: 0 4px 20px rgba(45,106,79,.08);
+      border: 1px solid var(--green-100);
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+      text-decoration: none;
+      color: inherit;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .blog-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 32px rgba(45,106,79,.16);
+    }
+    .blog-card-tag {
+      display: inline-block;
+      background: var(--green-100);
+      color: var(--green-700);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .25rem .75rem;
+      border-radius: 20px;
+      align-self: flex-start;
+    }
+    .blog-card-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--green-900);
+      line-height: 1.45;
+    }
+    .blog-card-desc {
+      font-size: .875rem;
+      color: var(--text-mid);
+      line-height: 1.65;
+      flex: 1;
+    }
+    .blog-card-link {
+      font-size: .85rem;
+      font-weight: 700;
+      color: var(--green-700);
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      margin-top: .25rem;
+    }
+    .blog-carousel-btns {
+      display: flex;
+      gap: .75rem;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+    .carousel-btn {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      border: 2px solid var(--green-300);
+      background: #fff;
+      color: var(--green-700);
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s, color .2s;
+    }
+    .carousel-btn:hover { background: var(--green-700); color: #fff; }
+    @media (max-width: 900px) {
+      .blog-card { flex: 0 0 calc(50% - .75rem); }
+    }
+    @media (max-width: 560px) {
+      .blog-card { flex: 0 0 85%; }
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       .about-grid { grid-template-columns: 1fr; }
@@ -836,6 +932,56 @@
     </div>
   </div>
 </section>
+
+<!-- BLOG POSTS CAROUSEL -->
+<section class="blog-posts">
+  <div class="section-inner">
+    <span class="section-label">最新文章</span>
+    <h2 class="section-title">清潔知識與實用貼士</h2>
+    <p class="section-desc">由專業師傅整理，幫助您更了解清潔保養的正確方法。</p>
+    <div class="blog-carousel-wrap">
+      <div class="blog-carousel" id="blogCarousel">
+
+        <a class="blog-card" href="blog-post-renovation-cleaning.html">
+          <span class="blog-card-tag">裝修清潔</span>
+          <div class="blog-card-title">裝修後清潔：讓新家煥然一新的關鍵步驟</div>
+          <p class="blog-card-desc">裝修後灰塵、油漆污漬、建築廢料如何有效清除？專業師傅分享入伙前必做的深層清潔步驟，確保新居安心入住。</p>
+          <span class="blog-card-link">閱讀全文 →</span>
+        </a>
+
+        <a class="blog-card" href="blog-post-carpet-care.html">
+          <span class="blog-card-tag">地毯保養</span>
+          <div class="blog-card-title">地毯清潔保養貼士：讓地毯持久如新的完整指南</div>
+          <p class="blog-card-desc">日常護理、污漬急救、深層清洗時機一次掌握。正確的保養方法能有效延長地毯壽命，保持家居整潔舒適。</p>
+          <span class="blog-card-link">閱讀全文 →</span>
+        </a>
+
+        <a class="blog-card" href="blog-post-disinfection-guide.html">
+          <span class="blog-card-tag">消毒衛生</span>
+          <div class="blog-card-title">家居除菌消毒指南：守護全家健康的完整攻略</div>
+          <p class="blog-card-desc">了解消毒的正確步驟、消毒劑選擇及高風險區域處理方式，霧化消毒的效果與適用情況一文詳解。</p>
+          <span class="blog-card-link">閱讀全文 →</span>
+        </a>
+
+      </div>
+    </div>
+    <div class="blog-carousel-btns">
+      <button class="carousel-btn" id="blogPrev" aria-label="上一篇">&#8592;</button>
+      <button class="carousel-btn" id="blogNext" aria-label="下一篇">&#8594;</button>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  var c = document.getElementById('blogCarousel');
+  document.getElementById('blogPrev').addEventListener('click', function(){
+    c.scrollBy({ left: -320, behavior: 'smooth' });
+  });
+  document.getElementById('blogNext').addEventListener('click', function(){
+    c.scrollBy({ left: 320, behavior: 'smooth' });
+  });
+})();
+</script>
 
 <!-- WA BANNER -->
 <section class="wa-banner" id="contact">
