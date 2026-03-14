@@ -1,17 +1,17 @@
 # Branch Cleanup Report
 
-## Branches to Delete (Already Merged into `master`)
+## Stale Branches Pending Deletion (Already Merged)
 
-The following branches have been fully merged into `master` and are no longer needed:
+The following branches have been fully merged and are no longer needed. Run the commands below as a repo admin to remove them:
 
-| Branch | Merged Via | Last Activity |
-|--------|-----------|---------------|
-| `claude/add-stock-photos-IZh8T` | PR #5 | ~4 days ago |
-| `claude/create-service-pillar-page-S1cCH` | PR #6 | ~4 days ago |
-| `claude/create-service-pillar-page-pn6XB` | PR #8 | ~3 days ago |
-| `tool` | direct merge | ~5 days ago |
+| Branch | Merged Via | Status |
+|--------|-----------|--------|
+| `claude/add-stock-photos-IZh8T` | PR #5 | Merged — pending deletion |
+| `claude/create-service-pillar-page-S1cCH` | PR #6 | Merged — pending deletion |
+| `claude/create-service-pillar-page-pn6XB` | PR #8 | Merged — pending deletion |
+| `tool` | direct merge | Merged — pending deletion |
 
-### Delete Commands
+### Delete Commands (run as repo admin)
 
 ```bash
 git push origin --delete claude/add-stock-photos-IZh8T
@@ -20,11 +20,14 @@ git push origin --delete claude/create-service-pillar-page-pn6XB
 git push origin --delete tool
 ```
 
+Or via GitHub UI: **Settings → Branches** or on the Pull Requests page, click **Delete branch** next to each closed/merged PR.
+
 ## Branches to Keep (Active / Unmerged)
 
 | Branch | Reason |
 |--------|--------|
-| `claude/create-service-pillar-page-beYuK` | Has unmerged commits (last activity ~5h ago) |
-| `claude/machine-floor-cleaning-pillar-T3YQW` | Has unmerged commits (active) |
-| `master` | Main branch |
+| `claude/create-service-pillar-page-beYuK` | Has unmerged commits |
+| `claude/social-media-text-links-J4F4P` | Active |
+| `claude/write-cleaning-blogs-tXNAH` | Active |
+| `feature/blog-carousel-homepage` | Active |
 | `main` | Remote default branch |
