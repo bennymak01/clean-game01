@@ -1,33 +1,53 @@
-# Branch Cleanup Report
+# Branch Cleanup Guide
 
-## Stale Branches Pending Deletion (Already Merged)
+## Why Do Branches Still Appear After Merging a PR?
 
-The following branches have been fully merged and are no longer needed. Run the commands below as a repo admin to remove them:
+GitHub does **not** automatically delete branches after a PR is merged. The branch stays until you manually delete it, or until you enable the auto-delete setting (see below).
 
-| Branch | Merged Via | Status |
-|--------|-----------|--------|
-| `claude/add-stock-photos-IZh8T` | PR #5 | Merged — pending deletion |
-| `claude/create-service-pillar-page-S1cCH` | PR #6 | Merged — pending deletion |
-| `claude/create-service-pillar-page-pn6XB` | PR #8 | Merged — pending deletion |
-| `tool` | direct merge | Merged — pending deletion |
+---
 
-### Delete Commands (run as repo admin)
+## Step 1: Delete Existing Stale Branches (One-Time Fix)
 
-```bash
-git push origin --delete claude/add-stock-photos-IZh8T
-git push origin --delete claude/create-service-pillar-page-S1cCH
-git push origin --delete claude/create-service-pillar-page-pn6XB
-git push origin --delete tool
-```
+### Option A — Via the Branches page (fastest)
+1. Go to: `https://github.com/bennymak01/clean-game01/branches`
+2. Find each stale branch in the list
+3. Click the **trash icon** next to it to delete
 
-Or via GitHub UI: **Settings → Branches** or on the Pull Requests page, click **Delete branch** next to each closed/merged PR.
+### Option B — Via each merged Pull Request
+1. Go to **Pull Requests → Closed**
+2. Open each merged PR
+3. Scroll to the bottom — click the **"Delete branch"** button
 
-## Branches to Keep (Active / Unmerged)
+### Stale branches to delete:
+
+| Branch | Merged Via |
+|--------|-----------|
+| `claude/add-stock-photos-IZh8T` | PR #5 |
+| `claude/create-service-pillar-page-S1cCH` | PR #6 |
+| `claude/create-service-pillar-page-pn6XB` | PR #8 |
+| `tool` | direct merge |
+
+---
+
+## Step 2: Enable Auto-Delete for Future PRs (Recommended)
+
+So this never happens again:
+
+1. Go to **Settings → General** in your repository
+2. Scroll down to the **"Pull Requests"** section
+3. Check the box: ✅ **"Automatically delete head branches"**
+4. Click **Save**
+
+After this, every time a PR is merged, GitHub will automatically delete the source branch.
+
+---
+
+## Active Branches (Do NOT delete)
 
 | Branch | Reason |
 |--------|--------|
-| `claude/create-service-pillar-page-beYuK` | Has unmerged commits |
-| `claude/social-media-text-links-J4F4P` | Active |
-| `claude/write-cleaning-blogs-tXNAH` | Active |
-| `feature/blog-carousel-homepage` | Active |
-| `main` | Remote default branch |
+| `claude/create-service-pillar-page-beYuK` | Unmerged — active work |
+| `claude/social-media-text-links-J4F4P` | Unmerged — active work |
+| `claude/write-cleaning-blogs-tXNAH` | Unmerged — active work |
+| `feature/blog-carousel-homepage` | Unmerged — active work |
+| `main` | Default branch — never delete |
