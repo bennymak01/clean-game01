@@ -1,0 +1,34 @@
+name: Scheduled Post Publish
+
+on:
+  schedule:
+    # 3月27日 9am HK Time (UTC+8) is 1am UTC
+    - cron: '0 1 27 3 *'
+  workflow_dispatch: # 允許手動觸發測試
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Publish scheduled posts
+        run: |
+          mkdir -p _posts
+          # 尋找 _drafts 中日期為 2026-03-27 的文章並移動到 _posts
+          # 檔案名稱格式通常為 YYYY-MM-DD-title.md
+          for file in _drafts/*.md; do
+            if grep -q "date: 2026-03-27" "$file"; then
+              filename=$(basename "$file")
+              mv "$file" "_posts/2026-03-27-$filename"
+            fi
+          done
+
+      - name: Commit and Push changes
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+          git add .
+          git commit -m "Automated publish: Office Cleaning Price Post" || echo "No changes to commit"
+          git push
