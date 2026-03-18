@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>辦公室清潔報價計算器 | clean.hk</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f7fa;
+    padding: 20px;
+}
+.container {
+    max-width: 500px;
+    margin: auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+h2 {
+    text-align: center;
+}
+input, select, button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+button {
+    background: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+button:hover {
+    background: #0056b3;
+}
+.result {
+    margin-top: 20px;
+    padding: 15px;
+    background: #f1f1f1;
+    border-radius: 5px;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+    <h2>辦公室清潔報價計算器</h2>
+
+    <label>輸入面積（平方呎）：</label>
+    <input type="number" id="area" placeholder="例如：1000">
+
+    <label>選擇服務：</label>
+    <select id="service">
+        <option value="4">深層清潔（$4/呎）</option>
+        <option value="1.5">消毒（$1.5/呎）</option>
+        <option value="0.5">基本滅蟲（$0.5/呎）</option>
+        <option value="1">滅蟲 + Gel（$1/呎）</option>
+        <option value="3">空間滅蟲 + Gel（$3/呎）</option>
+        <option value="5">無光觸媒（$5/呎）</option>
+    </select>
+
+    <button onclick="calculate()">計算報價</button>
+
+    <div class="result" id="result" style="display:none;"></div>
+</div>
+
+<script>
+function calculate() {
+    let area = document.getElementById('area').value;
+    let price = document.getElementById('service').value;
+
+    if(area === "" || area <= 0){
+        alert("請輸入有效面積");
+        return;
+    }
+
+    let total = area * price;
+
+    document.getElementById('result').style.display = "block";
+    document.getElementById('result').innerHTML = `
+        <strong>計算結果：</strong><br><br>
+        面積：${area} 呎<br>
+        單價：HK$ ${price} / 呎<br>
+        <hr>
+        <strong>總價：約 HK$ ${total.toLocaleString()}</strong>
+        <br><br>
+        <small>*實際報價需視現場情況而定</small>
+    `;
+}
+</script>
+
+</body>
+</html>
