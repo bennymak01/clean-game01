@@ -22,6 +22,16 @@ author: Patrick
 
 ---
 
+## 辦公室清潔價錢計算機
+
+為了方便大家預算，我特別準備了這個計算機。你可以根據辦公室的面積和需求，快速估算所需的清潔費用。
+
+<iframe src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663447647859/fgZUwypKFxmCddgd.html" width="100%" height="600px" frameborder="0"></iframe>
+
+*使用小貼士：這個計算機幫我節省了大量與財務部溝通的時間，只需輸入數據，就能得到一個非常接近市場實價的參考值。*
+
+---
+
 ## 2026 年辦公室清潔預算參考 (香港市場)
 
 辦公室清潔的價錢主要取決於服務頻率（單次或包月）、辦公室面積以及具體清潔項目。以下是根據 [麗雅清潔](https://www.clean.com.hk/) 及市場行情整理的預算參考：
@@ -89,16 +99,6 @@ author: Patrick
 
 **我的心得：**
 > 「最讓我驚喜的是他們的細節處理。以前的鐘點可能只是抹抹桌面，但麗雅的專員會主動清理冷氣風口和櫃頂積塵。自從換了他們，辦公室的過敏源明顯減少，員工的投訴也少了。」
-
----
-
-## 辦公室清潔價錢計算機
-
-為了方便大家預算，我特別準備了這個計算機。你可以根據辦公室的面積和需求，快速估算所需的清潔費用。
-
-<iframe src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663447647859/fgZUwypKFxmCddgd.html" width="100%" height="600px" frameborder="0"></iframe>
-
-*使用小貼士：這個計算機幫我節省了大量與財務部溝通的時間，只需輸入數據，就能得到一個非常接近市場實價的參考值。*
 
 ---
 
