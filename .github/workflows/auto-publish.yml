@@ -1,32 +1,36 @@
 name: Auto Publish Drafts
+
 on:
   schedule:
     - cron: '0 1 * * 5'
   workflow_dispatch:
+
 jobs:
   publish:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
       - name: Check Date and Publish
         run: |
           CURRENT_DATE=$(date +%Y-%m-%d)
           START_DATE="2026-05-01"
           END_DATE="2026-06-05"
+          
           if [[ "$CURRENT_DATE" < "$START_DATE" || "$CURRENT_DATE" > "$END_DATE" ]]; then
             echo "Current date $CURRENT_DATE is outside the target range. Skipping."
             exit 0
           fi
+          
           DRAFTS=$(ls _drafts/${CURRENT_DATE}-*.md 2>/dev/null || true)
           if [ -z "$DRAFTS" ]; then
             echo "No drafts found for $CURRENT_DATE."
             exit 0
           fi
+          
           mkdir -p blog
           for draft in $DRAFTS; do
             filename=$(basename "$draft")
@@ -34,12 +38,9 @@ jobs:
             mkdir -p "$post_dir"
             mv "$draft" "$post_dir/index.md"
           done
-          git config user.name  "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
           git add .
-          if git diff --staged --quiet; then
-            echo "No changes to commit"
-          else
-            git commit -m "Auto-publish drafts for $CURRENT_DATE"
-            git push
-          fi
+          git commit -m "Auto-publish drafts for $CURRENT_DATE"
+          git push
