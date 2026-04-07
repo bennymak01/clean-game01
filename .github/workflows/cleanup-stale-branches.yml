@@ -1,0 +1,87 @@
+name: Cleanup Stale Branches
+
+on:
+  schedule:
+    # Runs every Monday at 9:00 AM UTC
+    - cron: '0 9 * * 1'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run (list branches without deleting)'
+        required: false
+        default: 'true'
+        type: boolean
+      stale_days:
+        description: 'Days of inactivity before a branch is considered stale'
+        required: false
+        default: '30'
+        type: string
+
+jobs:
+  cleanup:
+    name: Delete Merged & Stale Branches
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Delete merged branches
+        env:
+          DRY_RUN: ${{ github.event.inputs.dry_run || 'false' }}
+        run: |
+          echo "=== Merged branches (safe to delete) ==="
+          git fetch --prune origin
+
+          MERGED=$(git branch -r --merged origin/main \
+            | grep -v 'origin/main' \
+            | grep -v 'origin/HEAD' \
+            | sed 's|origin/||')
+
+          if [ -z "$MERGED" ]; then
+            echo "No merged branches found."
+          else
+            for branch in $MERGED; do
+              echo "  Merged: $branch"
+              if [ "$DRY_RUN" != "true" ]; then
+                git push origin --delete "$branch" && echo "  -> Deleted: $branch" || echo "  -> Failed to delete: $branch"
+              fi
+            done
+          fi
+
+      - name: Report stale unmerged branches
+        env:
+          STALE_DAYS: ${{ github.event.inputs.stale_days || '30' }}
+          DRY_RUN: ${{ github.event.inputs.dry_run || 'false' }}
+        run: |
+          echo ""
+          echo "=== Stale unmerged branches (older than ${STALE_DAYS} days) ==="
+          CUTOFF=$(date -d "${STALE_DAYS} days ago" +%s)
+
+          UNMERGED=$(git branch -r --no-merged origin/main \
+            | grep -v 'origin/main' \
+            | grep -v 'origin/HEAD' \
+            | sed 's|origin/||')
+
+          STALE_LIST=""
+          for branch in $UNMERGED; do
+            LAST_COMMIT=$(git log origin/$branch --format="%ct" -1 2>/dev/null)
+            if [ -n "$LAST_COMMIT" ] && [ "$LAST_COMMIT" -lt "$CUTOFF" ]; then
+              LAST_DATE=$(git log origin/$branch --format="%ar" -1)
+              echo "  Stale (${LAST_DATE}): $branch"
+              STALE_LIST="$STALE_LIST $branch"
+            fi
+          done
+
+          if [ -z "$STALE_LIST" ]; then
+            echo "No stale unmerged branches found."
+          else
+            echo ""
+            echo "NOTE: Stale unmerged branches listed above are NOT auto-deleted."
+            echo "Review them manually or re-run this workflow with 'dry_run: false'"
+            echo "after confirming they are safe to remove."
+          fi
