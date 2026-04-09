@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q76D3QQ8LD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Q76D3QQ8LD');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, follow" />
+  <meta http-equiv="refresh" content="5;url=https://www.clean.com.hk/" />
+  <link rel="canonical" href="https://www.clean.com.hk/404.html" />
+  <title>找不到頁面 (404) | 麗雅清潔公司</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Noto Sans TC", "Microsoft JhengHei", "PingFang TC", sans-serif;
+      background: #f5f9f5;
+      color: #1a2e1a;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      padding: 48px 40px;
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+    }
+    .icon {
+      font-size: 72px;
+      margin-bottom: 16px;
+    }
+    .error-code {
+      font-size: 80px;
+      font-weight: 900;
+      color: #2e7d32;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    h1 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #1a2e1a;
+      margin-bottom: 12px;
+    }
+    p {
+      font-size: 15px;
+      color: #555;
+      line-height: 1.7;
+      margin-bottom: 8px;
+    }
+    .countdown {
+      font-size: 14px;
+      color: #2e7d32;
+      font-weight: 600;
+      margin-bottom: 28px;
+    }
+    .btn-home {
+      display: inline-block;
+      background: #2e7d32;
+      color: #fff;
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      margin-bottom: 24px;
+    }
+    .btn-home:hover {
+      background: #1b5e20;
+      transform: translateY(-2px);
+    }
+    .links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .links a {
+      font-size: 14px;
+      color: #2e7d32;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+    .links a:hover {
+      border-color: #2e7d32;
+    }
+    .divider {
+      width: 40px;
+      height: 3px;
+      background: #2e7d32;
+      border-radius: 2px;
+      margin: 20px auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="icon">🧹</div>
+    <div class="error-code">404</div>
+    <h1>找不到此頁面</h1>
+    <div class="divider"></div>
+    <p>您所尋找的頁面不存在或已被移除。</p>
+    <p>請檢查網址是否正確，或返回主頁繼續瀏覽。</p>
+    <br />
+    <p class="countdown" id="countdown">5 秒後自動返回主頁…</p>
+    <a href="https://www.clean.com.hk/" class="btn-home">回到主頁</a>
+    <div class="links">
+      <a href="https://www.clean.com.hk/services.html">清潔服務</a>
+      <a href="https://www.clean.com.hk/blog.html">清潔資訊</a>
+      <a href="https://www.clean.com.hk/contact.html">聯絡我們</a>
+    </div>
+  </div>
+
+  <script>
+    var seconds = 5;
+    var el = document.getElementById('countdown');
+    var timer = setInterval(function() {
+      seconds--;
+      if (seconds <= 0) {
+        clearInterval(timer);
+        window.location.href = 'https://www.clean.com.hk/';
+      } else {
+        el.textContent = seconds + ' 秒後自動返回主頁…';
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
