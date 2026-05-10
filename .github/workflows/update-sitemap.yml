@@ -1,18 +1,20 @@
 name: Auto-update Sitemap
-
 on:
+  schedule:
+    - cron: '0 0 * * 0' # 每個星期日午夜執行一次
   push:
     branches: [main]
     paths:
       - '*.html'
+  workflow_dispatch: # 允許手動觸發
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   update-sitemap:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -25,11 +27,8 @@ jobs:
           import glob
           import os
           from datetime import date
-
           BASE_URL = "https://www.clean.com.hk"
           TODAY = date.today().isoformat()
-
-          # Non-SEO pages to exclude from sitemap
           EXCLUDE = {
               "carpet_cleaning_game.html",
               "clock-learning-game.html",
@@ -40,26 +39,22 @@ jobs:
               "fengfeng.html",
               "header-preview.html",
               "pe_foam_calculator.html",
+              "404.html",
           }
-
           def get_priority(filename):
               if filename == "index.html":
                   return "1.0"
               elif filename.startswith("blog-"):
                   return "0.7"
               else:
-                  return "0.9"  # service pillar pages
-
-          # Scan root-level HTML files only
+                  return "0.9"
           html_files = sorted([
               f for f in glob.glob("*.html")
               if os.path.basename(f) not in EXCLUDE
           ])
-
           lines = ['<?xml version="1.0" encoding="UTF-8"?>']
           lines.append('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"')
           lines.append('        xmlns:xhtml="http://www.w3.org/1999/xhtml">')
-
           for f in html_files:
               slug = "" if f == "index.html" else f
               url = f"{BASE_URL}/{slug}"
@@ -72,27 +67,21 @@ jobs:
               lines.append(f"    <priority>{priority}</priority>")
               lines.append(f'    <xhtml:link rel="alternate" hreflang="zh-TW" href="{url}"/>')
               lines.append("  </url>")
-
           lines.append("")
           lines.append("</urlset>")
           lines.append("")
-
           content = "\n".join(lines)
           with open("sitemap.xml", "w", encoding="utf-8") as fh:
               fh.write(content)
-
-          print(f"Generated sitemap.xml with {len(html_files)} URLs:")
-          for f in html_files:
-              slug = "" if f == "index.html" else f
-              print(f"  [{get_priority(f)}] {BASE_URL}/{slug}")
           PYEOF
 
-      - name: Commit and push updated sitemap
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add sitemap.xml
-          git diff --staged --quiet || (
-            git commit -m "Auto-update sitemap.xml [skip ci]" &&
-            git push
-          )
+      - name: Create Pull Request for Sitemap Update
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore: auto-update sitemap.xml"
+          title: "Auto-update sitemap.xml"
+          body: "This is an automated PR to update the sitemap.xml based on the latest HTML files."
+          branch: "auto-sitemap-update"
+          delete-branch: true
+          base: main
