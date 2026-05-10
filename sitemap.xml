@@ -3,32 +3,128 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
   <url>
-    <loc>https://www.clean.com.hk/</loc>
-    <lastmod>2026-03-13</lastmod>
+    <loc>https://www.clean.com.hk/blog-post-bathroom-cleaning.html</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://www.clean.com.hk/"/>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://www.clean.com.hk/blog-post-bathroom-cleaning.html"/>
   </url>
 
   <url>
-    <loc>https://www.clean.com.hk/services.html</loc>
-    <lastmod>2026-03-13</lastmod>
+    <loc>https://www.clean.com.hk/blog-post-carpet-care.html</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://www.clean.com.hk/blog-post-carpet-care.html"/>
+  </url>
+
+  <url>
+    <loc>https://www.clean.com.hk/blog-post-cleaning-blind-spots.html</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://www.clean.com.hk/blog-post-cleaning-blind-spots.html"/>
+  </url>
+
+  <url>
+    <loc>https://www.clean.com.hk/blog-post-disinfection-guide.html</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://www.clean.com.hk/blog-post-disinfection-guide.html"/>
+  </url>
+
+  <url>
+    <loc>https://www.clean.com.hk/blog-post-hsr-mosquito-alert.html</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://www.clean.com.hk/blog-post-hsr-mosquito-alert.html"/>
+  </url>
+
+  <url>
+    <loc>https://www.clean.com.hk/blog-post-humidity-dangers.html</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://www.clean.com.hk/blog-post-humidity-dangers.html"/>
+  </url>
+
+  <url>
+    <loc>https://www.clean.com.hk/blog-post-kitchen-cleaning.html</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://www.clean.com.hk/blog-post-kitchen-cleaning.html"/>
+  </url>
+
+  <url>
+    <loc>https://www.clean.com.hk/blog-post-renovation-cleaning.html</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://www.clean.com.hk/blog-post-renovation-cleaning.html"/>
+  </url>
+
+  <url>
+    <loc>https://www.clean.com.hk/blog.html</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://www.clean.com.hk/services.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://www.clean.com.hk/blog.html"/>
+  </url>
+
+  <url>
+    <loc>https://www.clean.com.hk/carpet-cleaning-pillar.html</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://www.clean.com.hk/carpet-cleaning-pillar.html"/>
   </url>
 
   <url>
     <loc>https://www.clean.com.hk/carpet-cleaning-service.html</loc>
-    <lastmod>2026-03-13</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="zh-TW" href="https://www.clean.com.hk/carpet-cleaning-service.html"/>
   </url>
 
   <url>
+    <loc>https://www.clean.com.hk/contact.html</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://www.clean.com.hk/contact.html"/>
+  </url>
+
+  <url>
+    <loc>https://www.clean.com.hk/faq.html</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://www.clean.com.hk/faq.html"/>
+  </url>
+
+  <url>
+    <loc>https://www.clean.com.hk/</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://www.clean.com.hk/"/>
+  </url>
+
+  <url>
+    <loc>https://www.clean.com.hk/ls-cleaning-landing.html</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://www.clean.com.hk/ls-cleaning-landing.html"/>
+  </url>
+
+  <url>
     <loc>https://www.clean.com.hk/machine-floor-cleaning.html</loc>
-    <lastmod>2026-03-13</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="zh-TW" href="https://www.clean.com.hk/machine-floor-cleaning.html"/>
@@ -36,90 +132,34 @@
 
   <url>
     <loc>https://www.clean.com.hk/office-deep-cleaning.html</loc>
-    <lastmod>2026-03-13</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="zh-TW" href="https://www.clean.com.hk/office-deep-cleaning.html"/>
   </url>
 
   <url>
-    <loc>https://www.clean.com.hk/ls-cleaning-landing.html</loc>
-    <lastmod>2026-03-13</lastmod>
+    <loc>https://www.clean.com.hk/services.html</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://www.clean.com.hk/ls-cleaning-landing.html"/>
-  </url>
-
-  <url>
-    <loc>https://www.clean.com.hk/blog.html</loc>
-    <lastmod>2026-03-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://www.clean.com.hk/blog.html"/>
-  </url>
-
-  <url>
-    <loc>https://www.clean.com.hk/blog-post-renovation-cleaning.html</loc>
-    <lastmod>2026-03-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://www.clean.com.hk/blog-post-renovation-cleaning.html"/>
-  </url>
-
-  <url>
-    <loc>https://www.clean.com.hk/blog-post-carpet-care.html</loc>
-    <lastmod>2026-03-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://www.clean.com.hk/blog-post-carpet-care.html"/>
-  </url>
-
-  <url>
-    <loc>https://www.clean.com.hk/blog-post-disinfection-guide.html</loc>
-    <lastmod>2026-03-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://www.clean.com.hk/blog-post-disinfection-guide.html"/>
-  </url>
-
-  <url>
-    <loc>https://www.clean.com.hk/blog-post-kitchen-cleaning.html</loc>
-    <lastmod>2026-03-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://www.clean.com.hk/blog-post-kitchen-cleaning.html"/>
-  </url>
-
-  <url>
-    <loc>https://www.clean.com.hk/blog-post-bathroom-cleaning.html</loc>
-    <lastmod>2026-03-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://www.clean.com.hk/blog-post-bathroom-cleaning.html"/>
-  </url>
-
-  <url>
-    <loc>https://www.clean.com.hk/contact.html</loc>
-    <lastmod>2026-03-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://www.clean.com.hk/contact.html"/>
-  </url>
-
-  <url>
-    <loc>https://www.clean.com.hk/testimonials.html</loc>
-    <lastmod>2026-03-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://www.clean.com.hk/testimonials.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://www.clean.com.hk/services.html"/>
   </url>
 
   <url>
     <loc>https://www.clean.com.hk/sitemap-page.html</loc>
-    <lastmod>2026-03-13</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="zh-TW" href="https://www.clean.com.hk/sitemap-page.html"/>
+  </url>
+
+  <url>
+    <loc>https://www.clean.com.hk/testimonials.html</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://www.clean.com.hk/testimonials.html"/>
   </url>
 
 </urlset>
