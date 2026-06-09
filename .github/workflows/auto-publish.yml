@@ -5,6 +5,7 @@ on:
   schedule:
     - cron: '0 1 * * 1'   # 每週一 01:00 UTC
     - cron: '0 1 * * 4'   # 每週四 01:00 UTC
+    - cron: '0 1 * * 5'   # 每週五 01:00 UTC
   workflow_dispatch:
 
 jobs:
@@ -19,7 +20,7 @@ jobs:
       - name: Check Date and Publish
         run: |
           CURRENT_DATE=$(date +%Y-%m-%d)
-          START_DATE="2026-06-15"
+          START_DATE="2026-06-13"
           END_DATE="2026-07-23"
 
           if [[ "$CURRENT_DATE" < "$START_DATE" || "$CURRENT_DATE" > "$END_DATE" ]]; then
