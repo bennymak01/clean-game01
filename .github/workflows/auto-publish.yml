@@ -1,8 +1,10 @@
 name: Auto Publish Drafts
 
+# 每週一、四各發布一篇：2026-06-15 起共6週（至 2026-07-23）
 on:
   schedule:
-    - cron: '0 1 * * 5'
+    - cron: '0 1 * * 1'   # 每週一 01:00 UTC
+    - cron: '0 1 * * 4'   # 每週四 01:00 UTC
   workflow_dispatch:
 
 jobs:
@@ -17,28 +19,29 @@ jobs:
       - name: Check Date and Publish
         run: |
           CURRENT_DATE=$(date +%Y-%m-%d)
-          START_DATE="2026-05-01"
-          END_DATE="2026-06-05"
-          
+          START_DATE="2026-06-15"
+          END_DATE="2026-07-23"
+
           if [[ "$CURRENT_DATE" < "$START_DATE" || "$CURRENT_DATE" > "$END_DATE" ]]; then
-            echo "Current date $CURRENT_DATE is outside the target range. Skipping."
+            echo "Current date $CURRENT_DATE is outside the target range ($START_DATE – $END_DATE). Skipping."
             exit 0
           fi
-          
+
           DRAFTS=$(ls _drafts/${CURRENT_DATE}-*.md 2>/dev/null || true)
           if [ -z "$DRAFTS" ]; then
             echo "No drafts found for $CURRENT_DATE."
             exit 0
           fi
-          
+
           mkdir -p blog
           for draft in $DRAFTS; do
             filename=$(basename "$draft")
             post_dir="blog/${filename%.md}"
             mkdir -p "$post_dir"
             mv "$draft" "$post_dir/index.md"
+            echo "Published: $draft → $post_dir/index.md"
           done
-          
+
           git config --global user.name "GitHub Action"
           git config --global user.email "action@github.com"
           git add .
