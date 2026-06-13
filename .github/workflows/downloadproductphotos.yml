@@ -1,0 +1,65 @@
+name: Download Product Photos
+
+on:
+  workflow_dispatch:  # Manual trigger
+
+jobs:
+  download-photos:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create output folder
+        run: mkdir -p images/testing
+
+      - name: Install ImageMagick (for PNG→JPEG conversion)
+        run: sudo apt-get install -y imagemagick
+
+      - name: Download product photos (bypass hotlink protection)
+        run: |
+          # Use --referer to spoof same-site request, bypass hotlink protection
+          REFERER="https://csstationery.hk/"
+          UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
+
+          download_as_jpg() {
+            local URL="$1"
+            local OUTNAME="$2"
+            local TMPFILE="images/testing/tmp_${OUTNAME}"
+            local OUTFILE="images/testing/${OUTNAME}.jpg"
+
+            echo "Downloading: $URL"
+            curl -L --referer "$REFERER" \
+                 -A "$UA" \
+                 -o "$TMPFILE" \
+                 "$URL" \
+                 --retry 3 --retry-delay 2 \
+                 -f --silent --show-error
+
+            # Convert to JPEG (handles .jpg, .jpeg, .png, .webp)
+            convert "$TMPFILE" -quality 90 "$OUTFILE" && echo "✅ Saved: $OUTFILE"
+            rm -f "$TMPFILE"
+          }
+
+          download_as_jpg "https://csstationery.hk/wp-content/uploads/2025/12/%E5%89%AA%E7%B6%B5%E7%95%A2%E6%A5%AD%E6%B0%A3%E7%90%83.jpg" "balloon-01-graduation"
+          download_as_jpg "https://csstationery.hk/wp-content/uploads/2025/06/%E9%96%8B%E5%BC%B5%E6%B0%A3%E7%90%83%E8%BF%8E%E8%B3%93%E6%9F%B1-600x450-1.jpeg" "balloon-02-welcome-column"
+          download_as_jpg "https://csstationery.hk/wp-content/uploads/2023/06/IMG_1642.jpeg" "balloon-03-column"
+          download_as_jpg "https://csstationery.hk/wp-content/uploads/2025/06/%E6%B0%A3%E7%90%83%E7%AB%8B%E7%90%83I.jpg" "balloon-04-pillar"
+          download_as_jpg "https://csstationery.hk/wp-content/uploads/2025/06/%E9%96%8B%E5%BC%B5%E6%B0%A3%E7%90%83%E8%BF%8E%E8%B3%93%E6%9F%B14.jpg" "balloon-05-column4"
+          download_as_jpg "https://csstationery.hk/wp-content/uploads/2025/06/%E9%96%8B%E5%BC%B5%E6%B0%A3%E7%90%83%E8%BF%8E%E8%B3%93%E6%9F%B123.jpeg" "balloon-06-column23"
+          download_as_jpg "https://csstationery.hk/wp-content/uploads/2025/06/%E9%96%8B%E5%BC%B5%E6%B0%A3%E7%90%83%E8%BF%8E%E8%B3%93%E6%9F%B1c.jpeg" "balloon-07-columnc"
+          download_as_jpg "https://csstationery.hk/wp-content/uploads/2025/06/%E5%89%AA%E5%BD%A9%E7%94%A8%E5%93%81.png" "balloon-08-ribbon-cutting"
+
+      - name: List downloaded files
+        run: ls -lh images/testing/
+
+      - name: Commit and push photos
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add images/testing/*.jpg
+          git diff --staged --quiet || git commit -m "chore: add balloon product photos from csstationery.hk"
+          git push
