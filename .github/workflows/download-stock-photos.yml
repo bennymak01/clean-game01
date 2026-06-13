@@ -1,6 +1,9 @@
 name: Download Stock Photos
 
 on:
+  push:
+    branches:
+      - claude/blog-images-embeds-y35k3l
   workflow_dispatch:
 
 jobs:
@@ -15,14 +18,10 @@ jobs:
 
       - name: Download Unsplash images
         run: |
-          curl -fL "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200&q=80" \
-               -o images/blog/gym-equipment-cleaning-banner.jpg
-          curl -fL "https://images.unsplash.com/photo-1628177142898-93e36e4e3a50?w=800&q=80" \
-               -o images/blog/gym-deep-cleaning-disinfection.jpg
-          curl -fL "https://images.unsplash.com/photo-1584744982491-665216d95f8b?w=800&q=80" \
-               -o images/blog/gym-deep-cleaning-products.jpg
-          curl -fL "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" \
-               -o images/blog/cleaning-professional-quality.jpg
+          [ -f images/blog/gym-equipment-cleaning-banner.jpg ]    || curl -fL "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200&q=80" -o images/blog/gym-equipment-cleaning-banner.jpg
+          [ -f images/blog/gym-deep-cleaning-disinfection.jpg ]   || curl -fL "https://images.unsplash.com/photo-1628177142898-93e36e4e3a50?w=800&q=80"  -o images/blog/gym-deep-cleaning-disinfection.jpg
+          [ -f images/blog/gym-deep-cleaning-products.jpg ]       || curl -fL "https://images.unsplash.com/photo-1584744982491-665216d95f8b?w=800&q=80"  -o images/blog/gym-deep-cleaning-products.jpg
+          [ -f images/blog/cleaning-professional-quality.jpg ]    || curl -fL "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80"  -o images/blog/cleaning-professional-quality.jpg
 
       - name: Commit downloaded images
         run: |
