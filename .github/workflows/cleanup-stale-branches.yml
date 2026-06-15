@@ -17,6 +17,9 @@ on:
         default: '30'
         type: string
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
+
 jobs:
   cleanup:
     name: Delete Merged & Stale Branches
