@@ -8,6 +8,12 @@ on:
     - cron: '0 1 * * 5'   # 每週五 01:00 UTC
   workflow_dispatch:
 
+permissions:
+  contents: write
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
+
 jobs:
   publish:
     runs-on: ubuntu-latest
