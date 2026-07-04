@@ -75,7 +75,13 @@ def main():
             "limit": 10,
         }]
         try:
-            data = post("/v3/dataforseo_labs/google/keyword_ideas/live", payload)
+            # keyword_suggestions returns keywords that contain the seed
+            # phrase (phrase-match) - keyword_ideas returns broader semantic
+            # "ideas" that can drift wildly off-topic (e.g. the seed
+            # "上門機洗地氈" carpet cleaning returned "洗衣機" washing
+            # machine as its top-volume idea in an earlier run). Picking by
+            # volume only makes sense once relevance is guaranteed.
+            data = post("/v3/dataforseo_labs/google/keyword_suggestions/live", payload)
             top_status = f"{data.get('status_code')} {data.get('status_message')}"
             task = data["tasks"][0]
             task_status = f"{task.get('status_code')} {task.get('status_message')}"
@@ -94,7 +100,7 @@ def main():
                 row["dfs_related_keywords"] = "; ".join(i.get("keyword", "") for i in items[1:6])
             else:
                 print(
-                    f"No keyword_ideas results for seed: {seed} "
+                    f"No keyword_suggestions results for seed: {seed} "
                     f"| top status: {top_status} | task status: {task_status} "
                     f"| raw task (first 500 chars): {json.dumps(task)[:500]}",
                     file=sys.stderr,
@@ -106,7 +112,7 @@ def main():
                     body = e.read().decode("utf-8", errors="replace")[:500]
                 except Exception:
                     pass
-            print(f"keyword_ideas failed for '{seed}': {e} | body: {body}", file=sys.stderr)
+            print(f"keyword_suggestions failed for '{seed}': {e} | body: {body}", file=sys.stderr)
         time.sleep(1)  # be polite to the API / avoid rate limits
 
     try:
