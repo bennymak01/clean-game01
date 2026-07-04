@@ -1,6 +1,6 @@
 name: Auto Publish Drafts
 
-# 每週一、四各發布一篇：2026-06-15 起共6週（至 2026-07-23）
+# 每週一、四、五執行；發布所有檔名日期 <= 今天的草稿（追趕漏發，無截止日期）
 on:
   schedule:
     - cron: '0 1 * * 1'   # 每週一 01:00 UTC
@@ -30,17 +30,23 @@ jobs:
           REPO: ${{ github.repository }}
         run: |
           CURRENT_DATE=$(date +%Y-%m-%d)
-          START_DATE="2026-06-13"
-          END_DATE="2026-07-23"
 
-          if [[ "$CURRENT_DATE" < "$START_DATE" || "$CURRENT_DATE" > "$END_DATE" ]]; then
-            echo "Current date $CURRENT_DATE is outside the target range ($START_DATE – $END_DATE). Skipping."
-            exit 0
-          fi
+          # Publish any draft dated today or earlier (catches up on drafts
+          # missed by a skipped/failed run instead of leaving them stuck
+          # forever - a fixed-date exact match previously left several
+          # ready-to-publish drafts orphaned).
+          DRAFTS=""
+          for draft in _drafts/[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]-*.md; do
+            [ -f "$draft" ] || continue
+            filename=$(basename "$draft")
+            draft_date="${filename:0:10}"
+            if [[ "$draft_date" < "$CURRENT_DATE" || "$draft_date" == "$CURRENT_DATE" ]]; then
+              DRAFTS="$DRAFTS $draft"
+            fi
+          done
 
-          DRAFTS=$(ls _drafts/${CURRENT_DATE}-*.md 2>/dev/null || true)
           if [ -z "$DRAFTS" ]; then
-            echo "No drafts found for $CURRENT_DATE."
+            echo "No due drafts found as of $CURRENT_DATE."
             exit 0
           fi
 
