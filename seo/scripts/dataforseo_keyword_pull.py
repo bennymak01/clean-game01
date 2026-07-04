@@ -88,7 +88,7 @@ def main():
             task = data["tasks"][0]
             task_status = f"{task.get('status_code')} {task.get('status_message')}"
             result = task.get("result") or [{}]
-            items = result[0].get("items", []) if result[0] else []
+            items = (result[0].get("items") if result[0] else None) or []
             items = sorted(
                 items,
                 key=lambda x: (x.get("keyword_info") or {}).get("search_volume") or 0,
@@ -126,7 +126,7 @@ def main():
         kd_data = post("/v3/dataforseo_labs/google/bulk_keyword_difficulty/live", kd_payload)
         kd_task = kd_data["tasks"][0]
         kd_result = kd_task.get("result") or [{}]
-        kd_items = kd_result[0].get("items", []) if kd_result[0] else []
+        kd_items = (kd_result[0].get("items") if kd_result[0] else None) or []
         if not kd_items:
             print(
                 f"No bulk_keyword_difficulty items | "
