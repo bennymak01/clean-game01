@@ -68,8 +68,10 @@ def main():
     seeds = [seed_keyword(row["topic_zh"]) for row in rows]
 
     for row, seed in zip(rows, seeds):
+        # keyword_suggestions takes a single "keyword" string, unlike
+        # keyword_ideas/bulk_keyword_difficulty which take a "keywords" list.
         payload = [{
-            "keywords": [seed],
+            "keyword": seed,
             "location_code": LOCATION_CODE,
             "language_code": LANGUAGE_CODE,
             "limit": 10,
