@@ -8,6 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      pull-requests: write
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -25,10 +26,35 @@ jobs:
           DATAFORSEO_PASSWORD: ${{ secrets.DATAFORSEO_PASSWORD }}
         run: python3 seo/scripts/dataforseo_keyword_pull.py
 
-      - name: Commit and push results
+      - name: Commit and open PR (main requires PRs, direct push is rejected)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add seo/clean-com-hk-topical-cluster-plan.csv
-          git diff --staged --quiet || git commit -m "chore(seo): pull DataForSEO search volume / difficulty / related keywords"
-          git push
+
+          if git diff --staged --quiet; then
+            echo "Nothing new to commit."
+            exit 0
+          fi
+
+          RUN_ID="${{ github.run_id }}"
+          BRANCH="seo/keyword-research-${RUN_ID}"
+          git checkout -b "$BRANCH"
+          git commit -m "chore(seo): pull DataForSEO search volume / difficulty / related keywords"
+          git push -u origin "$BRANCH"
+
+          PR_RESPONSE=$(curl -s -X POST \
+            -H "Authorization: token ${GITHUB_TOKEN}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            "https://api.github.com/repos/${REPO}/pulls" \
+            -d "{\"title\":\"seo: DataForSEO keyword data (run ${RUN_ID})\",\"head\":\"${BRANCH}\",\"base\":\"main\",\"draft\":true,\"body\":\"Automated output of seo-keyword-research.yml. Review the new dfs_* columns before merging.\"}")
+
+          PR_NUMBER=$(echo "$PR_RESPONSE" | jq -r '.number')
+          if [ -z "$PR_NUMBER" ] || [ "$PR_NUMBER" = "null" ]; then
+            echo "Failed to create PR. Response: $PR_RESPONSE"
+            exit 1
+          fi
+          echo "Created draft PR #${PR_NUMBER}"
