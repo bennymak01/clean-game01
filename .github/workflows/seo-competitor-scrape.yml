@@ -1,0 +1,94 @@
+name: SEO - Competitor Site Scrape
+
+on:
+  workflow_dispatch:  # Manual trigger only
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Create output folder
+        run: mkdir -p seo/competitor-scrape
+
+      - name: Fetch competitor homepages and sitemaps
+        continue-on-error: true
+        run: |
+          UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
+
+          fetch() {
+            local URL="$1"
+            local OUT="$2"
+            curl -sS -L -A "$UA" --max-time 30 "$URL" -o "$OUT" || echo "FAILED: $URL" >> seo/competitor-scrape/fetch-failures.txt
+          }
+
+          fetch "https://chungshing-cleaning.com/" seo/competitor-scrape/chungshing-home.html
+          fetch "https://chungshing-cleaning.com/sitemap.xml" seo/competitor-scrape/chungshing-sitemap.xml
+          fetch "https://globaltophk.com/" seo/competitor-scrape/globaltophk-home.html
+          fetch "https://globaltophk.com/sitemap.xml" seo/competitor-scrape/globaltophk-sitemap.xml
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Extract readable text from fetched HTML
+        run: |
+          python3 - <<'PYEOF'
+          import re, html, os
+
+          for fname in ["chungshing-home.html", "globaltophk-home.html"]:
+              path = f"seo/competitor-scrape/{fname}"
+              if not os.path.exists(path):
+                  continue
+              raw = open(path, encoding="utf-8", errors="ignore").read()
+              raw = re.sub(r'<script.*?</script>', ' ', raw, flags=re.S | re.I)
+              raw = re.sub(r'<style.*?</style>', ' ', raw, flags=re.S | re.I)
+              m = re.search(r'<title>(.*?)</title>', raw, re.S | re.I)
+              title = html.unescape(m.group(1)).strip() if m else ""
+              text = re.sub(r'<[^>]+>', '\n', raw)
+              text = html.unescape(text)
+              lines = [l.strip() for l in text.splitlines() if l.strip()]
+              out_path = path.replace("-home.html", "-text.txt")
+              with open(out_path, "w", encoding="utf-8") as f:
+                  f.write(f"TITLE: {title}\n---BODY---\n" + "\n".join(lines))
+              print(f"Wrote {out_path}")
+          PYEOF
+
+      - name: Commit and open PR (main requires PRs, direct push is rejected)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add seo/competitor-scrape
+
+          if git diff --staged --quiet; then
+            echo "Nothing new to commit."
+            exit 0
+          fi
+
+          RUN_ID="${{ github.run_id }}"
+          BRANCH="seo/competitor-scrape-${RUN_ID}"
+          git checkout -b "$BRANCH"
+          git commit -m "chore(seo): scrape competitor homepages (chungshing-cleaning.com, globaltophk.com)"
+          git push -u origin "$BRANCH"
+
+          PR_RESPONSE=$(curl -s -X POST \
+            -H "Authorization: token ${GITHUB_TOKEN}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            "https://api.github.com/repos/${REPO}/pulls" \
+            -d "{\"title\":\"seo: competitor scrape (run ${RUN_ID})\",\"head\":\"${BRANCH}\",\"base\":\"main\",\"draft\":true,\"body\":\"Automated output of seo-competitor-scrape.yml.\"}")
+
+          PR_NUMBER=$(echo "$PR_RESPONSE" | jq -r '.number')
+          if [ -z "$PR_NUMBER" ] || [ "$PR_NUMBER" = "null" ]; then
+            echo "Failed to create PR. Response: $PR_RESPONSE"
+            exit 1
+          fi
+          echo "Created draft PR #${PR_NUMBER}"
