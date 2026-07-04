@@ -22,7 +22,7 @@ BASE = "https://api.dataforseo.com"
 
 # Hong Kong / Traditional Chinese
 LOCATION_CODE = 2344
-LANGUAGE_CODE = "zh-Hant"
+LANGUAGE_CODE = "zh-TW"  # "zh-Hant" is rejected by DataForSEO (40501 Invalid Field)
 
 CSV_PATH = "seo/clean-com-hk-topical-cluster-plan.csv"
 
