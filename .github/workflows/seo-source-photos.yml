@@ -1,0 +1,124 @@
+name: SEO - Fetch & Process Source Photos
+
+on:
+  workflow_dispatch:  # Manual trigger only
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
+
+jobs:
+  fetch-and-process:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install ImageMagick
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq imagemagick
+
+      - name: Create output folders
+        run: |
+          mkdir -p assets/service-photos/{office-deep-cleaning,post-renovation-cleaning,home-regular-cleaning,fogging-disinfection,pest-control-mosquito,tile-stone-floor-cleaning,carpet-machine-cleaning,steam-sterilization,window-glass-signage-cleaning,water-extraction,grease-trap-cleaning}
+          mkdir -p seo/source-scrape
+
+      # ---------------------------------------------------------------
+      # 1. Download known source photos from likeandsharecleaning.com
+      #    (Referer/UA spoof bypasses WP hotlink protection, same
+      #    pattern as .github/workflows/downloadproductphotos.yml)
+      # ---------------------------------------------------------------
+      - name: Download known source photos
+        run: |
+          REFERER="https://likeandsharecleaning.com/"
+          UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
+
+          fetch_and_process() {
+            local URL="$1"
+            local OUTDIR="$2"
+            local TMPFILE="$(mktemp)"
+
+            echo "Downloading: $URL"
+            if curl -L --referer "$REFERER" -A "$UA" -o "$TMPFILE" "$URL" \
+                 --retry 3 --retry-delay 2 -f --silent --show-error; then
+              convert "$TMPFILE" -auto-orient -resize '1600x1600>' -quality 82 "${OUTDIR}/hero.jpeg" \
+                && echo "Saved: ${OUTDIR}/hero.jpeg"
+            else
+              echo "FAILED to download: $URL" >> seo/source-scrape/download-failures.txt
+            fi
+            rm -f "$TMPFILE"
+          }
+
+          fetch_and_process "https://likeandsharecleaning.com/wp-content/uploads/2023/05/%E8%BE%A6%E5%85%AC%E5%AE%A4%E5%AE%9A%E6%9C%9F%E6%B8%85%E6%BD%94_2023-5-16_10_48_4.jpg" "assets/service-photos/office-deep-cleaning"
+          fetch_and_process "https://likeandsharecleaning.com/wp-content/uploads/2023/05/%E8%A3%9D%E4%BF%AE%E5%BE%8C%E6%B8%85%E6%BD%94_2023-5-16_10_45_59.jpg" "assets/service-photos/post-renovation-cleaning"
+          fetch_and_process "https://likeandsharecleaning.com/wp-content/uploads/2023/05/%E5%AE%B6%E5%B1%85%E5%AE%9A%E6%9C%9F%E6%B8%85%E6%BD%94_2023-5-16_10_38_23.jpg" "assets/service-photos/home-regular-cleaning"
+          fetch_and_process "https://likeandsharecleaning.com/wp-content/uploads/2023/05/%E6%B6%88%E6%AF%92_2023-5-16_10_40_30.jpg" "assets/service-photos/fogging-disinfection"
+          fetch_and_process "https://likeandsharecleaning.com/wp-content/uploads/2023/05/%E6%BB%85%E8%9F%B2_2023-5-16_10_44_34.jpg" "assets/service-photos/pest-control-mosquito"
+          fetch_and_process "https://likeandsharecleaning.com/wp-content/uploads/2023/05/%E6%B4%97%E5%9C%B0%E6%B0%88_2023-5-16_10_32_49.jpg" "assets/service-photos/carpet-machine-cleaning"
+          fetch_and_process "https://likeandsharecleaning.com/wp-content/uploads/2023/05/%E9%AB%98%E6%BA%AB%E8%92%B8%E6%B0%A3%E6%B6%88%E6%AF%92_2023-5-16_10_42_19.jpg" "assets/service-photos/steam-sterilization"
+
+      # ---------------------------------------------------------------
+      # 2. Re-process already-downloaded floor-cleaning photos
+      #    (images/machine-wash-floor/*.jpg, original Chinese filenames)
+      #    into SEO-friendly English filenames under assets/service-photos
+      # ---------------------------------------------------------------
+      - name: Re-process existing floor-cleaning photos
+        run: |
+          i=1
+          for f in images/machine-wash-floor/洗地_*.jpg; do
+            [ -f "$f" ] || continue
+            if [ "$i" -eq 1 ]; then
+              OUT="assets/service-photos/tile-stone-floor-cleaning/hero.jpeg"
+            else
+              OUT="assets/service-photos/tile-stone-floor-cleaning/tile-floor-machine-cleaning-${i}.jpeg"
+            fi
+            convert "$f" -auto-orient -resize '1600x1600>' -quality 82 "$OUT" && echo "Saved: $OUT"
+            i=$((i+1))
+          done
+
+      # ---------------------------------------------------------------
+      # 3. Best-effort discovery via WordPress REST API for the 3
+      #    categories with no known photo URL (signage/glass, water
+      #    extraction, grease trap). Non-fatal if the API is disabled
+      #    or nothing matches.
+      # ---------------------------------------------------------------
+      - name: Query WordPress media API for undiscovered categories
+        continue-on-error: true
+        run: |
+          UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
+          curl -sS -A "$UA" "https://likeandsharecleaning.com/wp-json/wp/v2/media?per_page=100&_fields=id,source_url,alt_text,title" \
+            -o seo/source-scrape/wp-media-page1.json || echo "wp-json media endpoint unavailable" > seo/source-scrape/wp-media-page1.json
+          curl -sS -A "$UA" "https://likeandsharecleaning.com/wp-json/wp/v2/media?per_page=100&page=2&_fields=id,source_url,alt_text,title" \
+            -o seo/source-scrape/wp-media-page2.json || true
+
+      # ---------------------------------------------------------------
+      # 4. Fetch homepage HTML + WP pages API for category verification
+      #    and service-description text (source material for rewriting)
+      # ---------------------------------------------------------------
+      - name: Fetch homepage and WP pages/posts for text content
+        continue-on-error: true
+        run: |
+          UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
+          curl -sS -L -A "$UA" "https://likeandsharecleaning.com/" -o seo/source-scrape/likeandsharecleaning-home.html || true
+          curl -sS -A "$UA" "https://likeandsharecleaning.com/wp-json/wp/v2/pages?per_page=100&_fields=id,slug,title,content,link" \
+            -o seo/source-scrape/wp-pages.json || true
+          curl -sS -A "$UA" "https://likeandsharecleaning.com/wp-json/wp/v2/posts?per_page=100&_fields=id,slug,title,content,link" \
+            -o seo/source-scrape/wp-posts.json || true
+
+      - name: List results
+        run: |
+          echo "--- Photos ---"
+          find assets/service-photos -type f | sort
+          echo "--- Scrape output ---"
+          find seo/source-scrape -type f -exec ls -lh {} \;
+
+      - name: Commit and push results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add assets/service-photos seo/source-scrape
+          git diff --staged --quiet || git commit -m "chore(seo): fetch and process source photos + scrape source-site text"
+          git push
