@@ -76,7 +76,9 @@ def main():
         }]
         try:
             data = post("/v3/dataforseo_labs/google/keyword_ideas/live", payload)
+            top_status = f"{data.get('status_code')} {data.get('status_message')}"
             task = data["tasks"][0]
+            task_status = f"{task.get('status_code')} {task.get('status_message')}"
             result = task.get("result") or [{}]
             items = result[0].get("items", []) if result[0] else []
             items = sorted(
@@ -91,9 +93,20 @@ def main():
                 row["dfs_intent"] = (best.get("search_intent_info") or {}).get("main_intent") or ""
                 row["dfs_related_keywords"] = "; ".join(i.get("keyword", "") for i in items[1:6])
             else:
-                print(f"No keyword_ideas results for seed: {seed}", file=sys.stderr)
+                print(
+                    f"No keyword_ideas results for seed: {seed} "
+                    f"| top status: {top_status} | task status: {task_status} "
+                    f"| raw task (first 500 chars): {json.dumps(task)[:500]}",
+                    file=sys.stderr,
+                )
         except (urllib.error.HTTPError, urllib.error.URLError, KeyError, IndexError) as e:
-            print(f"keyword_ideas failed for '{seed}': {e}", file=sys.stderr)
+            body = ""
+            if isinstance(e, urllib.error.HTTPError):
+                try:
+                    body = e.read().decode("utf-8", errors="replace")[:500]
+                except Exception:
+                    pass
+            print(f"keyword_ideas failed for '{seed}': {e} | body: {body}", file=sys.stderr)
         time.sleep(1)  # be polite to the API / avoid rate limits
 
     try:
@@ -103,13 +116,28 @@ def main():
             "language_code": LANGUAGE_CODE,
         }]
         kd_data = post("/v3/dataforseo_labs/google/bulk_keyword_difficulty/live", kd_payload)
-        kd_result = kd_data["tasks"][0].get("result") or [{}]
+        kd_task = kd_data["tasks"][0]
+        kd_result = kd_task.get("result") or [{}]
         kd_items = kd_result[0].get("items", []) if kd_result[0] else []
+        if not kd_items:
+            print(
+                f"No bulk_keyword_difficulty items | "
+                f"top status: {kd_data.get('status_code')} {kd_data.get('status_message')} | "
+                f"task status: {kd_task.get('status_code')} {kd_task.get('status_message')} | "
+                f"raw task (first 500 chars): {json.dumps(kd_task)[:500]}",
+                file=sys.stderr,
+            )
         kd_map = {i.get("keyword"): i.get("keyword_difficulty") for i in kd_items}
         for row, seed in zip(rows, seeds):
             row["dfs_keyword_difficulty"] = str(kd_map.get(seed, ""))
     except (urllib.error.HTTPError, urllib.error.URLError, KeyError, IndexError) as e:
-        print(f"bulk_keyword_difficulty failed: {e}", file=sys.stderr)
+        body = ""
+        if isinstance(e, urllib.error.HTTPError):
+            try:
+                body = e.read().decode("utf-8", errors="replace")[:500]
+            except Exception:
+                pass
+        print(f"bulk_keyword_difficulty failed: {e} | body: {body}", file=sys.stderr)
 
     with open(CSV_PATH, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
