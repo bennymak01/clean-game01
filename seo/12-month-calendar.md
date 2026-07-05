@@ -43,17 +43,25 @@ first, then a genuine Hong Kong seasonal angle (Lunar New Year 大掃除 demand
 spikes every Dec–Jan ahead of CNY, which falls 2027-02-17), then the
 remaining zero-impression low-priority gaps batched cheaply at the end.
 
+Title convention update: replace the generic "OO完整指南" (guide) suffix
+with "OO服務" (service) on new service pages — matches how HK users actually
+search (booking intent, e.g. "辦公室消毒服務" not "辦公室消毒指南") and matches
+the DataForSEO `dfs_recommended_keyword` pattern already seen across the
+CSV. Price-guide pages keep "收費指南" (price guide is a distinct, correctly-
+named content type, not a how-to guide) — flagging this one exception rather
+than silently applying the rule to it.
+
 | # | Target week | Topic | Rationale |
 |---|---|---|---|
-| 1 | 2026-08-03 | 辦公室消毒服務完整指南 (`office-disinfection-service`) | Closes the office cluster's last real gap — 309 impr query, currently unserved |
-| 2 | 2026-08-17 | 家居定期大掃除完整指南 (`home-regular-cleaning`, new pillar) | Biggest remaining pillar-level gap, 185+ impr, one of the original 11 site categories |
-| 3 | 2026-09-07 | 滅蟲服務完整指南 (`pest-control-service`) | Dedicated commercial-intent service page; existing mosquito post is news/awareness, not conversion-focused |
+| 1 | 2026-08-03 | 辦公室消毒服務 (`office-disinfection-service`) | Closes the office cluster's last real gap — 309 impr query, currently unserved |
+| 2 | 2026-08-17 | 家居定期大掃除服務 (`home-regular-cleaning`, new pillar) | Biggest remaining pillar-level gap, 185+ impr, one of the original 11 site categories |
+| 3 | 2026-09-07 | 滅蟲服務 (`pest-control-service`) | Dedicated commercial-intent service page; existing mosquito post is news/awareness, not conversion-focused |
 | 4 | 2026-09-21 | Trust/EEAT series #4 — 清潔公司如何處理客訴？(`handling-customer-complaints`) | Keeps author-authority signal fresh per the original series cadence (last one used was `punctual-cleaning-kowloon`) |
-| 5 | 2026-10-05 | 清潔招牌及玻璃門窗清潔指南 (`shopfront-glass-signage-cleaning`) | B2B/shopfront angle, zero on-site competition |
-| 6 | 2026-10-19 | 吸水服務指南：水浸後點處理？(`water-extraction-service`) | Still inside HK's typhoon/heavy-rain season (May–Nov) — timely for flood/water-damage searches |
-| 7 | 2026-11-02 | 年廿八大掃除完整指南：農曆新年前點清潔？(`lunar-new-year-deep-cleaning`) | Seasonal: CNY 2027 is Feb 17; publishing in early Nov gives ~3 months to rank before the search spike that typically starts mid-Dec |
-| 8 | 2026-11-16 | 高溫蒸氣消毒完整指南 (`steam-disinfection-service`) | Clears the last zero-impression low-priority gap; pairs naturally with the CNY post above (post-large-gathering hygiene angle) |
-| 9 | 2026-12-07 | 農曆新年大掃除收費指南：邊間清潔公司好？(`lunar-new-year-cleaning-price-guide`) | Commercial-intent companion to #7, timed right before the actual pre-CNY booking rush |
+| 5 | 2026-10-05 | 清潔招牌及玻璃門窗服務 (`shopfront-glass-signage-cleaning`) | B2B/shopfront angle, zero on-site competition |
+| 6 | 2026-10-19 | 吸水服務：水浸後點處理？(`water-extraction-service`) | Still inside HK's typhoon/heavy-rain season (May–Nov) — timely for flood/water-damage searches |
+| 7 | 2026-11-02 | 年廿八大掃除服務：農曆新年前點清潔？(`lunar-new-year-deep-cleaning`) | Seasonal: CNY 2027 is Feb 17; publishing in early Nov gives ~3 months to rank before the search spike that typically starts mid-Dec |
+| 8 | 2026-11-16 | 高溫蒸氣消毒服務 (`steam-disinfection-service`) | Clears the last zero-impression low-priority gap; pairs naturally with the CNY post above (post-large-gathering hygiene angle) |
+| 9 | 2026-12-07 | 農曆新年大掃除收費指南：邊間清潔公司好？(`lunar-new-year-cleaning-price-guide`) | Commercial-intent companion to #7, timed right before the actual pre-CNY booking rush — keeps "收費指南" naming (price guide, not a how-to guide) |
 | 10 | 2026-12-21 | Trust/EEAT series #5 — 2026年香港清潔行業回顧 (`2026-cleaning-industry-year-review`) | Year-end authority piece; also a natural place to internally link the whole year's new cluster content together |
 
 Format for all 10: same structure used throughout this session — feature
@@ -64,11 +72,20 @@ typed directly into the prompt, never as `\u` escapes — verify the tool's
 echoed decode before triggering, and inspect the downloaded image for
 watermark hallucinations before merging).
 
-## Open question for the next checkpoint
+## Publishing mechanism (decided)
 
-Posts #1–3 and #5–8 are new dedicated service pages — should these ship the
-same way as the last 16 (write + merge directly to `main`, generate hero
-image immediately) or go back through the `_drafts/` → `auto-publish.yml`
-schedule so they land on their target weeks instead of all at once? The
-Trust/EEAT entries (#4, #10) fit the existing drafts pipeline more naturally
-since they're not tied to cluster cross-linking the way service pages are.
+All 10 posts go through `_drafts/` → `auto-publish.yml` on their target
+dates above, instead of the direct-to-`main` fast-track used for the
+previous 16. `auto-publish.yml` now runs daily at 01:00 UTC (09:00 HKT)
+instead of Mon/Thu/Fri only, so a draft dated e.g. `2026-08-03-*.md`
+publishes that morning rather than waiting for the next scheduled weekday.
+
+## Pre-staging hero images ahead of writing
+
+To keep post-writing fast once each date arrives, hero images for all 10
+posts are generated and verified up front (title/description only, before
+the article body exists), with the resulting `images/blog/{slug}-hero.jpg`
+path + prompt recorded in `seo/clean-com-hk-topical-cluster-plan.csv` under
+the matching cluster row (same accumulate pattern used for multi-page
+clusters all session). When the draft is actually written, it just
+references the already-generated, already-approved image.
