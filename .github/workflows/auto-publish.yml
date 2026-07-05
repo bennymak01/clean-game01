@@ -1,11 +1,9 @@
 name: Auto Publish Drafts
 
-# 每週一、四、五執行；發布所有檔名日期 <= 今天的草稿（追趕漏發，無截止日期）
+# 每日早上 9am (HKT) 執行；發布所有檔名日期 <= 今天的草稿（追趕漏發，無截止日期）
 on:
   schedule:
-    - cron: '0 1 * * 1'   # 每週一 01:00 UTC
-    - cron: '0 1 * * 4'   # 每週四 01:00 UTC
-    - cron: '0 1 * * 5'   # 每週五 01:00 UTC
+    - cron: '0 1 * * *'   # 每日 01:00 UTC = 09:00 HKT
   workflow_dispatch:
 
 permissions:
