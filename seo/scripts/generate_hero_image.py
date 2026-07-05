@@ -104,13 +104,27 @@ def update_csv(status):
         if col not in fieldnames:
             fieldnames.append(col)
 
+    # A cluster can have multiple posts (a pillar + several supporting
+    # pages), each with its own hero image - accumulate "slug:value"
+    # entries per column instead of overwriting, so generating a second
+    # image for an already-illustrated cluster doesn't erase the record
+    # of the first one.
+    def append_entry(existing, value):
+        entry = f"{SLUG}:{value}"
+        if not existing:
+            return entry
+        # Replace a prior entry for the same slug (re-roll case), else append
+        parts = [p for p in existing.split("; ") if not p.startswith(f"{SLUG}:")]
+        parts.append(entry)
+        return "; ".join(parts)
+
     for row in rows:
         if row["cluster_id"] == CLUSTER_ID:
-            row["hero_image_path"] = FINAL_PATH if status == "succeeded" else ""
-            row["hero_image_prompt"] = PROMPT
-            row["hero_image_provider"] = "replicate/google/nano-banana-pro"
-            row["hero_image_generated_date"] = time.strftime("%Y-%m-%d")
-            row["hero_image_status"] = status
+            row["hero_image_path"] = append_entry(row.get("hero_image_path", ""), FINAL_PATH if status == "succeeded" else status)
+            row["hero_image_prompt"] = append_entry(row.get("hero_image_prompt", ""), PROMPT)
+            row["hero_image_provider"] = append_entry(row.get("hero_image_provider", ""), "replicate/google/nano-banana-pro")
+            row["hero_image_generated_date"] = append_entry(row.get("hero_image_generated_date", ""), time.strftime("%Y-%m-%d"))
+            row["hero_image_status"] = append_entry(row.get("hero_image_status", ""), status)
 
     with open(CSV_PATH, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
